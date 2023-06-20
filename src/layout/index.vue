@@ -1,10 +1,10 @@
-<script setup>
+<script setup name="Layout">
 import ClassicsLayout from './ClassicsLayout.vue'
 import DefaultLayout from './DefaultLayout.vue'
 import CrosswiseLayout from './CrosswiseLayout.vue'
 import MixtureNavLayout from './MixtureNavLayout.vue'
 
-const layout = 'default'
+const layout = 'classics'
 </script>
 
 <template>

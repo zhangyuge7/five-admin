@@ -14,20 +14,39 @@ const constantRoutes = [
     path: '/',
     name: 'Layout',
     component: Layout,
+    meta: {
+      isHide: true,
+      hideChildren: false,
+    },
     children: [
       {
-        path: '',
+        path: '/dashboard',
         name: 'Dashboard',
-        redirect: '/analysis',
+        redirect: '/dashboard/analysis',
+        meta: {
+          title: '仪表盘',
+          isHide: false,
+          icon: 'ant-design:dashboard-outlined',
+        },
         children: [
           {
             path: 'analysis',
             name: 'Analysis',
+            meta: {
+              title: '分析页',
+              isHide: false,
+              icon: 'ep:data-analysis',
+            },
             component: () => import('@/views/dashboard/Analysis/index.vue'),
           },
           {
             path: 'workbench',
             name: 'Workbench',
+            meta: {
+              title: '工作台',
+              isHide: false,
+              icon: 'icon-park-outline:workbench',
+            },
             component: () => import('@/views/dashboard/Workbench/index.vue'),
           },
         ],
@@ -38,6 +57,9 @@ const constantRoutes = [
   {
     path: '/login',
     name: 'Login',
+    meta: {
+      isHide: true,
+    },
     component: () => import('@/views/Login/index.vue'),
   },
 ]

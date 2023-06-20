@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@element-plus/icons-vue':
     specifier: ^2.1.0
@@ -66,6 +70,9 @@ devDependencies:
   vite-plugin-svg-icons:
     specifier: ^2.0.1
     version: 2.0.1(vite@4.3.8)
+  vite-plugin-vue-setup-extend-plus:
+    specifier: ^0.1.0
+    version: 0.1.0
 
 packages:
 
@@ -4481,6 +4488,10 @@ packages:
       vite: 4.3.8(sass@1.62.1)
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vite-plugin-vue-setup-extend-plus@0.1.0:
+    resolution: {integrity: sha512-pa27KIsHIBvBMv4xz9uB3UCfAuP2tr7PLlFhCS9vw+aXd326LEHsvhqd3hCQDOR5MjlQVyQH6vwuGr3u+KRiiw==}
     dev: true
 
   /vite@4.3.8(sass@1.62.1):
