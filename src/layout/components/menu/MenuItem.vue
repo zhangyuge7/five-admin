@@ -15,7 +15,7 @@ function showMenuItem({ children, meta }) {
   else if (meta && meta.isHide)
     return false
 
-  return true
+  return !!meta
 }
 // 是否显示为子菜单
 function showSubMenu({ children, meta }) {
