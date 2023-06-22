@@ -42,42 +42,45 @@ export function routerBeforeEach(to, from, next) {
 
 // 构建路由表
 export function buildRoutes() {
-  // 处理为数组
-  const innerRoutes = []
-  const outerRoutes = []
+  // 如果配置为前端控制路由，获取前端路由及公共路由；如果配置为后端控制路由，仅获取公共路由，
   const rawRoutes = isFrontRoute() ? frontRoutes.concat(commonRoutes) : commonRoutes
+  // 深拷贝路由列表，避免后续操作过程对原路由列表造成不可修复问题
   const routes = _.cloneDeep(rawRoutes)
-  multToTwo(routes, innerRoutes, outerRoutes)
-  // 将所有路由作为根路由下的二级路由
+  // 将路由列表转为二级路由
+  return multToTwo(routes)
+}
+
+// 转二级路由
+function multToTwo(routes) {
+  // 需要在 layout 框架内显示的路由
+  const innerRoutes = []
+  // 需要在 layout 框架外显示的路由
+  const outerRoutes = []
+
+  // 分类拆解为路由数组
+  classification(routes, innerRoutes, outerRoutes)
+
+  // 将需要在 layout 框架内显示的路由作为根路由下的二级路由
   root.children = innerRoutes
   // 返回路由信息
   return [
     root,
-    ...outerRoutes, // 大屏作为一级路由与根路由平级，会在框架外显示页面
+    ...outerRoutes, // 需要在 layout 框架外显示的路由作为一级路由与根路由平级
   ]
-}
-
-// 多级路由转数组
-function multToTwo(routes, innerRoutes, outerRoutes) {
-  classification(routes, innerRoutes, outerRoutes)
-  innerRoutes.forEach((route) => {
-    route.children = null
-  })
-  outerRoutes.forEach((route) => {
-    route.children = null
-  })
 }
 
 // 递归路由分类。框架内展示的路由与框架外展示的路由
 function classification(routes, innerRoutes, outerRoutes) {
   routes.forEach((route) => {
     route.meta?.isOuter ? outerRoutes.push(route) : innerRoutes.push(route)
-    if (route.children)
+    if (route.children) {
       classification(route.children, innerRoutes, outerRoutes)
+      route.children = null
+    }
   })
 }
 
-// 初始化菜单信息
+// 初始化菜单信息。应在 菜单组件中调用
 export function initMenus() {
   if (isBackRoute()) {
     getBackRoutes()
@@ -91,23 +94,14 @@ export function initMenus() {
 async function getBackRoutes() {
   // 请求后端接口获取菜单路由信息
   const { data } = await menuListApi()
-
-  // 转二级路由
-  const innerRoutes = []
-  const outerRoutes = []
-  const routes = _.cloneDeep(data)
-  multToTwo(routes, innerRoutes, outerRoutes)
-
-  // 添加进路由器
-  innerRoutes.forEach((route) => {
-    initComponent(route)
-    root.children.push(route)
-  })
-  outerRoutes.forEach((route) => {
+  const rawRoutes = data || []
+  const routes = _.cloneDeep(rawRoutes)
+  // 转二级路由并添加到路由器
+  multToTwo(routes).forEach((route) => {
     initComponent(route)
     router.addRoute(route)
   })
-  router.addRoute(root)
+
   // 存储菜单信息到 pinia 仓库
   const routeStore = useRouteStore()
   routeStore.menus = data || []
@@ -115,11 +109,16 @@ async function getBackRoutes() {
 // 初始化路由的 component 属性
 function initComponent(route) {
   let url = ''
-  if (route.component) {
+  if (route.component && typeof (route.component) === 'string') {
     url = route.component.endsWith('.vue')
       ? `/src/views/${route.component}`
       : `/src/views/${route.component}.vue`
     route.component = views[url]
+  }
+  if (route.children) {
+    route.children.forEach((item) => {
+      initComponent(item)
+    })
   }
 }
 
