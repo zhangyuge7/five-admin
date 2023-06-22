@@ -1,13 +1,11 @@
 import _ from 'lodash'
 import commonRoutes from './commonRoutes'
 import frontRoutes from './frontRoutes'
-import router, { whiteList } from '.'
-import { useUserStore } from '@/stores/modules/user'
+import router from '.'
 import { useRouteStore } from '@/stores/modules/route'
-
 import appConfig from '@/config/app'
 import { menuListApi } from '@/api/auth'
-import { hasRole } from '@/utils/auth'
+import { hasRole, hasToken } from '@/utils/auth'
 
 const views = import.meta.glob('@/views/**/*.vue')
 
@@ -21,20 +19,14 @@ const root = {
 
 // 路由前置守卫
 export function routerBeforeEach(to, from, next) {
-  const useUser = useUserStore()
-  const hasToken = !!useUser.token
-
-  if (whiteList.includes(to.path)) {
-    next()
-  }
-  else if (to.path === '/login') {
-    if (hasToken)
+  if (to.path === '/login') {
+    if (hasToken())
       next('/')
     else
       next()
   }
   else {
-    if (hasToken)
+    if (hasToken())
       next()
     else
       next('/login')
@@ -112,7 +104,8 @@ export async function initMenus() {
   }
   const routes = _.cloneDeep(rawRoutes)
   // 转二级路由并添加到路由器
-  multToTwo(routes, true).forEach((route) => {
+  const twoRoutes = multToTwo(routes, true)
+  twoRoutes.forEach((route) => {
     initComponent(route)
     router.addRoute(route)
   })

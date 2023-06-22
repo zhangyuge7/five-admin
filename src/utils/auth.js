@@ -13,3 +13,9 @@ export function hasRole(val) {
     return arr && arr.length > 0
   }
 }
+
+// 检验是否存在 token
+export function hasToken() {
+  const userStore = useUserStore()
+  return !!userStore.token
+}
