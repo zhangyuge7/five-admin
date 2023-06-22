@@ -1,37 +1,18 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import constantRoutes from './constant'
-import { localCache } from '@/utils/cache'
+import { buildRoutes, routerBeforeEach } from './fun'
 
+const routes = buildRoutes()
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
-  routes: [...constantRoutes],
+  routes,
 })
 // 白名单
 const whiteList = []
 // 前置守卫
-router.beforeEach((to, from, next) => {
-  const userCache = localCache.get('USER')
-  const hasToken = !!userCache && !!userCache.token
+router.beforeEach((to, from, next) => routerBeforeEach(to, from, next))
 
-  if (whiteList.includes(to.path)) {
-    next()
-  }
-  else if (to.path === '/login') {
-    if (hasToken)
-      next('/')
-    else
-      next()
-  }
-  else {
-    if (hasToken)
-      next()
-    else
-      next('/login')
-  }
-})
-
-export default router
-
-export function setupRouter(app) {
+function setupRouter(app) {
   app.use(router)
 }
+export default router
+export { setupRouter, whiteList, routes }

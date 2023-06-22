@@ -16,7 +16,7 @@ function languageChange(v) {
 }
 
 function doLogout() {
-  useUser.doLogout()
+  useUser.logout()
 }
 </script>
 

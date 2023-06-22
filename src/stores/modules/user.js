@@ -1,26 +1,41 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import { store } from '@/stores'
-import { login, logout } from '@/api/system'
+import { shallowRef } from 'vue'
 import router from '@/router'
+import { loginApi, logoutApi, userInfoApi } from '@/api/auth'
 
 const PREFIX = import.meta.env.VITE_APP_STORAGE_PREFIX
 
 export const useUserStore = defineStore('user', () => {
-  const token = ref('')
+  const token = shallowRef('')
+  const userInfo = shallowRef({
+    id: 1,
+    username: 'admin',
+    nickname: '小铁牛',
+    roles: ['admin'],
+    avatar: '',
+    prems: [],
+  })
 
-  /** 登录 */
-  async function doLogin(form) {
-    const { ok, data } = await login(form)
+  // 登录
+  async function login(form) {
+    const { ok, data } = await loginApi(form)
     if (ok) {
       token.value = data.token
+      getUserInfo()
       router.replace('/')
     }
   }
-  /** 登出 */
-  async function doLogout() {
+
+  // 用户信息
+  async function getUserInfo() {
+    const { ok, data } = await userInfoApi()
+    if (ok)
+      userInfo.value = data
+  }
+  // 登出
+  async function logout() {
     try {
-      await logout()
+      await logoutApi()
     }
     finally {
       token.value = undefined
@@ -28,7 +43,7 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  return { token, doLogin, doLogout }
+  return { token, userInfo, login, logout, getUserInfo }
 }, {
 
   persist: {
@@ -37,7 +52,3 @@ export const useUserStore = defineStore('user', () => {
     storage: localStorage,
   },
 })
-
-export function useUserStoreWithOut() {
-  return useUserStore(store)
-}

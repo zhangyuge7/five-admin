@@ -1,14 +1,23 @@
 <script setup>
+import { computed, onBeforeMount } from 'vue'
 import MenuItem from './MenuItem.vue'
 import router from '@/router'
-import constantRoutes from '@/router/constant.js'
+import { initMenus } from '@/router/fun'
+import { useRouteStore } from '@/stores/modules/route'
+
+const routeStore = useRouteStore()
+onBeforeMount(() => {
+  // 初始化菜单信息
+  initMenus()
+})
 
 const { currentRoute } = router
+const routes = computed(() => routeStore.menus || [])
 </script>
 
 <template>
   <el-menu :default-active="currentRoute.path" router>
-    <MenuItem :routes="constantRoutes" />
+    <MenuItem :routes="routes" />
   </el-menu>
 </template>
 

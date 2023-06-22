@@ -10,7 +10,7 @@ function doLogin() {
     username: usernameEl.value,
     password: passwordEl.value,
   }
-  useUser.doLogin(formData)
+  useUser.login(formData)
 }
 </script>
 
@@ -22,7 +22,7 @@ function doLogin() {
       </div>
       <div class="form-wrapper">
         <input id="username" type="text" name="username" value="admin" placeholder="username" class="input-item">
-        <input id="password" type="password" name="password" value="123456" placeholder="password" class="input-item">
+        <input id="password" type="password" name="password" value="admin" placeholder="password" class="input-item">
         <div class="btn cursor-pointer" @click="doLogin">
           登录
         </div>
