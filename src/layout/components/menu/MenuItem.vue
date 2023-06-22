@@ -1,5 +1,6 @@
 <script setup name="MenuItem">
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import { hasRole } from '@/utils/auth'
 
 const props = defineProps({
   routes: {
@@ -7,12 +8,15 @@ const props = defineProps({
     require: true,
   },
 })
+
 // 是否显示为菜单项
 function showMenuItem({ children, meta }) {
   if (children)
     return false
 
-  else if (meta && meta.isHide)
+  if (meta?.isHide)
+    return false
+  if (meta?.roles && !hasRole(meta?.roles))
     return false
 
   return !!meta
@@ -21,8 +25,12 @@ function showMenuItem({ children, meta }) {
 function showSubMenu({ children, meta }) {
   if (!children)
     return false
-  else if (!meta || meta.isHide)
+  if (!meta || meta.isHide)
     return false
+  if (meta?.roles && !hasRole(meta?.roles)) {
+    meta.hideChildren = true
+    return false
+  }
   return true
 }
 // 当父级菜单隐藏时，是否继续显示子级菜单
