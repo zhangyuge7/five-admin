@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { shallowRef } from 'vue'
 import router from '@/router'
 import { loginApi, logoutApi, userInfoApi } from '@/api/auth'
+import { initMenus } from '@/router/fun'
 
 const PREFIX = import.meta.env.VITE_APP_STORAGE_PREFIX
 
@@ -21,9 +22,18 @@ export const useUserStore = defineStore('user', () => {
     const { ok, data } = await loginApi(form)
     if (ok) {
       token.value = data.token
-      getUserInfo()
-      router.replace('/')
+      loginAfter(true)
     }
+  }
+  // 登录之后
+  async function loginAfter(goHome = false) {
+    if (!token.value) {
+      router.replace('/login')
+      return
+    }
+    await getUserInfo()
+    await initMenus()
+    goHome && router.replace('/')
   }
 
   // 用户信息
@@ -43,7 +53,7 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  return { token, userInfo, login, logout, getUserInfo }
+  return { token, userInfo, login, logout, loginAfter }
 }, {
 
   persist: {

@@ -1,15 +1,11 @@
 <script setup>
-import { computed, onBeforeMount } from 'vue'
+import { computed } from 'vue'
 import MenuItem from './MenuItem.vue'
 import router from '@/router'
-import { initMenus } from '@/router/fun'
+
 import { useRouteStore } from '@/stores/modules/route'
 
 const routeStore = useRouteStore()
-onBeforeMount(() => {
-  // 初始化菜单信息
-  initMenus()
-})
 
 const { currentRoute } = router
 const routes = computed(() => routeStore.menus || [])

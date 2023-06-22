@@ -4,7 +4,7 @@ import frontRoutes from './frontRoutes'
 import router, { whiteList } from '.'
 import { useUserStore } from '@/stores/modules/user'
 import { useRouteStore } from '@/stores/modules/route'
-import Layout from '@/layout/index.vue'
+
 import appConfig from '@/config/app'
 import { menuListApi } from '@/api/auth'
 import { hasRole } from '@/utils/auth'
@@ -15,7 +15,7 @@ const views = import.meta.glob('@/views/**/*.vue')
 const root = {
   path: '/',
   name: 'Root',
-  component: Layout,
+  component: () => import('@/layout/index.vue'),
   redirect: import.meta.env.VITE_APP_HOME_PATH,
 }
 
@@ -102,8 +102,9 @@ function classification(routes, innerRoutes, outerRoutes, isFilterByRole) {
   }
 }
 
-// 初始化菜单信息。应在 菜单组件中调用
+// 初始化菜单信息。应在用户登录后调用
 export async function initMenus() {
+  clearRoutes()
   let rawRoutes = [...frontRoutes, ...commonRoutes]
   if (isBackRoute()) {
     const { data } = await menuListApi()
@@ -134,7 +135,13 @@ function initComponent(route) {
     })
   }
 }
-
+// 清空路由器所有路由
+function clearRoutes() {
+  router.getRoutes().forEach((route) => {
+    if (!route.path.includes(':'))
+      router.removeRoute(route.name)
+  })
+}
 export function isFrontRoute() {
   return appConfig.routeSource === 'front'
 }
