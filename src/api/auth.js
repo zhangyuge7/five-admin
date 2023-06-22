@@ -2,7 +2,7 @@ import axios from '@/utils/axios'
 
 // 登录
 export function loginApi(data) {
-  return axios.post('/login', { data }, { errorMsgType: 'box' })
+  return axios.post('/login', data, { errorMsgType: 'box' })
 }
 // 用户信息
 export function userInfoApi() {

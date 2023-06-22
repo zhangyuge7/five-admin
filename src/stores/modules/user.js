@@ -22,18 +22,18 @@ export const useUserStore = defineStore('user', () => {
     const { ok, data } = await loginApi(form)
     if (ok) {
       token.value = data.token
-      loginAfter(true)
+      loginAfter()
     }
   }
   // 登录之后
-  async function loginAfter(goHome = false) {
+  async function loginAfter(url = '/') {
     if (!token.value) {
       router.replace('/login')
       return
     }
     await getUserInfo()
     await initMenus()
-    goHome && router.replace('/')
+    router.replace(url)
   }
 
   // 用户信息

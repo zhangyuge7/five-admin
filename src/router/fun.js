@@ -6,6 +6,8 @@ import { useRouteStore } from '@/stores/modules/route'
 import appConfig from '@/config/app'
 import { menuListApi } from '@/api/auth'
 import { hasRole, hasToken } from '@/utils/auth'
+import { useUserStore } from '@/stores/modules/user'
+import { NextLoading } from '@/utils/loading'
 
 const views = import.meta.glob('@/views/**/*.vue')
 
@@ -17,6 +19,14 @@ const root = {
   redirect: import.meta.env.VITE_APP_HOME_PATH,
 }
 
+// 重置路由表
+function resetRoutes(path) {
+  const userStore = useUserStore()
+  const routeStore = useRouteStore()
+  if (!routeStore.menus || !routeStore.menus.length)
+    userStore.loginAfter(path)
+}
+
 // 路由前置守卫
 export function routerBeforeEach(to, from, next) {
   if (to.path === '/login') {
@@ -26,10 +36,13 @@ export function routerBeforeEach(to, from, next) {
       next()
   }
   else {
-    if (hasToken())
+    if (hasToken()) {
+      resetRoutes(to.path)
       next()
-    else
+    }
+    else {
       next('/login')
+    }
   }
 }
 
@@ -96,7 +109,7 @@ function classification(routes, innerRoutes, outerRoutes, isFilterByRole) {
 
 // 初始化菜单信息。应在用户登录后调用
 export async function initMenus() {
-  clearRoutes()
+  NextLoading.start()
   let rawRoutes = [...frontRoutes, ...commonRoutes]
   if (isBackRoute()) {
     const { data } = await menuListApi()
@@ -104,6 +117,7 @@ export async function initMenus() {
   }
   const routes = _.cloneDeep(rawRoutes)
   // 转二级路由并添加到路由器
+  clearRoutes()
   const twoRoutes = multToTwo(routes, true)
   twoRoutes.forEach((route) => {
     initComponent(route)
@@ -111,6 +125,7 @@ export async function initMenus() {
   })
   const routeStore = useRouteStore()
   routeStore.menus = rawRoutes
+  NextLoading.done()
 }
 
 // 初始化路由的 component 属性

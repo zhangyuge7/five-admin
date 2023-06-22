@@ -1,16 +1,10 @@
 <script setup name="Layout">
-import { onBeforeMount } from 'vue'
 import ClassicsLayout from './ClassicsLayout.vue'
 import DefaultLayout from './DefaultLayout.vue'
 import CrosswiseLayout from './CrosswiseLayout.vue'
 import MixtureNavLayout from './MixtureNavLayout.vue'
-import { useUserStore } from '@/stores/modules/user'
 
-const userStore = useUserStore()
 const layout = 'classics'
-onBeforeMount(async () => {
-  await userStore.loginAfter()
-})
 </script>
 
 <template>

@@ -6,11 +6,11 @@ export default [
     url: `${baseApi}/login`,
     method: 'post',
     response: ({ body }) => {
-      const { data } = body
-      if (data.username !== 'admin')
+      const { username, password } = body
+      if (username !== 'admin')
         return R.fail('用户名不存在')
 
-      else if (data.password !== 'admin')
+      else if (password !== 'admin')
         return R.fail('密码错误')
 
       return R.ok({ token: 'token12321' })
@@ -32,6 +32,7 @@ export default [
       return R.ok(userInfo)
     },
   },
+
   // 路由信息
   {
     url: `${baseApi}/getMenuList`,

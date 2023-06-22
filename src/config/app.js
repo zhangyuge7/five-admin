@@ -4,5 +4,5 @@ export default {
   // elementplus组件尺寸。'default' 默认 | 'large' 大 | 'small' 小
   elementSize: 'default',
   // 路由来源。 'front' 前端 | 'back' 后端 | 'mixture' 混合前后端
-  routeSource: 'front',
+  routeSource: 'back',
 }
