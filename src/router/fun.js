@@ -7,7 +7,7 @@ import appConfig from '@/config/app'
 import { menuListApi } from '@/api/auth'
 import { hasRole, hasToken } from '@/utils/auth'
 import { useUserStore } from '@/stores/modules/user'
-import { NextLoading } from '@/utils/loading'
+import { fiveLoading } from '@/utils/loading'
 
 const views = import.meta.glob('@/views/**/*.vue')
 
@@ -144,7 +144,7 @@ export async function initMenus() {
   }
 
   // 全屏loading动画执行
-  NextLoading.start('加载中...')
+  fiveLoading.start()
   // 默认获取前端路由信息
   let rawRoutes = [...frontRoutes, ...commonRoutes]
   // 获取后端路由信息
@@ -183,7 +183,7 @@ export async function initMenus() {
   initKeepAliveViews(twoRoutes, names)
   routeStore.keepAliveViews = names
   // 全屏loading动画关闭
-  NextLoading.done(300)
+  fiveLoading.done(300)
 }
 
 // 初始化路由的 component 属性

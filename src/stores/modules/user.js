@@ -34,7 +34,7 @@ export const useUserStore = defineStore('user', () => {
     if (!path) {
       ElNotification({
         title: '欢迎回来',
-        message: userInfo.value.nickname,
+        message: userInfo.value.nickName || '',
         type: 'success',
       })
     }

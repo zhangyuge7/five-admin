@@ -26,7 +26,7 @@ export default [
       const admin = {
         id: 1,
         username: 'admin',
-        nickname: '超级管理员',
+        nickName: '超级管理员',
         roles: ['admin'],
         avatar: '',
         homePath: '/dashboard/analysis',
@@ -35,7 +35,7 @@ export default [
       const test = {
         id: 1,
         username: 'test',
-        nickname: '测试用户',
+        nickName: '测试用户',
         roles: ['test'],
         avatar: '',
         homePath: '',
