@@ -8,6 +8,7 @@ import { setupRouter } from './router'
 import { setupStore } from './stores'
 import { setupI18n } from './i18n'
 import App from './App.vue'
+import { useNprogress } from '@/utils/nprogress'
 
 const app = createApp(App)
 window.vm = app
@@ -16,3 +17,4 @@ setupStore(app)
 setupI18n(app)
 setupRouter(app)
 app.mount('#app')
+useNprogress()

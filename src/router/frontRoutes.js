@@ -27,6 +27,7 @@ export default [
       title: '仪表盘',
       isHide: false,
       icon: 'ant-design:dashboard-outlined',
+      sort: 0,
     },
     children: [
       {

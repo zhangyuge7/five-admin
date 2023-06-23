@@ -1,0 +1,40 @@
+/* 渐变 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 放缩 */
+.scale-enter-active,
+.scale-leave-active {
+  transition: transform 0.3s ease-in-out;
+}
+
+.scale-enter-from {
+  transform: scale(0);
+}
+
+.scale-leave-to {
+  transform: scale(0);
+}
+
+/* 滑动 */
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* 进入时的样式 */
+.slide-enter-from {
+  transform: translateX(-100%);
+}
+
+/* 离开时的样式 */
+.slide-leave-to {
+  transform: translateX(-100%);
+}

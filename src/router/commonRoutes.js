@@ -10,7 +10,7 @@ export default [
   },
   {
     path: '/:path(.*)*',
-    name: 'notFound',
+    name: 'NotFound',
     component: () => import('@/views/error/404.vue'),
     meta: {
       isHide: true,

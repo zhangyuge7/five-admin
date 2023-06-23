@@ -1,5 +1,5 @@
-<script setup>
-// import { ref } from 'vue'
+<script setup name="Analysis">
+import { ref } from 'vue'
 import { useDark, useToggle } from '@vueuse/core'
 
 import { useAppStore } from '@/stores/modules/app'
@@ -14,41 +14,44 @@ const toggleDark = useToggle(isDark)
 function languageChange(v) {
   useApp.appConfig.defaultLanguage = v
 }
-
+const count = ref(0)
 function doLogout() {
   useUser.logout()
 }
 </script>
 
 <template>
-  <div>分析页</div>
+  <div>
+    <el-input-number v-model="count" />
+    <div>分析页</div>
 
-  主题
-  <el-button @click="toggleDark()">
-    {{ isDark ? '明亮' : '暗黑' }}
-  </el-button>
+    主题
+    <el-button @click="toggleDark()">
+      {{ isDark ? '明亮' : '暗黑' }}
+    </el-button>
 
-  语言
-  <el-select v-model="$i18n.locale" @change="languageChange">
-    <el-option label="中文简体" value="zh-cn" />
-    <el-option label="中文繁体" value="zh-tw" />
-    <el-option label="英文" value="en" />
-  </el-select>
-  组件大小
-  <el-select v-model="useApp.appConfig.elementSize">
-    <el-option label="大" value="large" />
-    <el-option label="默认" value="default" />
-    <el-option label="小" value="small" />
-  </el-select>
+    语言
+    <el-select v-model="$i18n.locale" @change="languageChange">
+      <el-option label="中文简体" value="zh-cn" />
+      <el-option label="中文繁体" value="zh-tw" />
+      <el-option label="英文" value="en" />
+    </el-select>
+    组件大小
+    <el-select v-model="useApp.appConfig.elementSize">
+      <el-option label="大" value="large" />
+      <el-option label="默认" value="default" />
+      <el-option label="小" value="small" />
+    </el-select>
 
-  <el-pagination
-    :page-sizes="[100, 200, 300, 400]" background layout="total, sizes, prev, pager, next, jumper"
-    :total="400"
-  />
+    <el-pagination
+      :page-sizes="[100, 200, 300, 400]" background layout="total, sizes, prev, pager, next, jumper"
+      :total="400"
+    />
 
-  <p>{{ $t("http.status") }}</p>
+    <p>{{ $t("http.status") }}</p>
 
-  <el-button @click="doLogout">
-    退出登录
-  </el-button>
+    <el-button @click="doLogout">
+      退出登录
+    </el-button>
+  </div>
 </template>

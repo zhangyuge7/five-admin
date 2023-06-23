@@ -8,14 +8,7 @@ const PREFIX = import.meta.env.VITE_APP_STORAGE_PREFIX
 
 export const useUserStore = defineStore('user', () => {
   const token = shallowRef('')
-  const userInfo = shallowRef({
-    id: 1,
-    username: 'admin',
-    nickname: '小铁牛',
-    roles: ['admin'],
-    avatar: '',
-    prems: [],
-  })
+  const userInfo = shallowRef()
 
   // 登录
   async function login(form) {

@@ -9,12 +9,13 @@ import '@/assets/styles/common/loading.scss'
  */
 export const NextLoading = {
   // 创建 loading
-  start: () => {
+  start: (text) => {
     const bodys = document.body
     const div = document.createElement('div')
     div.setAttribute('class', 'loading-next')
     const htmls = `
                 <div class="loading-next-box">
+                <div>${text}</div>
                   <div class="loading-next-box-warp">
                     <div class="loading-next-box-item"></div>
                     <div class="loading-next-box-item"></div>

@@ -19,3 +19,9 @@ import LayoutHeader from './main/LayoutHeader.vue'
     </el-container>
   </el-container>
 </template>
+
+<style scoped>
+.el-main{
+  padding: 0;
+}
+</style>
