@@ -63,8 +63,8 @@ function multToTwo(routes, isFilterByRole = false) {
   // 需要在 layout 框架外显示的路由
   const outerRoutes = []
 
-  // 分类拆解为路由数组
-  classification(routes, innerRoutes, outerRoutes, isFilterByRole)
+  // 分类拆解为路由数组并根据角色值过滤
+  conversion(routes, innerRoutes, outerRoutes, isFilterByRole)
 
   // 将需要在 layout 框架内显示的路由作为根路由下的二级路由
   root.children = innerRoutes
@@ -75,21 +75,21 @@ function multToTwo(routes, isFilterByRole = false) {
   ]
 }
 
-// 递归路由分类。框架内展示的路由与框架外展示的路由
-function classification(routes, innerRoutes, outerRoutes, isFilterByRole) {
+// 递归路由转为数组，并根据角色值过滤和决定在框架内展示的路由与框架外展示的路由
+function conversion(routes, innerRoutes, outerRoutes, isFilterByRole) {
   if (isFilterByRole) {
     routes.forEach((route) => {
       if (route.meta?.roles && hasRole(route.meta.roles)) {
         route.meta?.isOuter ? outerRoutes.push(route) : innerRoutes.push(route)
         if (route.children) {
-          classification(route.children, innerRoutes, outerRoutes, isFilterByRole)
+          conversion(route.children, innerRoutes, outerRoutes, isFilterByRole)
           route.children = null
         }
       }
       else if (!route.meta?.roles) {
         route.meta?.isOuter ? outerRoutes.push(route) : innerRoutes.push(route)
         if (route.children) {
-          classification(route.children, innerRoutes, outerRoutes, isFilterByRole)
+          conversion(route.children, innerRoutes, outerRoutes, isFilterByRole)
           route.children = null
         }
       }
@@ -99,7 +99,7 @@ function classification(routes, innerRoutes, outerRoutes, isFilterByRole) {
     routes.forEach((route) => {
       route.meta?.isOuter ? outerRoutes.push(route) : innerRoutes.push(route)
       if (route.children) {
-        classification(route.children, innerRoutes, outerRoutes, isFilterByRole)
+        conversion(route.children, innerRoutes, outerRoutes, isFilterByRole)
         route.children = null
       }
     })
