@@ -125,7 +125,7 @@ export async function initMenus() {
   })
   const routeStore = useRouteStore()
   routeStore.menus = rawRoutes
-  NextLoading.done()
+  NextLoading.done(300)
 }
 
 // 初始化路由的 component 属性
