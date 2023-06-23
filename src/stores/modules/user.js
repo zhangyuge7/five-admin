@@ -20,7 +20,7 @@ export const useUserStore = defineStore('user', () => {
     }
   }
   // 登录之后
-  async function loginAfter(url = '/') {
+  async function loginAfter(path) {
     if (!token.value) {
       router.replace('/login')
       return
@@ -30,8 +30,8 @@ export const useUserStore = defineStore('user', () => {
     // 初始化菜单信息
     await initMenus()
     // 重定向
-    await router.replace(url)
-    if (url === '/') {
+    await router.replace(path || '/')
+    if (!path) {
       ElNotification({
         title: '欢迎回来',
         message: userInfo.value.nickname,

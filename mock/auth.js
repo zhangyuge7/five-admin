@@ -29,7 +29,7 @@ export default [
         nickname: '超级管理员',
         roles: ['admin'],
         avatar: '',
-        homePath: '/home',
+        homePath: '/dashboard/analysis',
         prems: ['admin1', 'admin2', 'admin3'],
       }
       const test = {

@@ -37,6 +37,7 @@ export default [
           title: '分析页',
           isHide: false,
           icon: 'ep:data-analysis',
+          isKeep: true,
         },
         component: () => import('@/views/dashboard/analysis/index.vue'),
       },
@@ -130,23 +131,25 @@ export default [
     children: [
       {
         path: '/screen/1',
-        name: 'Screen1',
+        name: 'BigScreen1',
         meta: {
           title: '数据大屏1',
           icon: 'ph:monitor-thin',
           isOuter: true,
+          isKeep: true,
         },
-        component: () => import('@/views/demo/BigScreen.vue'),
+        component: () => import('@/views/demo/data-big-screen/BigScreen1.vue'),
       },
       {
         path: '/screen/2',
-        name: 'Screen2',
+        name: 'BigScreen2',
         meta: {
           title: '数据大屏2',
           icon: 'ph:monitor-thin',
           isOuter: true,
+          isKeep: true,
         },
-        component: () => import('@/views/demo/BigScreen.vue'),
+        component: () => import('@/views/demo/data-big-screen/BigScreen2.vue'),
       },
     ],
 

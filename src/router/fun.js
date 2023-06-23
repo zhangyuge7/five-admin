@@ -19,14 +19,6 @@ const root = {
   redirect: import.meta.env.VITE_APP_HOME_PATH,
 }
 
-// 重置路由表
-function resetRoutes(path) {
-  const userStore = useUserStore()
-  const routeStore = useRouteStore()
-  if (!routeStore.menus || !routeStore.menus.length)
-    userStore.loginAfter(path)
-}
-
 // 路由前置守卫
 export function routerBeforeEach(to, from, next) {
   if (to.path === '/login') {
@@ -37,8 +29,12 @@ export function routerBeforeEach(to, from, next) {
   }
   else {
     if (hasToken()) {
-      resetRoutes(to.path)
-      next()
+      const userStore = useUserStore()
+      const routeStore = useRouteStore()
+      if (!routeStore.menus || !routeStore.menus.length)
+        userStore.loginAfter(to.path)
+      else
+        next()
     }
     else {
       next('/login')
