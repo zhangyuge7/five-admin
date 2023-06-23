@@ -6,30 +6,42 @@ export default [
     url: `${baseApi}/login`,
     method: 'post',
     response: ({ body }) => {
+      let token = ''
       const { username, password } = body
-      if (username !== 'admin')
-        return R.fail('用户名不存在')
-
-      else if (password !== 'admin')
+      if (username === 'admin' && password === 'admin')
+        token = '1'
+      else if (username === 'test' && password === 'test')
+        token = '2'
+      else
         return R.fail('密码错误')
 
-      return R.ok({ token: 'token12321' })
+      return R.ok({ token })
     },
   },
   // 用户信息
   {
     url: `${baseApi}/getUserInfo`,
     method: 'get',
-    response: () => {
-      const userInfo = {
+    response: ({ headers }) => {
+      const admin = {
         id: 1,
         username: 'admin',
-        nickname: '小铁牛',
+        nickname: '超级管理员',
         roles: ['admin'],
         avatar: '',
-        prems: [],
+        homePath: '/home',
+        prems: ['admin1', 'admin2', 'admin3'],
       }
-      return R.ok(userInfo)
+      const test = {
+        id: 1,
+        username: 'test',
+        nickname: '测试用户',
+        roles: ['test'],
+        avatar: '',
+        homePath: '',
+        prems: ['test1', 'test2', 'test3'],
+      }
+      return R.ok(headers.authorization === '1' ? admin : test)
     },
   },
 

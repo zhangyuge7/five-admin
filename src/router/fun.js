@@ -68,6 +68,7 @@ function multToTwo(routes, isFilterByRole = false) {
 
   // 将需要在 layout 框架内显示的路由作为根路由下的二级路由
   root.children = innerRoutes
+
   // 返回路由信息
   return [
     root,
@@ -145,6 +146,7 @@ export async function initMenus() {
     console.error('/src/config/app.js routeSource配置应为\'front\' 前端 | \'back\' 后端 | \'mixture\' 混合前后端')
     return
   }
+
   // 全屏loading动画执行
   NextLoading.start('加载中...')
   // 默认获取前端路由信息
@@ -164,6 +166,10 @@ export async function initMenus() {
   const routes = _.cloneDeep(rawRoutes)
   // 清空路由器中现有的路由表
   clearRoutes()
+  // 设置用户的 homePath
+  const { userInfo } = useUserStore()
+  root.redirect = userInfo.homePath || import.meta.env.VITE_APP_HOME_PATH
+
   // 转二级路由并根据角色权限过滤
   const twoRoutes = multToTwo(routes, true)
 

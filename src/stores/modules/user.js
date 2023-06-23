@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { shallowRef } from 'vue'
+import { ElNotification } from 'element-plus'
 import router from '@/router'
 import { loginApi, logoutApi, userInfoApi } from '@/api/auth'
 import { initMenus } from '@/router/fun'
@@ -24,13 +25,23 @@ export const useUserStore = defineStore('user', () => {
       router.replace('/login')
       return
     }
-    await getUserInfo()
+    // 初始化用户信息
+    await initUserInfo()
+    // 初始化菜单信息
     await initMenus()
-    router.replace(url)
+    // 重定向
+    await router.replace(url)
+    if (url === '/') {
+      ElNotification({
+        title: '欢迎回来',
+        message: userInfo.value.nickname,
+        type: 'success',
+      })
+    }
   }
 
   // 用户信息
-  async function getUserInfo() {
+  async function initUserInfo() {
     const { ok, data } = await userInfoApi()
     if (ok)
       userInfo.value = data
