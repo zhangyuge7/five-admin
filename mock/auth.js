@@ -30,7 +30,7 @@ export default [
         roles: ['admin'],
         avatar: '',
         homePath: '/dashboard/analysis',
-        perms: ['a:b:c', 'c', 'd'],
+        perms: ['admin:button'],
       }
       const test = {
         id: 1,
@@ -39,7 +39,7 @@ export default [
         roles: ['test'],
         avatar: '',
         homePath: '',
-        perms: ['a:c:d', 'c', 'd'],
+        perms: ['test:button'],
       }
       return R.ok(headers.authorization === '1' ? admin : test)
     },

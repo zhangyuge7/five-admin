@@ -1,10 +1,10 @@
-import { hasRole, hasRoleAll } from '@/utils/auth'
+import { hasPerm, hasPermAll, hasRole, hasRoleAll } from '@/utils/auth'
 
 /**
  * 基于角色权限指令
  * 使用手册：
  * v-hasRole:or     值可以为字符串和数组，角色值匹配其一就显示组件
- * v-hasRole:all    值只可以是数组，角色值全部匹配才显示组件
+ * v-hasRole:all    值只可以是数组，角色值全部包含才显示组件
  * v-hasRole        v-hasRole:or 的简写
  */
 const hasRoleDirective = {
@@ -29,7 +29,7 @@ const hasRoleDirective = {
  * 基于权限标识权限指令
  * 使用手册：
  * v-hasPerm:or     值可以为字符串和数组，权限标识码匹配其一就显示组件
- * v-hasPerm:all    值只可以是数组，权限标识码全部匹配才显示组件
+ * v-hasPerm:all    值只可以是数组，权限标识码全部包含才显示组件
  * v-hasPerm        v-hasPerm:or 的简写
  */
 const hasPermDirective = {
@@ -37,10 +37,10 @@ const hasPermDirective = {
     const { value, arg } = binding
     let isShow = false
     if (!arg || arg === 'or')
-      isShow = hasRole(value)
+      isShow = hasPerm(value)
 
     else if (arg === 'all')
-      isShow = hasRoleAll(value)
+      isShow = hasPermAll(value)
 
     else
       console.error(`v-hasPerm指令参数'${arg}'错误，v-hasPerm 或 v-hasPerm:or 或 v-hasPerm:all`)
