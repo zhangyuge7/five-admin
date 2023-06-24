@@ -20,30 +20,20 @@ export function hasRole(val) {
 }
 
 // 检验当前用户是否有指定角色。val array
-// 当前用户角色与 val 值必须全匹配才为 true
+// 当前用户角色必须包含val中的所有值才为 true
 export function hasRoleAll(val) {
   if (!Array.isArray(val)) {
-    console.error('参数类型错误，需要Array类型参数')
+    console.error('参数类型错误，需要Array类型参数,如果只有一个值建议使用v-hasRole:or')
     return false
   }
+  if (val.length === 0)
+    return true
+
   const userStore = useUserStore()
   const { roles } = userStore.userInfo
-  if (roles.length !== val.length)
-    return false
-
-  let isRoleAll = true
-  for (let i = 0; i < roles.length; i++) {
-    let flag = false
-    for (let j = 0; j < val.length; j++) {
-      if (roles[i] === val[j])
-        flag = true
-    }
-    if (!flag) {
-      isRoleAll = false
-      break
-    }
-  }
-  return isRoleAll
+  const set = new Set(val) // 去重
+  const containsAll = [...set].every(val => roles.includes(val))
+  return containsAll
 }
 
 // 检验是否存在 token
