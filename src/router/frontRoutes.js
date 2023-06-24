@@ -37,7 +37,6 @@ export default [
           title: '分析页',
           isHide: false,
           icon: 'ep:data-analysis',
-          isKeep: true,
         },
         component: () => import('@/views/dashboard/analysis/index.vue'),
       },

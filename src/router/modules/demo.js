@@ -4,7 +4,7 @@ export default {
   meta: {
     title: '演示',
     isHide: false,
-    icon: 'ph:house',
+    icon: 'mdi:ev-plug-chademo',
   },
   children: [
     {
@@ -90,7 +90,6 @@ export default {
             title: '数据大屏1',
             icon: 'ph:monitor-thin',
             isOuter: true,
-            isKeep: true,
           },
           component: () => import('@/views/demo/data-big-screen/BigScreen1.vue'),
         },
@@ -101,7 +100,6 @@ export default {
             title: '数据大屏2',
             icon: 'ph:monitor-thin',
             isOuter: true,
-            isKeep: true,
           },
           component: () => import('@/views/demo/data-big-screen/BigScreen2.vue'),
         },
@@ -115,7 +113,64 @@ export default {
         title: '权限控制',
         icon: 'arcticons:permissionsmanager',
       },
-      component: () => import('@/views/demo/Permission.vue'),
+      children: [
+        {
+          path: '/demo/permission/button',
+          name: 'PermissionButton',
+          meta: {
+            title: '按钮权限',
+            icon: 'ic:twotone-radio-button-unchecked',
+          },
+          component: () => import('@/views/demo/permission/ButtonPerm.vue'),
+        },
+        {
+          path: '/demo/permission/page-admin',
+          name: 'PermissionPageAdmin',
+          meta: {
+            title: '页面权限',
+            icon: 'streamline:interface-content-book-page-pages-content-books-book-open',
+            roles: ['admin'],
+          },
+          component: () => import('@/views/demo/permission/PagePermAdmin.vue'),
+        },
+        {
+          path: '/demo/permission/page-test',
+          name: 'PermissionPageTest',
+          meta: {
+            title: '页面权限',
+            icon: 'streamline:interface-content-book-page-pages-content-books-book-open',
+            roles: ['test'],
+          },
+          component: () => import('@/views/demo/permission/PagePermTest.vue'),
+        },
+      ],
+    },
+    {
+      path: '/demo/page-keep',
+      name: 'PageKeep',
+      meta: {
+        title: '页面缓存',
+        icon: 'material-symbols:360',
+      },
+      children: [
+        {
+          path: '/demo/page-keep/keep',
+          name: 'PageKeep',
+          meta: {
+            title: '缓存页面',
+            isKeep: true,
+          },
+          component: () => import('@/views/demo/page-keep/PageKeep.vue'),
+        },
+        {
+          path: '/demo/page-keep/not-keep',
+          name: 'NotPageKeep',
+          meta: {
+            title: '不缓存页面',
+          },
+          component: () => import('@/views/demo/page-keep/NotPageKeep.vue'),
+        },
+      ],
     },
   ],
 }
