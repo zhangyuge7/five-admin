@@ -8,7 +8,6 @@ import { setupRouter } from './router'
 import { setupStore } from './stores'
 import { setupI18n } from './i18n'
 import App from './App.vue'
-import { useNprogress } from '@/utils/nprogress'
 import { setupDirectives } from '@/directives'
 
 const app = createApp(App)
@@ -19,4 +18,3 @@ setupI18n(app) // 国际化多语言
 setupRouter(app) // 路由器
 setupDirectives(app) // 自定义指定
 app.mount('#app')
-useNprogress()

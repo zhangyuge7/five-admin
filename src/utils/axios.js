@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { done, start } from '@/utils/nprogress'
+import { FiveNProgress } from '@/utils/nprogress'
 import i18n from '@/i18n'
 
 import { useUserStore } from '@/stores/modules/user'
@@ -11,13 +11,14 @@ const axiosInstance = axios.create({
   timeout: 10000,
 })
 
-/** 数据定义 */
+/** 响应结果数据定义 */
 export const resultProp = {
   data: 'data',
   code: 'code',
   message: 'msg',
   ok: 'ok',
 }
+/** 响应后消息提示类型 */
 export const msgTypes = {
   none: 'node',
   msg: 'msg',
@@ -29,7 +30,7 @@ export const msgTypes = {
  *
  */
 axiosInstance.interceptors.request.use((config) => {
-  start()
+  FiveNProgress.start() // 请求进度条开始
 
   const useUser = useUserStore()
   // 请求头携带token
@@ -39,7 +40,7 @@ axiosInstance.interceptors.request.use((config) => {
 
   return config
 }, (error) => {
-  done()
+  FiveNProgress.done() // 请求进度条结束
   return Promise.reject(error)
 })
 
@@ -50,7 +51,9 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use((res) => {
   const useUser = useUserStore()
   const { data, config } = res
+  // 获取请求时配置的成功消息提示类型与错误消息提示类型
   const { errorMsgType, successMsgType } = config
+  // 异常响应时
   if (data[resultProp.code] !== 0) {
     if (!errorMsgType || !Object.keys(msgTypes).includes(errorMsgType) || errorMsgType === msgTypes.msg) {
       ElMessage.error(data[resultProp.message] || i18n.global.t('http.errorMsg'))
@@ -75,6 +78,7 @@ axiosInstance.interceptors.response.use((res) => {
         break
     }
   }
+  // 正常响应时
   else {
     if (successMsgType && successMsgType === msgTypes.msg) {
       ElMessage.success(data[resultProp.message] || i18n.global.t('http.successMsg'))
@@ -93,7 +97,7 @@ axiosInstance.interceptors.response.use((res) => {
       )
     }
   }
-  done()
+  FiveNProgress.done() // 请求进度条结束
   return data
 }, (err) => {
   const { status, statusText } = err.response
@@ -115,7 +119,7 @@ axiosInstance.interceptors.response.use((res) => {
       i18nMsg = statusText
   }
   ElMessage.error(i18nMsg)
-  done()
+  FiveNProgress.done()
   return Promise.reject(err)
 })
 export default axiosInstance

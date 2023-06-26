@@ -19,7 +19,7 @@ const i18n = createI18n({
   locale: getLocale(),
   messages,
 })
-
+console.log(messages)
 export function setupI18n(app) {
   app.use(i18n)
 }
