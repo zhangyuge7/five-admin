@@ -1,8 +1,11 @@
+/**
+ * 全屏 loading
+ */
 import { nextTick } from 'vue'
 
 import '@/assets/styles/common/loading.scss'
 
-export const fiveLoading = {
+const FullLoading = {
   // 创建 loading
   start: () => {
     const bodys = document.body
@@ -26,13 +29,13 @@ export const fiveLoading = {
                   `
     div.innerHTML = htmls
     bodys.insertBefore(div, bodys.childNodes[0])
-    window.fiveLoading = true
+    window.fullLoading = true
   },
   // 移除 loading
   done: (time = 0) => {
     nextTick(() => {
       setTimeout(() => {
-        window.fiveLoading = false
+        window.fullLoading = false
         const el = document.querySelector('.five-loader')
         if (el && el.parentNode)
           el.parentNode.removeChild(el)
@@ -40,3 +43,4 @@ export const fiveLoading = {
     })
   },
 }
+export default FullLoading

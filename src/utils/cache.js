@@ -1,3 +1,6 @@
+/**
+ * 持久化
+ */
 export const PREFIX = import.meta.env.VITE_APP_STORAGE_PREFIX
 function useStorage($storage) {
   const has = (key) => {

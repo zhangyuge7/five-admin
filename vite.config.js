@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import alias from './vite/alias'
 import setupVitePlugins from './vite/plugins'
+import { initProxy } from './vite/proxy'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -13,13 +14,7 @@ export default defineConfig(({ command, mode }) => {
     server: {
       open: false,
       host: true,
-      proxy: {
-        '/api': {
-          target: 'http://localhost:9300',
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, ''),
-        },
-      },
+      proxy: initProxy(),
     },
   }
 })

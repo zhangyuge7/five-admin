@@ -4,6 +4,7 @@ import { ElNotification } from 'element-plus'
 import router from '@/router'
 import { loginApi, logoutApi, userInfoApi } from '@/api/auth'
 import { initMenus } from '@/router/routeHandle'
+import { t } from '@/i18n'
 
 const PREFIX = import.meta.env.VITE_APP_STORAGE_PREFIX
 
@@ -33,7 +34,7 @@ export const useUserStore = defineStore('user', () => {
     await router.replace(path || '/')
     if (!path) {
       ElNotification({
-        title: '欢迎回来',
+        title: t('app.welcome'),
         message: userInfo.value.nickName || '',
         type: 'success',
       })

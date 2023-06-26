@@ -1,5 +1,3 @@
-import { ElMessage } from 'element-plus'
-
 /**
  * cope vben-admin
  * 判断元素是否具有某个class
@@ -74,7 +72,7 @@ export function clearClass(el) {
 }
 
 /**
- * 设置css变量
+ * 设置css变量的值
  */
 export function setCssVal(key, val) {
   if (!key || !val)
@@ -88,15 +86,4 @@ export function getCssVal(key) {
   if (!key)
     return
   return getComputedStyle(document.documentElement).getPropertyValue(key)
-}
-
-/** 复制文本 */
-export async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text)
-    ElMessage.success('复制成功！')
-  }
-  catch (e) {
-    console.error(`复制文案失败: ${e}`)
-  }
 }

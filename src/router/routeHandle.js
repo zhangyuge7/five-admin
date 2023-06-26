@@ -7,7 +7,7 @@ import appConfig from '@/config/app'
 import { menuListApi } from '@/api/auth'
 import { hasRole, hasToken } from '@/utils/auth'
 import { useUserStore } from '@/stores/modules/user'
-import { fiveLoading } from '@/utils/loading'
+import FullLoading from '@/utils/loading'
 
 const views = import.meta.glob('@/views/**/*.vue')
 
@@ -152,7 +152,7 @@ export async function initMenus() {
   }
 
   // 全屏loading动画执行
-  fiveLoading.start()
+  FullLoading.start()
 
   // 定义原始路由信息数据
   let rawRoutes = [...commonRoutes]
@@ -201,7 +201,7 @@ export async function initMenus() {
   initKeepAliveViews(twoRoutes, names)
   routeStore.keepAliveViews = names
   // 全屏loading动画关闭
-  fiveLoading.done(300)
+  FullLoading.done(300)
 }
 function getHomePath() {
   const { userInfo } = useUserStore()
@@ -229,6 +229,7 @@ function clearRoutes() {
       router.removeRoute(route.name)
   })
 }
+
 export function isFrontRoute() {
   return appConfig.routeSource === 'front'
 }

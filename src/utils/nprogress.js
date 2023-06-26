@@ -1,3 +1,6 @@
+/**
+ * 进度条
+ */
 import 'nprogress/nprogress.css'
 import NProgress from 'nprogress'
 

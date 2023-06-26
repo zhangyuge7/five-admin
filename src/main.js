@@ -9,12 +9,14 @@ import { setupStore } from './stores'
 import { setupI18n } from './i18n'
 import App from './App.vue'
 import { setupDirectives } from '@/directives'
+import Banner from '@/utils/banner'
 
-const app = createApp(App)
-window.vm = app
+Banner.print() // 控制台 banner 输出
+const app = createApp(App) // 创建 vue 应用
+window.vm = app // 将 app 挂载到全局方便调用
 app.use(ElementPlus) // element-plus 组件库
 setupStore(app) // pinia 仓库
 setupI18n(app) // 国际化多语言
 setupRouter(app) // 路由器
 setupDirectives(app) // 自定义指定
-app.mount('#app')
+app.mount('#app') // 挂载页面
