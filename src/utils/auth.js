@@ -1,5 +1,35 @@
 import { useUserStore } from '@/stores/modules/user'
 
+// 获取 username
+export function getUsername() {
+  const userStore = useUserStore()
+  return userStore.userInfo?.username
+}
+
+// 获取用户信息
+export function getUserInfo() {
+  const userStore = useUserStore()
+  return userStore.userInfo
+}
+
+// 检验是否存在 token
+export function hasToken() {
+  const userStore = useUserStore()
+  return !!userStore.token
+}
+
+// 获取 token
+export function getToken() {
+  const userStore = useUserStore()
+  return userStore.token
+}
+
+// 设置 token
+export function setToken(token = '') {
+  const userStore = useUserStore()
+  userStore.token = token
+}
+
 // 检验当前用户是否有指定角色。val string | array
 // 当前用户角色与 val 值匹配其一即为 true
 export function hasRole(val) {
@@ -70,10 +100,4 @@ export function hasPermAll(val) {
   const set = new Set(val) // 去重
   const containsAll = [...set].every(val => perms.includes(val))
   return containsAll
-}
-
-// 检验是否存在 token
-export function hasToken() {
-  const userStore = useUserStore()
-  return !!userStore.token
 }

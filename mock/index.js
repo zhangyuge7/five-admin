@@ -17,7 +17,7 @@ export class R {
     return new R(0, '成功', data || null, true)
   }
 
-  static fail(msg) {
-    return new R(-1, msg, null, false)
+  static fail(msg, code = -1) {
+    return new R(code, msg, null, false)
   }
 }

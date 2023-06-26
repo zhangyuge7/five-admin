@@ -32,14 +32,16 @@ function getLocale() {
   return sysGlobalConfig.defaultLanguage
 }
 
+// 创建 i18n
 const i18n = createI18n({
   locale: getLocale(),
   messages,
 })
+// 挂载到应用
 export function setupI18n(app) {
   app.use(i18n)
 }
-
+// 方便在代码中使用翻译函数
 export function t(...args) {
   return i18n.global.t(...args)
 }
