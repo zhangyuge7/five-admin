@@ -21,6 +21,10 @@ const isCollapse = computed(() => appStore.appConfig.menuIsCollapse)
 
 <style scoped>
 .el-menu:not(.el-menu--collapse) {
-  width: var(--fv-menu-width)
+  width: var(--fv-menu-width);
+
+}
+.el-menu{
+  border-right: none
 }
 </style>

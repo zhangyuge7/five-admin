@@ -4,12 +4,12 @@ import Menu from '@/layout/components/menu/Menu.vue'
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col h-full">
     <div class="el-header flex items-center">
       <AsideLogo />
     </div>
-    <div>
+    <el-scrollbar class="flex-1">
       <Menu />
-    </div>
+    </el-scrollbar>
   </div>
 </template>

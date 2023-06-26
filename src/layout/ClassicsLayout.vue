@@ -10,11 +10,13 @@ import LayoutHeader from './main/LayoutHeader.vue'
       <LayoutAside />
     </el-aside>
     <el-container>
-      <el-header>
+      <el-header style="padding: 0;">
         <LayoutHeader />
       </el-header>
       <el-main>
-        <LayoutMain />
+        <el-scrollbar>
+          <LayoutMain />
+        </el-scrollbar>
       </el-main>
     </el-container>
   </el-container>
@@ -23,5 +25,8 @@ import LayoutHeader from './main/LayoutHeader.vue'
 <style scoped>
 .el-main{
   padding: 0;
+}
+:deep(.el-scrollbar__view){
+  height: 100%;
 }
 </style>
