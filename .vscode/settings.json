@@ -5,7 +5,8 @@
         "source.fixAll.eslint": true
     },
     "i18n-ally.localesPaths": [
-        "src/i18n/lang"
+        "src/i18n/lang",
+        "src/i18n/pages/**"
     ],
     "i18n-ally.enabledParsers": ["js"], // 翻译支持的语言文件格式
     "i18n-ally.encoding": "utf-8", // 翻译文件的编码

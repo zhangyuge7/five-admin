@@ -1,5 +1,5 @@
 export default {
   http: {
-    error: 'error',
+    error: '错误tw',
   },
 }

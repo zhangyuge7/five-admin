@@ -48,7 +48,9 @@ function doLogout() {
       :total="400"
     />
 
-    <p>{{ $t("http.status") }}</p>
+    <span>{{ $t('http.error') }}</span>
+    <span>{{ $t('login.loginButton') }}</span>
+    <span>{{ $t('system.menu') }}</span>
 
     <el-button @click="doLogout">
       退出登录
