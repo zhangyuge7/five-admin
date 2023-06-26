@@ -3,7 +3,7 @@ import { shallowRef } from 'vue'
 import { ElNotification } from 'element-plus'
 import router from '@/router'
 import { loginApi, logoutApi, userInfoApi } from '@/api/auth'
-import { initMenus } from '@/router/fun'
+import { initMenus } from '@/router/routeHandle'
 
 const PREFIX = import.meta.env.VITE_APP_STORAGE_PREFIX
 

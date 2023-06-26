@@ -50,7 +50,7 @@ const hasPermDirective = {
   },
 }
 
-export function useDirectives(app) {
+export function setupDirectives(app) {
   app.directive('hasRole', hasRoleDirective)
   app.directive('hasPerm', hasPermDirective)
 }

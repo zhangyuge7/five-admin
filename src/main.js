@@ -9,14 +9,14 @@ import { setupStore } from './stores'
 import { setupI18n } from './i18n'
 import App from './App.vue'
 import { useNprogress } from '@/utils/nprogress'
-import { useDirectives } from '@/directives'
+import { setupDirectives } from '@/directives'
 
 const app = createApp(App)
 window.vm = app
-app.use(ElementPlus)
-setupStore(app)
-setupI18n(app)
-setupRouter(app)
-useDirectives(app)
+app.use(ElementPlus) // element-plus 组件库
+setupStore(app) // pinia 仓库
+setupI18n(app) // 国际化多语言
+setupRouter(app) // 路由器
+setupDirectives(app) // 自定义指定
 app.mount('#app')
 useNprogress()

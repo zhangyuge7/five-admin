@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { buildRoutes, routerBeforeEach } from './fun'
+import { buildCommonRoutes, routerBeforeEach } from './routeHandle'
 
-const routes = buildRoutes()
+const commonRoutes = buildCommonRoutes()
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
-  routes,
+  history: createWebHashHistory(),
+  routes: commonRoutes,
 })
 
 // 前置守卫
@@ -14,4 +14,4 @@ function setupRouter(app) {
   app.use(router)
 }
 export default router
-export { setupRouter, routes }
+export { setupRouter }

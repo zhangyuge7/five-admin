@@ -10,15 +10,9 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias,
     },
-    // css: {
-    //   preprocessorOptions: {
-    //     scss: {
-    //       additionalData: '@import "src/assets/styles/var.scss";',
-    //     },
-    //   },
-    // },
     server: {
-      open: true,
+      open: false,
+      host: true,
       proxy: {
         '/api': {
           target: 'http://localhost:9300',

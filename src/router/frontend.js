@@ -8,7 +8,6 @@ Object.keys(modules).forEach((key) => {
 })
 
 export default [
-
   {
     path: '/home',
     name: 'Home',
@@ -27,7 +26,6 @@ export default [
       title: '仪表盘',
       isHide: false,
       icon: 'ant-design:dashboard-outlined',
-      sort: 0,
     },
     children: [
       {
