@@ -1,9 +1,13 @@
 <script setup>
 import Burger from '@/layout/components/Burger.vue'
+import Breadcrumb from '@/layout/components/Breadcrumb.vue'
 </script>
 
 <template>
   <div class="h-full flex items-center">
-    <Burger />
+    <div class="h-full flex items-center">
+      <Burger />
+      <Breadcrumb style="margin-left: 20px;" />
+    </div>
   </div>
 </template>

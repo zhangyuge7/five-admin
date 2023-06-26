@@ -4,10 +4,8 @@ import router from '@/router'
 
 // 打开外链地址
 function openLink(route) {
-  if (route.meta && route.meta.link && !route.meta.isIframe)
+  if (route.meta?.link && !route.meta.isIframe)
     window.open(router.currentRoute.value.meta.link)
-  else if (!route.meta.isIframe)
-    console.error('route.meta.link not value')
 }
 // 侦听路由
 watch(router.currentRoute, (val) => {
