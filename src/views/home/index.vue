@@ -4,9 +4,6 @@
 
 <template>
   <div>
-    <span v-for="i in 100" :key="i">{{ i }}</span>
-    <p v-for="i in 100" :key="i">
-      {{ i }}
-    </p>
+    首页
   </div>
 </template>

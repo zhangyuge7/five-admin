@@ -155,23 +155,22 @@ export async function initMenus() {
   FullLoading.start()
 
   // 定义原始路由信息数据
-  let rawRoutes = [...commonRoutes]
+  let rawRoutes = []
   // 获取前后端所有路由信息
   if (isMixtureRoute()) {
-    rawRoutes.push(...frontRoutes)
     const { data } = await menuListApi()
     if (data && data.length > 0)
-      rawRoutes.push(...data)
+      rawRoutes = [...frontRoutes, ...data, ...commonRoutes]
   }
   // 获取后端路由信息
   else if (isBackRoute()) {
     const { data } = await menuListApi()
     if (data && data.length > 0)
-      rawRoutes.push(...data)
+      rawRoutes = [...data, ...commonRoutes]
   }
   // 获取前端路由信息
   else if (isFrontRoute()) {
-    rawRoutes.push(...frontRoutes)
+    rawRoutes = [...frontRoutes, ...commonRoutes]
   }
   // 排序并去重
   rawRoutes = sortAndUniqueAll(rawRoutes)
@@ -186,7 +185,6 @@ export async function initMenus() {
 
   // 转二级路由并根据角色权限过滤
   const twoRoutes = multToTwo(routes, true)
-
   twoRoutes.forEach((route) => {
     // 递归处理 component
     handleComponent(route)

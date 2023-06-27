@@ -155,7 +155,7 @@ export default {
       children: [
         {
           path: '/demo/page-keep/keep',
-          name: 'PageKeep',
+          name: 'HasPageKeep',
           meta: {
             title: '缓存页面',
             isKeep: true,
