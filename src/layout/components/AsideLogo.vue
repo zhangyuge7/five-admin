@@ -21,7 +21,7 @@ watch(() => appStore.appConfig.menuIsCollapse, (val) => {
 </script>
 
 <template>
-  <div class="flex flex-row">
+  <div class="flex flex-row aside-logo">
     <img src="../../assets/images/logo.svg" class=" w-[32px]">
     <span v-if="showTitle" class="title">{{ title }}</span>
   </div>
@@ -31,5 +31,8 @@ watch(() => appStore.appConfig.menuIsCollapse, (val) => {
 .title{
     margin-left: 10px;
     font-size: 24px;
+}
+.aside-logo{
+  padding: 0 15px;
 }
 </style>

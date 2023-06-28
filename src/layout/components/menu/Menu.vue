@@ -17,6 +17,7 @@ const isCollapse = computed(() => appStore.appConfig.menuIsCollapse)
 <template>
   <el-menu
     :default-active="currentRoute.path" router :collapse="isCollapse"
+    :unique-opened="appStore.appConfig.subMenuUniqueOpened"
     @open="emit('subMenuOpen')"
     @close="emit('subMenuClose')"
   >

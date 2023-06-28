@@ -55,5 +55,22 @@ function doLogout() {
     <el-button @click="doLogout">
       退出登录
     </el-button>
+
+    <div>
+      <span>多标签页</span>
+      <el-switch
+        v-model="useApp.appConfig.isTabs"
+      />
+
+      <span>显示多标签页图标</span>
+      <el-switch
+        v-model="useApp.appConfig.tabsIcon"
+      />
+    </div>
+
+    <span v-for="i in 100" :key="i">{{ i }}</span>
+    <p v-for="i in 100" :key="i">
+      {{ i }}
+    </p>
   </div>
 </template>

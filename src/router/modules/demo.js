@@ -177,6 +177,7 @@ export default {
       name: 'Mitt',
       meta: {
         title: '全局事件总线',
+        icon: 'material-symbols:airline-stops',
       },
       component: () => import('@/views/demo/mitt/index.vue'),
     },

@@ -3,6 +3,9 @@ import LayoutMain from './main/LayoutMain.vue'
 import LayoutAside from './main/LayoutAside.vue'
 import LayoutHeader from './main/LayoutHeader.vue'
 import Tabs from '@/layout/components/Tabs.vue'
+import { useAppStore } from '@/stores/modules/app'
+
+const appStore = useAppStore()
 </script>
 
 <template>
@@ -11,9 +14,9 @@ import Tabs from '@/layout/components/Tabs.vue'
       <LayoutAside />
     </el-aside>
     <el-container>
-      <el-header style="padding: 0;">
+      <el-header style="padding: 0;" :class="appStore.appConfig.isTabs ? 'fv-tab-header' : 'fv-header'">
         <LayoutHeader />
-        <Tabs v-if="true" />
+        <Tabs v-if="appStore.appConfig.isTabs" />
       </el-header>
       <el-main>
         <el-scrollbar>
@@ -31,7 +34,10 @@ import Tabs from '@/layout/components/Tabs.vue'
 :deep(.el-scrollbar__view){
   height: 100%;
 }
-.el-header{
+.fv-tab-header{
   height: calc(var(--fv-header-height) + 40px);
+}
+.fv-header{
+  height: var(--fv-header-height);
 }
 </style>

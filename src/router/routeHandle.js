@@ -3,7 +3,6 @@ import commonRoutes from './common'
 import frontRoutes from './frontend'
 import router from '.'
 import { useRouteStore } from '@/stores/modules/route'
-import { useAppStore } from '@/stores/modules/app'
 import appConfig from '@/config/app'
 import { menuListApi } from '@/api/auth'
 import { hasRole, hasToken } from '@/utils/auth'
@@ -234,14 +233,10 @@ function clearRoutes() {
 
 // 初始化需要固定在标签页的路由
 function initFixedTabRoutes(routes) {
-  const appStore = useAppStore()
   const routeStore = useRouteStore()
-  // 判断是否开启多标签页功能
-  if (appStore.appConfig.isTabs) {
-    const fixedTabRoutes = []
-    findFixedTabRoutes(routes, fixedTabRoutes)
-    routeStore.fiexTabsRoutes = fixedTabRoutes
-  }
+  const fixedTabRoutes = []
+  findFixedTabRoutes(routes, fixedTabRoutes)
+  routeStore.fiexTabsRoutes = fixedTabRoutes
 }
 // 查找所有 需要固定在标签页的路由
 function findFixedTabRoutes(routes, fixedTabRoutes) {

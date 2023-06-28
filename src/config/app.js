@@ -10,9 +10,14 @@ export default {
 
   // 侧栏菜单是否折叠
   menuIsCollapse: false,
+  // 是否只保持一个子菜单的展开
+  subMenuUniqueOpened: true,
 
   // 是否使用多标签页
   isTabs: true,
   // 标签显示图标
   tabsIcon: true,
+  // 始终保持一个 tab 固定不可关闭（当所有路由的 meta.fixedTab 不为 true 时，始终保持有一个 tab 不可关闭）
+  tabsOneFiexd: true,
+
 }
