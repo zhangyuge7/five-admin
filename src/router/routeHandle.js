@@ -3,6 +3,7 @@ import commonRoutes from './common'
 import frontRoutes from './frontend'
 import router from '.'
 import { useRouteStore } from '@/stores/modules/route'
+import { useAppStore } from '@/stores/modules/app'
 import appConfig from '@/config/app'
 import { menuListApi } from '@/api/auth'
 import { hasRole, hasToken } from '@/utils/auth'
@@ -180,6 +181,9 @@ export async function initMenus() {
   // 清空路由器中现有的路由表
   clearRoutes()
 
+  // 初始化需要固定在标签页的路由
+  initFixedTabRoutes(routes)
+
   // 设置用户的 homePath
   root.redirect = getHomePath()
 
@@ -225,6 +229,37 @@ function clearRoutes() {
   router.getRoutes().forEach((route) => {
     if (!route.path.includes(':'))
       router.removeRoute(route.name)
+  })
+}
+
+// 初始化需要固定在标签页的路由
+function initFixedTabRoutes(routes) {
+  const appStore = useAppStore()
+  const routeStore = useRouteStore()
+  // 判断是否开启多标签页功能
+  if (appStore.appConfig.isTabs) {
+    const fixedTabRoutes = []
+    findFixedTabRoutes(routes, fixedTabRoutes)
+    routeStore.fiexTabsRoutes = fixedTabRoutes
+  }
+}
+// 查找所有 需要固定在标签页的路由
+function findFixedTabRoutes(routes, fixedTabRoutes) {
+  routes.forEach((route) => {
+    if (route.meta?.fixedTab) {
+      fixedTabRoutes.push({
+        path: route.path,
+        name: route.name,
+        meta: {
+          title: route.meta?.title,
+          isHide: route.meta?.isHide,
+          icon: route.meta?.icon,
+          fixedTab: route.meta?.fixedTab,
+        },
+      })
+    }
+    if (route.children && route.children.length)
+      findFixedTabRoutes(route.children, fixedTabRoutes)
   })
 }
 

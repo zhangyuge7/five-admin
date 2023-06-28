@@ -13,7 +13,7 @@ import Tabs from '@/layout/components/Tabs.vue'
     <el-container>
       <el-header style="padding: 0;">
         <LayoutHeader />
-        <Tabs />
+        <Tabs v-if="true" />
       </el-header>
       <el-main>
         <el-scrollbar>

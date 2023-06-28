@@ -10,4 +10,9 @@ export default {
 
   // 侧栏菜单是否折叠
   menuIsCollapse: false,
+
+  // 是否使用多标签页
+  isTabs: true,
+  // 标签显示图标
+  tabsIcon: true,
 }

@@ -1,21 +1,13 @@
 <script  setup>
-import { ref, watch } from 'vue'
+import { onBeforeMount, ref, watch } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import router from '@/router'
+import { useRouteStore } from '@/stores/modules/route'
+
+const routeStore = useRouteStore()
 
 const editableTabsValue = ref('/home')
-const editableTabs = ref([
-  {
-    path: '/home',
-    name: 'Home',
-    meta: {
-      title: '首页',
-      isHide: false,
-      icon: 'ph:house',
-      fixedTab: true,
-    },
-  },
-])
+const editableTabs = ref([])
 
 // 新增 tab
 function addTab(currentRoute) {
@@ -50,7 +42,13 @@ function tabChange(targetName) {
 // 侦听路由变化
 watch(() => router.currentRoute, (val) => {
   addTab(val.value)
-}, { immediate: true, deep: true })
+}, { immediate: false, deep: true })
+
+// 组件加载前
+onBeforeMount(() => {
+  editableTabs.value = routeStore.fiexTabsRoutes
+  addTab(router.currentRoute.value)
+})
 </script>
 
 <template>
