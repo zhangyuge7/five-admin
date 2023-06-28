@@ -32,7 +32,8 @@ function doLogin() {
         <a href="#">去注册</a>
       </div>
       <div class="msg">
-        账号：admin 密码：123456
+        <p>账号：admin 密码：admin</p>
+        <p>账号：test 密码：test</p>
       </div>
     </div>
   </div>

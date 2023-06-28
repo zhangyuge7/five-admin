@@ -147,7 +147,7 @@ export default {
     },
     {
       path: '/demo/page-keep',
-      name: 'PageKeep',
+      name: 'PageKeep1',
       meta: {
         title: '页面缓存',
         icon: 'material-symbols:360',
@@ -155,7 +155,7 @@ export default {
       children: [
         {
           path: '/demo/page-keep/keep',
-          name: 'HasPageKeep',
+          name: 'PageKeep',
           meta: {
             title: '缓存页面',
             isKeep: true,

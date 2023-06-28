@@ -1,3 +1,10 @@
 :root {
     --fv-menu-width:200px; // 侧栏菜单宽度
+    --fv-header-height:48px; // 顶栏高度
+}
+.fv-header-height{
+    height: var(--fv-header-height);
+}
+.fv-border-bottom{
+    border-bottom: 1px solid var(--el-border-color);
 }

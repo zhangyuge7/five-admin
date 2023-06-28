@@ -14,7 +14,7 @@ function subMenuChange() {
 
 <template>
   <div class="flex flex-col h-full">
-    <div class="el-header flex items-center">
+    <div class="fv-header-height fv-border-bottom flex items-center shrink-0">
       <AsideLogo />
     </div>
     <el-scrollbar ref="scrollbar">

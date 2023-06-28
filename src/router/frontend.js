@@ -16,6 +16,7 @@ export default [
       title: '首页',
       isHide: false,
       icon: 'ph:house',
+      fixedTab: true,
     },
   },
   {

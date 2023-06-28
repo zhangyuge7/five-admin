@@ -2,6 +2,7 @@
 import LayoutMain from './main/LayoutMain.vue'
 import LayoutAside from './main/LayoutAside.vue'
 import LayoutHeader from './main/LayoutHeader.vue'
+import Tabs from '@/layout/components/Tabs.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import LayoutHeader from './main/LayoutHeader.vue'
     <el-container>
       <el-header style="padding: 0;">
         <LayoutHeader />
+        <Tabs />
       </el-header>
       <el-main>
         <el-scrollbar>
@@ -28,5 +30,8 @@ import LayoutHeader from './main/LayoutHeader.vue'
 }
 :deep(.el-scrollbar__view){
   height: 100%;
+}
+.el-header{
+  height: calc(var(--fv-header-height) + 40px);
 }
 </style>
