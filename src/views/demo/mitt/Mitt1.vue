@@ -11,7 +11,7 @@ function countChange(val) {
 
 <template>
   <div>
-    这是组件1，推送数据
+    这是子组件1，推送数据
     <el-input-number v-model="count" @change="countChange" />
   </div>
 </template>

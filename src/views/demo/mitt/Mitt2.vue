@@ -15,7 +15,7 @@ onUnmounted(() => {
 
 <template>
   <div>
-    这是组件2，监听数据
+    这是子组件2，监听数据
     <span>{{ count }}</span>
   </div>
 </template>
