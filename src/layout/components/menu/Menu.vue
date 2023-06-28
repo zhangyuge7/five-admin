@@ -5,6 +5,7 @@ import router from '@/router'
 import { useAppStore } from '@/stores/modules/app'
 import { useRouteStore } from '@/stores/modules/route'
 
+const emit = defineEmits(['subMenuOpen', 'subMenuClose'])
 const routeStore = useRouteStore()
 const appStore = useAppStore()
 
@@ -14,7 +15,11 @@ const isCollapse = computed(() => appStore.appConfig.menuIsCollapse)
 </script>
 
 <template>
-  <el-menu :default-active="currentRoute.path" router :collapse="isCollapse">
+  <el-menu
+    :default-active="currentRoute.path" router :collapse="isCollapse"
+    @open="emit('subMenuOpen')"
+    @close="emit('subMenuClose')"
+  >
     <MenuItem :routes="routes" />
   </el-menu>
 </template>
