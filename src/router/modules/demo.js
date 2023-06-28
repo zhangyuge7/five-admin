@@ -172,5 +172,13 @@ export default {
         },
       ],
     },
+    {
+      path: '/demo/mitt',
+      name: 'Mitt',
+      meta: {
+        title: '全局事件总线',
+      },
+      component: () => import('@/views/demo/mitt/index.vue'),
+    },
   ],
 }
