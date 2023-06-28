@@ -2,6 +2,8 @@
  * 工具箱
  */
 
+import mittBus from '@/utils/mitt'
+
 // 复制文本
 export async function copyText(text) {
   try {
@@ -11,4 +13,9 @@ export async function copyText(text) {
   catch (e) {
     return false
   }
+}
+
+// 刷新页面
+export function refreshPage() {
+  mittBus.emit('onRefreshPage')
 }

@@ -1,16 +1,21 @@
 <script  setup>
 import { computed, onBeforeMount, ref, watch } from 'vue'
+import _ from 'lodash'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import router from '@/router'
 import { useRouteStore } from '@/stores/modules/route'
 import { useAppStore } from '@/stores/modules/app'
+import { refreshPage } from '@/utils/tools'
 
 const appStore = useAppStore()
 const routeStore = useRouteStore()
 
+// 当前激活的标签 path
 const editableTabsValue = ref('')
+// 标签列表
 const editableTabs = ref([])
 
+// 是否在 tab 上显示图标
 const showIcon = computed(() => appStore.appConfig.tabsIcon)
 
 // 新增 tab
@@ -20,8 +25,9 @@ function addTab(currentRoute) {
   // 判断404
   const not = currentRoute.name === 'NotFound'
   // 如果标签页列表中不存在当前路由信息，并且不是404页面，将当前路由信息添加到列表
-  if ((!exist || !exist.length) && !not)
+  if ((!exist || !exist.length) && !not && currentRoute.path !== '/')
     editableTabs.value.push(currentRoute)
+    // setTimeout(bindingContextmenu, 300)
 
   editableTabsValue.value = currentRoute.path
   fixedLastTab()
@@ -46,6 +52,39 @@ function removeTab(targetName) {
 
   fixedLastTab()
 }
+
+// 关闭其它 tabs
+function removeOtherTabs(targetPath) {
+  const tabs = editableTabs.value
+  if (editableTabsValue.value !== targetPath)
+    editableTabsValue.value = targetPath
+  editableTabs.value = tabs.filter(tab => tab.path === targetPath || tab.meta?.fixedTab)
+  fixedLastTab()
+}
+// 关闭全部 tabs
+function removeAllTabs() {
+  const tabs = editableTabs.value
+  // 获取所有固定的 tab
+  const fixedTabs = tabs.filter(tab => tab.meta?.fixedTab)
+  // 如果有固定的 tab ，只保留固定的，其它的全部关闭
+  if (fixedTabs.length) {
+    // 从所有固定的 tabs 中找出当前激活的 tab
+    const currTab = fixedTabs.filter(tab => tab.path === editableTabsValue.value)
+    // 如果当前激活的 tab 不在固定 tabs 中，将固定的 tabs 的最后一项作为当前激活
+    if (!currTab.length)
+      editableTabsValue.value = fixedTabs[fixedTabs.length - 1].path
+    // 只保留固定的 tabs
+    editableTabs.value = fixedTabs
+  }
+  // 如果没有固定的 tabs,保留第一个 tab ，将其它tab全部删除
+  else {
+    editableTabs.value = [editableTabs.value[0]]
+    if (editableTabsValue.value !== editableTabs.value[0].path)
+      editableTabsValue.value = editableTabs.value[0].path
+    fixedLastTab()
+  }
+}
+
 // tab 改变时
 function tabChange(targetName) {
   if (router.currentRoute.value.path !== targetName)
@@ -55,7 +94,7 @@ function tabChange(targetName) {
 // 如果所有标签页的配置都是可关闭的，只有一个时不可以被关闭
 let path = ''
 function fixedLastTab() {
-  // 判断配置信息是否开启 始终保持一个 tab 固定不可关闭
+  // 判断配置项是否开启 始终保持一个 tab 固定不可关闭
   if (appStore.appConfig.tabsOneFiexd) {
   // 判断标签页列表是否只有一个
     if (editableTabs.value.length === 1) {
@@ -69,7 +108,7 @@ function fixedLastTab() {
     }
     // 判断是否有被设置为固定状态的 path 并且标签页列表不止有一个
     else if (path && editableTabs.value.length > 1) {
-    // 根据 path 过滤出被设置为固定状态的标签信息
+      // 根据 path 过滤出被设置为固定状态的标签信息
       const routes = editableTabs.value.filter(item => item.path === path)
       // 取消固定状态
       routes[0].meta.fixedTab = false
@@ -86,10 +125,27 @@ watch(() => router.currentRoute, (val) => {
 // 组件加载前
 onBeforeMount(() => {
   // 从 pinia 仓库中获取需要固定在标签页的路由
-  editableTabs.value = routeStore.fiexTabsRoutes
+  editableTabs.value = _.cloneDeep(routeStore.fiexTabsRoutes)
   // 当前路由添加到标签
   addTab(router.currentRoute.value)
 })
+
+// 右键点击菜单项
+function command(v) {
+  const { flag, tab } = v
+  // 刷新
+  if (flag === 'refresh')
+    refreshPage()
+  // 关闭当前
+  else if (flag === 'close')
+    removeTab(tab.path)
+  // 关闭其它
+  else if (flag === 'close-other')
+    removeOtherTabs(tab.path)
+  // 关闭所有
+  else if (flag === 'close-all')
+    removeAllTabs()
+}
 </script>
 
 <template>
@@ -107,10 +163,33 @@ onBeforeMount(() => {
         :closable="!item.meta?.fixedTab"
       >
         <template #label>
-          <el-icon v-if="showIcon && item.meta?.icon">
-            <SvgIcon :name="item.meta.icon" />
-          </el-icon>
-          <span>{{ item.meta.title }}</span>
+          <el-dropdown trigger="contextmenu" @command="command">
+            <div>
+              <el-icon v-if="showIcon && item.meta?.icon">
+                <SvgIcon :name="item.meta.icon" />
+              </el-icon>
+              <span>{{ item.meta.title }}</span>
+            </div>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item :disabled="editableTabsValue !== item.path" :command="{ flag: 'refresh', tab: item }">
+                  刷新
+                </el-dropdown-item>
+                <el-dropdown-item :disabled="item.meta.fixedTab" :command="{ flag: 'close', tab: item }">
+                  关闭当前
+                </el-dropdown-item>
+                <el-dropdown-item :command="{ flag: 'close-other', tab: item }">
+                  关闭其它
+                </el-dropdown-item>
+                <el-dropdown-item :command="{ flag: 'close-all', tab: item }">
+                  关闭全部
+                </el-dropdown-item>
+                <el-dropdown-item divided disabled>
+                  待增加功能
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </template>
       </el-tab-pane>
     </el-tabs>
