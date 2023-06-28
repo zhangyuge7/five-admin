@@ -1,6 +1,6 @@
 import { createI18n } from 'vue-i18n'
-import { localCache } from '@/utils/cache'
 import sysGlobalConfig from '@/config/app'
+import { localCache } from '@/utils/cache'
 
 // 定义多语言文本
 const messages = {
