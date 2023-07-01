@@ -5,10 +5,6 @@ export default {
   elementSize: 'default',
   // 路由来源。 'front' 前端 | 'back' 后端 | 'mixture' 混合前后端
   routeSource: 'mixture',
-  // 页面切换动画。'fade' 渐变 | 'scale' 缩放 | 'slide' 滑动
-  transitionNames: 'scale',
-  // 是否启用页面切换动画
-  isTransition: false,
 
   // 侧栏菜单是否折叠
   menuIsCollapse: false,
@@ -21,5 +17,11 @@ export default {
   tabsIcon: true,
   // 始终保持一个 tab 固定不可关闭（当所有路由的 meta.fixedTab 不为 true 时，始终保持有一个 tab 不可关闭）
   tabsOneFiexd: true,
+
+  // ----------------------------------------过渡动画--------------------------------------------------
+  // 页面切换动画。'fade' 渐变 | 'scale' 缩放 | 'slide' 滑动
+  transitionNames: 'scale',
+  // 是否启用页面切换动画
+  isTransition: false,
 
 }
