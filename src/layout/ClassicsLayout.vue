@@ -28,11 +28,12 @@ onBeforeRouteUpdate(() => {
         <Tabs v-if="appStore.appConfig.isTabs" />
       </el-header>
       <el-main>
-        <el-scrollbar ref="scrollbar">
+        <el-scrollbar ref="scrollbar" class="fv-main">
           <LayoutMain />
         </el-scrollbar>
       </el-main>
     </el-container>
+    <el-backtop :right="40" :bottom="40" target=".fv-main>.el-scrollbar__wrap" />
   </el-container>
 </template>
 
