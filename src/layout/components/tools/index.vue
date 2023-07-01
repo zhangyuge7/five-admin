@@ -1,12 +1,14 @@
 <script setup name="Tools">
 import Dark from './Dark.vue'
 import Locale from './Locale.vue'
+import Settings from './Settings.vue'
 </script>
 
 <template>
   <div class=" h-full flex">
     <Dark />
     <Locale />
+    <Settings />
   </div>
 </template>
 

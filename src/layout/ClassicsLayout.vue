@@ -6,6 +6,7 @@ import LayoutAside from './main/LayoutAside.vue'
 import LayoutHeader from './main/LayoutHeader.vue'
 import Tabs from '@/layout/components/Tabs.vue'
 import { useAppStore } from '@/stores/modules/app'
+import SettingDrawer from '@/layout/components/SettingDrawer.vue'
 
 const appStore = useAppStore()
 const scrollbar = ref()
@@ -34,6 +35,7 @@ onBeforeRouteUpdate(() => {
       </el-main>
     </el-container>
     <el-backtop :right="40" :bottom="40" target=".fv-main>.el-scrollbar__wrap" />
+    <SettingDrawer />
   </el-container>
 </template>
 

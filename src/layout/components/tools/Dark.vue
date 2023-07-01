@@ -1,6 +1,6 @@
 <script setup>
 import { useDark, useToggle } from '@vueuse/core'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import { Moon, Sunny } from '@element-plus/icons-vue'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
@@ -9,7 +9,8 @@ const toggleDark = useToggle(isDark)
 <template>
   <div class="tools-item" @click="toggleDark()">
     <el-icon size="18">
-      <SvgIcon :name="isDark ? 'ep:sunny' : 'ep:moon'" />
+      <Sunny v-if="isDark" />
+      <Moon v-else />
     </el-icon>
   </div>
 </template>
