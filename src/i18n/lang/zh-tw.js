@@ -1,4 +1,10 @@
 export default {
+  tabs: {
+    refresh: '刷新',
+    close: '關閉當前',
+    closeOther: '關閉其它',
+    closeAll: '關閉所有',
+  },
   button: {
     add: '新增',
     del: '刪除',

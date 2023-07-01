@@ -164,29 +164,49 @@ function command(v) {
       >
         <template #label>
           <el-dropdown trigger="contextmenu" @command="command">
-            <div>
+            <div class="tabs-dropdown">
               <el-icon v-if="showIcon && item.meta?.icon">
                 <SvgIcon :name="item.meta.icon" />
               </el-icon>
-              <span>{{ item.meta.title }}</span>
+              <span class="tabs-item-title">{{ item.meta.title }}</span>
             </div>
             <template #dropdown>
               <el-dropdown-menu>
                 <el-dropdown-item :disabled="editableTabsValue !== item.path" :command="{ flag: 'refresh', tab: item }">
-                  刷新
+                  <el-icon>
+                    <SvgIcon name="ep:refresh" />
+                  </el-icon>
+                  <span>
+                    {{ $t('tabs.refresh') }}
+                  </span>
                 </el-dropdown-item>
                 <el-dropdown-item :disabled="item.meta.fixedTab" :command="{ flag: 'close', tab: item }">
-                  关闭当前
+                  <el-icon>
+                    <SvgIcon name="mdi:close-box-outline" />
+                  </el-icon>
+                  <span>
+                    {{ $t('tabs.close') }}
+                  </span>
                 </el-dropdown-item>
                 <el-dropdown-item :command="{ flag: 'close-other', tab: item }">
-                  关闭其它
+                  <el-icon>
+                    <SvgIcon name="mdi:close-box-multiple-outline" />
+                  </el-icon>
+                  <span>
+                    {{ $t('tabs.closeOther') }}
+                  </span>
                 </el-dropdown-item>
                 <el-dropdown-item :command="{ flag: 'close-all', tab: item }">
-                  关闭全部
+                  <el-icon>
+                    <SvgIcon name="codicon:close-all" />
+                  </el-icon>
+                  <span>
+                    {{ $t('tabs.closeAll') }}
+                  </span>
                 </el-dropdown-item>
-                <el-dropdown-item divided disabled>
-                  待增加功能
-                </el-dropdown-item>
+                <!-- <el-dropdown-item divided disabled>
+                  待增
+                </el-dropdown-item> -->
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -210,5 +230,41 @@ function command(v) {
 }
 .fv-tabs .el-tabs--border-card{
     border:none;
+}
+
+.fv-tabs .el-tabs__item{
+  padding: 0;
+  height: auto;
+}
+.fv-tabs .el-tabs--top.el-tabs--border-card > .el-tabs__header .el-tabs__item:last-child{
+  padding: 0;
+}
+.fv-tabs .el-tabs--top.el-tabs--border-card > .el-tabs__header .el-tabs__item:nth-child(2){
+  padding: 0;
+}
+
+.fv-tabs .is-closable .tabs-dropdown{
+  padding: 8px 25px 8px 15px;
+}
+.fv-tabs  .tabs-dropdown{
+  padding: 8px 15px 8px 15px;
+  display: flex;
+}
+.fv-tabs .el-tabs__item .is-icon-close{
+  margin-left: 0;
+  position: absolute;
+  right: 8px;
+}
+.fv-tabs .tabs-item-title{
+  margin-left: 4px;
+}
+.fv-tabs .el-tabs__nav-wrap.is-scrollable{
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+}
+.fv-tabs .el-tabs__nav-next, .fv-tabs .el-tabs__nav-prev{
+  line-height: none;
+  width: 30px;
 }
 </style>

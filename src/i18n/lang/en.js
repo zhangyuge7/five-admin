@@ -1,4 +1,10 @@
 export default {
+  tabs: {
+    refresh: 'Refresh',
+    close: 'Close Tab',
+    closeOther: 'Close Other Tabs',
+    closeAll: 'Close All Tabs',
+  },
   button: {
     add: 'Add',
     del: 'Delete',
