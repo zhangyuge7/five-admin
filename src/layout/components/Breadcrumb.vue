@@ -33,10 +33,14 @@ watch(() => router.currentRoute.value, (val) => {
   <div>
     <el-breadcrumb separator="/">
       <el-breadcrumb-item v-for="route in routes" :key="route.path" :to="{ path: route.path }">
-        <el-icon v-if="route.meta?.icon">
-          <SvgIcon :name="route.meta.icon" />
-        </el-icon>
-        {{ route.meta?.title }}
+        <div class="flex">
+          <el-icon v-if="route.meta?.icon">
+            <SvgIcon :name="route.meta.icon" />
+          </el-icon>
+          <span style="margin-left: 3px;">
+            {{ route.meta?.title }}
+          </span>
+        </div>
       </el-breadcrumb-item>
     </el-breadcrumb>
   </div>
