@@ -1,7 +1,7 @@
 <script  setup>
-import { computed, onBeforeMount, ref, watch } from 'vue'
+import { computed, onBeforeMount, ref } from 'vue'
 import _ from 'lodash'
-import { useRoute } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import router from '@/router'
 import { useRouteStore } from '@/stores/modules/route'
@@ -120,9 +120,12 @@ function fixedLastTab() {
 }
 
 // 侦听路由变化
-watch(() => route.path, () => {
-  addTab(router.currentRoute.value)
+onBeforeRouteUpdate((to) => {
+  addTab(to)
 })
+// watch(() => route.path, () => {
+//   addTab(router.currentRoute.value)
+// })
 
 // 组件加载前
 onBeforeMount(() => {
@@ -268,5 +271,8 @@ function command(v) {
 .fv-tabs .el-tabs__nav-next, .fv-tabs .el-tabs__nav-prev{
   line-height: none;
   width: 30px;
+}
+.fv-tabs .el-tabs__nav{
+  height: var(--fv-tabs-height);
 }
 </style>

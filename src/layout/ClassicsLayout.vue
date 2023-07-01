@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from 'vue'
+import { onBeforeRouteUpdate } from 'vue-router'
 import LayoutMain from './main/LayoutMain.vue'
 import LayoutAside from './main/LayoutAside.vue'
 import LayoutHeader from './main/LayoutHeader.vue'
@@ -6,6 +8,13 @@ import Tabs from '@/layout/components/Tabs.vue'
 import { useAppStore } from '@/stores/modules/app'
 
 const appStore = useAppStore()
+const scrollbar = ref()
+// 路由变更时手动更新进度条
+onBeforeRouteUpdate(() => {
+  setTimeout(() => {
+    scrollbar.value.update()
+  }, 500)
+})
 </script>
 
 <template>
@@ -19,7 +28,7 @@ const appStore = useAppStore()
         <Tabs v-if="appStore.appConfig.isTabs" />
       </el-header>
       <el-main>
-        <el-scrollbar>
+        <el-scrollbar ref="scrollbar">
           <LayoutMain />
         </el-scrollbar>
       </el-main>
@@ -35,7 +44,7 @@ const appStore = useAppStore()
   height: 100%;
 }
 .fv-tab-header{
-  height: calc(var(--fv-header-height) + 40px);
+  height: calc(var(--fv-header-height) + var(--fv-tabs-heigth));
 }
 .fv-header{
   height: var(--fv-header-height);

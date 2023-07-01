@@ -14,7 +14,7 @@ function subMenuChange() {
 
 <template>
   <div class="flex flex-col h-full">
-    <div class="fv-header-height fv-border-bottom flex items-center shrink-0">
+    <div class="fv-aside-logo flex items-center shrink-0">
       <AsideLogo />
     </div>
     <el-scrollbar ref="scrollbar">
@@ -22,3 +22,10 @@ function subMenuChange() {
     </el-scrollbar>
   </div>
 </template>
+
+<style scoped>
+.fv-aside-logo{
+  height: var(--fv-header-height);
+  border-bottom: 1px solid var(--el-border-color);
+}
+</style>

@@ -6,7 +6,7 @@ const count = ref(0)
 
 <template>
   <div>
-    首fdsafefd
+    首fdsafefdfdsafds
     <el-input-number v-model="count" />
   </div>
 </template>
