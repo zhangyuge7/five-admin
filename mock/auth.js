@@ -9,7 +9,7 @@ const userList = [
     token: '1',
     nickName: '超级管理员',
     roles: ['admin'],
-    avatar: '',
+    avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
     homePath: '/dashboard/analysis',
     perms: ['admin:button'],
   },
