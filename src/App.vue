@@ -14,11 +14,14 @@ const { locale } = useElementI18n()
 <template>
   <el-configProvider :locale="locale" :size="useApp.appConfig.elementSize">
     <RouterView v-slot="{ Component, route }">
-      <Transition :name="route.meta?.transition || appStore.appConfig.transitionNames" mode="out-in">
+      <Transition v-if="appStore.appConfig.isTransition" :name="route.meta?.transition || appStore.appConfig.transitionNames" mode="out-in">
         <KeepAlive :include="routeStore.keepAliveViews">
           <Component :is="Component" />
         </KeepAlive>
       </Transition>
+      <KeepAlive v-else :include="routeStore.keepAliveViews">
+        <Component :is="Component" />
+      </KeepAlive>
     </RouterView>
   </el-configProvider>
 </template>
