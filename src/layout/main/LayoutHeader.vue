@@ -2,6 +2,7 @@
 import Burger from '@/layout/components/Burger.vue'
 import Breadcrumb from '@/layout/components/Breadcrumb.vue'
 import UserInfo from '@/layout/components/UserInfo.vue'
+import Tools from '@/layout/components/tools/index.vue'
 </script>
 
 <template>
@@ -10,7 +11,8 @@ import UserInfo from '@/layout/components/UserInfo.vue'
       <Burger />
       <Breadcrumb style="margin-left: 20px;" />
     </div>
-    <div style="margin-right: 20px;">
+    <div class="flex items-center mr-5 h-full">
+      <Tools class="mr-1" />
       <UserInfo />
     </div>
   </div>
