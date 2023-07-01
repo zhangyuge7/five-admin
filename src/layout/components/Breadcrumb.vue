@@ -1,9 +1,10 @@
 <script setup>
 import { shallowRef, toRaw, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { useRouteStore } from '@/stores/modules/route'
-import router from '@/router'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
+const route = useRoute()
 // 获取原路由信息
 // 因为路由全部处理成了二级路由，使用 useRoute 并不能找到上下级关系，所以自己处理
 const routeStore = useRouteStore()
@@ -23,9 +24,10 @@ function findRoute(rawRoutes, path) {
   }
   return []
 }
+
 // 侦听路由变化
-watch(() => router.currentRoute.value, (val) => {
-  routes.value = findRoute(rawRoutes, val.path)
+watch(() => route.path, (val) => {
+  routes.value = findRoute(rawRoutes, val)
 }, { immediate: true })
 </script>
 

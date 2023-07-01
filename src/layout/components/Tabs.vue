@@ -1,12 +1,14 @@
 <script  setup>
 import { computed, onBeforeMount, ref, watch } from 'vue'
 import _ from 'lodash'
+import { useRoute } from 'vue-router'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import router from '@/router'
 import { useRouteStore } from '@/stores/modules/route'
 import { useAppStore } from '@/stores/modules/app'
 import { refreshPage } from '@/utils/tools'
 
+const route = useRoute()
 const appStore = useAppStore()
 const routeStore = useRouteStore()
 
@@ -118,9 +120,9 @@ function fixedLastTab() {
 }
 
 // 侦听路由变化
-watch(() => router.currentRoute, (val) => {
-  addTab(val.value)
-}, { immediate: false, deep: true })
+watch(() => route.path, () => {
+  addTab(router.currentRoute.value)
+})
 
 // 组件加载前
 onBeforeMount(() => {
