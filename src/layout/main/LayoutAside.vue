@@ -13,7 +13,7 @@ function subMenuChange() {
 </script>
 
 <template>
-  <div class="flex flex-col h-full">
+  <div class=" fv-aside">
     <div class="fv-aside-logo flex items-center shrink-0">
       <AsideLogo />
     </div>
@@ -27,5 +27,10 @@ function subMenuChange() {
 .fv-aside-logo{
   height: var(--fv-header-height);
   border-bottom: 1px solid var(--el-border-color);
+}
+.fv-aside{
+  border-right: 1px solid var(--el-border-color);
+  @apply
+  flex flex-col h-full
 }
 </style>
