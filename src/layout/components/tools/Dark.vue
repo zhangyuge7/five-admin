@@ -13,16 +13,3 @@ const toggleDark = useToggle(isDark)
     </el-icon>
   </div>
 </template>
-
-<style scoped>
-.tools-item{
-    @apply
-    w-6
-    h-full
-    flex
-    items-center
-    justify-center
-    cursor-pointer
-    hover:bg-[var(--el-color-primary-light-9)]
-}
-</style>

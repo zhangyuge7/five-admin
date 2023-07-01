@@ -1,19 +1,12 @@
 <script setup name="Analysis">
 import { ref } from 'vue'
-import { useDark, useToggle } from '@vueuse/core'
 
 import { useAppStore } from '@/stores/modules/app'
 import { useUserStore } from '@/stores/modules/user'
 
 const useApp = useAppStore()
 const useUser = useUserStore()
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
-// const size = ref(useAppStore.appConfig.elementSize)
 
-function languageChange(v) {
-  useApp.appConfig.defaultLanguage = v
-}
 const count = ref(0)
 function doLogout() {
   useUser.logout()
@@ -25,17 +18,6 @@ function doLogout() {
     <el-input-number v-model="count" />
     <div>分析页</div>
 
-    主题
-    <el-button @click="toggleDark()">
-      {{ isDark ? '明亮' : '暗黑' }}
-    </el-button>
-
-    语言
-    <el-select v-model="$i18n.locale" @change="languageChange">
-      <el-option label="中文简体" value="zh-cn" />
-      <el-option label="中文繁体" value="zh-tw" />
-      <el-option label="英文" value="en" />
-    </el-select>
     组件大小
     <el-select v-model="useApp.appConfig.elementSize">
       <el-option label="大" value="large" />

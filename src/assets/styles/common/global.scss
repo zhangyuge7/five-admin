@@ -4,3 +4,9 @@ body,
     height: 100%;
     overflow: hidden;
 }
+.el-dropdown-link {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    outline:none
+  }

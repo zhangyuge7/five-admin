@@ -43,12 +43,3 @@ function command(flag) {
     </template>
   </el-dropdown>
 </template>
-
-<style scoped>
-.el-dropdown-link {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  outline:none
-}
-</style>
