@@ -3,11 +3,13 @@ import Dark from './Dark.vue'
 import Locale from './Locale.vue'
 import Settings from './Settings.vue'
 import ElSize from './ElSize.vue'
+import FullScreen from './FullScreen.vue'
 </script>
 
 <template>
   <div class=" h-full flex">
     <Dark />
+    <FullScreen />
     <ElSize />
     <Locale />
     <Settings />
