@@ -1,4 +1,15 @@
 export default {
+  user: {
+    personalCenter: 'Personal Center',
+    logout: 'Logout',
+    login: 'Login',
+    register: 'Register',
+  },
+  size: {
+    large: 'large',
+    small: 'small',
+    default: 'default',
+  },
   tabs: {
     refresh: 'Refresh',
     close: 'Close Tab',

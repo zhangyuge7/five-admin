@@ -34,10 +34,10 @@ function command(flag) {
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item>
-          个人中心
+          {{ $t("user.personalCenter") }}
         </el-dropdown-item>
         <el-dropdown-item divided command="logout">
-          退出登录
+          {{ $t("user.logout") }}
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>

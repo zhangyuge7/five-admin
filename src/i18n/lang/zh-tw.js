@@ -1,4 +1,15 @@
 export default {
+  user: {
+    personalCenter: '個人中心',
+    logout: '退出登錄',
+    login: '登錄',
+    register: '注冊',
+  },
+  size: {
+    large: '大',
+    small: '小',
+    default: '默認',
+  },
   tabs: {
     refresh: '刷新',
     close: '關閉當前',
