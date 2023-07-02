@@ -17,5 +17,5 @@ export async function copyText(text) {
 
 // 刷新页面
 export function refreshPage() {
-  mittBus.emit('onRefreshPage')
+  mittBus.emit('onReloadPage')
 }

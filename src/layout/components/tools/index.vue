@@ -4,10 +4,12 @@ import Locale from './Locale.vue'
 import Settings from './Settings.vue'
 import ElSize from './ElSize.vue'
 import FullScreen from './FullScreen.vue'
+import Refresh from './Refresh.vue'
 </script>
 
 <template>
   <div class=" h-full flex">
+    <Refresh />
     <Dark />
     <FullScreen />
     <ElSize />
