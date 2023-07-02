@@ -1,17 +1,33 @@
 <script setup>
 import { computed } from 'vue'
+import { Expand, Fold } from '@element-plus/icons-vue'
 import { useAppStore } from '@/stores/modules/app'
-import SvgIcon from '@/components/SvgIcon/index.vue'
 
 const appStore = useAppStore()
-const collapseIcon = computed(() => appStore.appConfig.menuIsCollapse ? 'ep:expand' : 'ep:fold')
+const isCollapse = computed(() => appStore.appConfig.menuIsCollapse)
 function setCollapse() {
   appStore.appConfig.menuIsCollapse = !appStore.appConfig.menuIsCollapse
 }
 </script>
 
 <template>
-  <el-icon size="24" class="cursor-pointer" @click="setCollapse">
-    <SvgIcon :name="collapseIcon" />
-  </el-icon>
+  <div class="fv-burger" @click="setCollapse">
+    <el-icon size="20">
+      <Expand v-show="isCollapse" />
+      <Fold v-show="!isCollapse" />
+    </el-icon>
+  </div>
 </template>
+
+<style scoped>
+.fv-burger{
+  width:30px;
+  @apply
+  cursor-pointer
+  h-full
+  flex
+  justify-center
+  items-center
+  hover:bg-[var(--el-color-primary-light-9)]
+}
+</style>

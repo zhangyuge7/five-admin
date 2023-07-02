@@ -32,18 +32,24 @@ watch(() => route.path, (val) => {
 </script>
 
 <template>
-  <div>
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item v-for="route in routes" :key="route.path" :to="{ path: route.path }">
+  <div class="fv-breadcrumb">
+    <el-breadcrumb separator=">">
+      <el-breadcrumb-item v-for="item in routes" :key="item.path" :to="{ path: item.path }">
         <div class="flex">
-          <el-icon v-if="route.meta?.icon">
-            <SvgIcon :name="route.meta.icon" />
+          <el-icon v-if="item.meta?.icon">
+            <SvgIcon :name="item.meta.icon" />
           </el-icon>
           <span style="margin-left: 3px;">
-            {{ $t(route.meta?.title) }}
+            {{ $t(item.meta?.title) }}
           </span>
         </div>
       </el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
+
+<style scoped>
+:deep(.el-breadcrumb__separator){
+  margin: 0 5px;
+}
+</style>

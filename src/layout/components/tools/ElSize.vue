@@ -13,7 +13,7 @@ const size = computed(() => appStore.appConfig.elementSize)
 
 <template>
   <div class="tools-item">
-    <el-dropdown @command="command">
+    <el-dropdown class="h-full" @command="command">
       <div class="el-dropdown-link">
         <el-icon size="18">
           <SvgIcon name="iconoir:text-size" />

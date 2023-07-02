@@ -9,7 +9,7 @@ import Tools from '@/layout/components/tools/index.vue'
   <div class="fv-header flex items-center justify-between">
     <div class="h-full flex items-center">
       <Burger />
-      <Breadcrumb style="margin-left: 20px;" />
+      <Breadcrumb style="margin-left: 8px;" />
     </div>
     <div class="flex items-center mr-5 h-full">
       <Tools class="mr-1" />

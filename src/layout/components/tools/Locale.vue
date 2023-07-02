@@ -15,7 +15,7 @@ const locale = computed(() => appStore.appConfig.defaultLanguage)
 
 <template>
   <div class="tools-item">
-    <el-dropdown @command="command">
+    <el-dropdown class="h-full" @command="command">
       <div class="el-dropdown-link">
         <el-icon size="18">
           <SvgIcon name="vscode-icons:file-type-locale" />
