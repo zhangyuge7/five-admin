@@ -1,6 +1,7 @@
 <script setup>
-import { ArrowDown, UserFilled } from '@element-plus/icons-vue'
+import { ArrowDown, SwitchButton, User, UserFilled } from '@element-plus/icons-vue'
 import { onBeforeMount } from 'vue'
+import router from '@/router'
 import { useUserStore } from '@/stores/modules/user'
 
 const userStore = useUserStore()
@@ -19,6 +20,8 @@ function command(flag) {
   // 退出登录
   if (flag === 'logout')
     userStore.logout()
+  else if (flag === 'userinfo')
+    router.push('/user-info')
 }
 </script>
 
@@ -33,11 +36,17 @@ function command(flag) {
     </div>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item>
-          {{ $t("user.personalCenter") }}
+        <el-dropdown-item command="userinfo">
+          <el-icon>
+            <User />
+          </el-icon>
+          <span>{{ $t("user.personalCenter") }}</span>
         </el-dropdown-item>
         <el-dropdown-item divided command="logout">
-          {{ $t("user.logout") }}
+          <el-icon>
+            <SwitchButton />
+          </el-icon>
+          <span>{{ $t("user.logout") }}</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>
