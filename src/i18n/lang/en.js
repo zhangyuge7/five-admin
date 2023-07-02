@@ -1,4 +1,10 @@
 export default {
+  tools: {
+    refresh: 'Refresh',
+    fullScreen: 'Full Screen',
+    theme: 'Theme',
+    setting: 'App Setting',
+  },
   user: {
     personalCenter: 'Personal Center',
     logout: 'Logout',

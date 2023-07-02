@@ -1,4 +1,10 @@
 export default {
+  tools: {
+    refresh: '刷新',
+    fullScreen: '全屏',
+    theme: '主題',
+    setting: '應用配置',
+  },
   user: {
     personalCenter: '個人中心',
     logout: '退出登錄',
