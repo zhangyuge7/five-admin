@@ -173,7 +173,7 @@ function command(v) {
               <el-icon v-if="showIcon && item.meta?.icon">
                 <SvgIcon :name="item.meta.icon" />
               </el-icon>
-              <span class="tabs-item-title">{{ item.meta.title }}</span>
+              <span class="tabs-item-title">{{ $t(item.meta?.title) }}</span>
             </div>
             <template #dropdown>
               <el-dropdown-menu>

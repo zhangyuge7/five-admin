@@ -2,7 +2,7 @@ export default {
   path: '/demo',
   name: 'Demo',
   meta: {
-    title: '演示',
+    title: 'menus.demo',
     isHide: false,
     icon: 'mdi:ev-plug-chademo',
   },
@@ -11,7 +11,7 @@ export default {
       path: '/link',
       name: 'Link',
       meta: {
-        title: '外链',
+        title: 'menus.externalLink',
         isHide: false,
         icon: 'ph:link-light',
       },
@@ -20,7 +20,7 @@ export default {
           path: '/link/baidu',
           name: 'Baidu',
           meta: {
-            title: '百度外链',
+            title: 'menus.baidu',
             isHide: false,
             icon: 'tabler:brand-baidu',
             link: 'https://www.baidu.com',
@@ -31,7 +31,7 @@ export default {
           path: '/link/xigua',
           name: 'LinkXigua',
           meta: {
-            title: '西瓜视频',
+            title: 'menus.xigua',
             isHide: false,
             icon: 'icon-park-outline:xigua',
             link: 'https://www.ixigua.com/',
@@ -44,7 +44,7 @@ export default {
       path: '/iframe-link',
       name: 'IfrmameLink',
       meta: {
-        title: '内嵌外链',
+        title: 'menus.iframeLink',
         isHide: false,
         icon: 'material-symbols:join-inner',
       },
@@ -53,7 +53,7 @@ export default {
           path: '/iframe-link/doc1',
           name: 'Doc1',
           meta: {
-            title: 'games',
+            title: 'menus.games',
             isHide: false,
             icon: 'mdi:nodejs',
             link: 'https://games.infinitynewtab.com/',
@@ -65,7 +65,7 @@ export default {
           path: '/iframe-link/doc2',
           name: 'Doc2',
           meta: {
-            title: '哔哩哔哩',
+            title: 'menus.bilibili',
             isHide: false,
             icon: 'tabler:brand-bilibili',
             link: 'https://www.bilibili.com/',
@@ -79,7 +79,7 @@ export default {
       path: '/screen',
       name: 'Screen',
       meta: {
-        title: '数据大屏',
+        title: 'menus.dataBigScreen',
         icon: 'ph:monitor-thin',
       },
       children: [
@@ -87,7 +87,7 @@ export default {
           path: '/screen/1',
           name: 'BigScreen1',
           meta: {
-            title: '数据大屏1',
+            title: 'menus.dataBigScreen1',
             icon: 'ph:monitor-thin',
             isOuter: true,
           },
@@ -97,7 +97,7 @@ export default {
           path: '/screen/2',
           name: 'BigScreen2',
           meta: {
-            title: '数据大屏2',
+            title: 'menus.dataBigScreen2',
             icon: 'ph:monitor-thin',
             isOuter: true,
           },
@@ -110,7 +110,7 @@ export default {
       path: '/demo/permission',
       name: 'Permission',
       meta: {
-        title: '权限控制',
+        title: 'menus.permission',
         icon: 'arcticons:permissionsmanager',
       },
       children: [
@@ -118,7 +118,7 @@ export default {
           path: '/demo/permission/button',
           name: 'PermissionButton',
           meta: {
-            title: '按钮权限',
+            title: 'menus.permissionButton',
             icon: 'ic:twotone-radio-button-unchecked',
           },
           component: () => import('@/views/demo/permission/ButtonPerm.vue'),
@@ -127,7 +127,7 @@ export default {
           path: '/demo/permission/page-admin',
           name: 'PermissionPageAdmin',
           meta: {
-            title: '页面权限',
+            title: 'menus.permissionPage',
             icon: 'streamline:interface-content-book-page-pages-content-books-book-open',
             roles: ['admin'],
           },
@@ -137,7 +137,7 @@ export default {
           path: '/demo/permission/page-test',
           name: 'PermissionPageTest',
           meta: {
-            title: '页面权限',
+            title: 'menus.permissionPage',
             icon: 'streamline:interface-content-book-page-pages-content-books-book-open',
             roles: ['test'],
           },
@@ -149,7 +149,7 @@ export default {
       path: '/demo/page-keep',
       name: 'PageKeep1',
       meta: {
-        title: '页面缓存',
+        title: 'menus.pageKeep',
         icon: 'material-symbols:360',
       },
       children: [
@@ -157,7 +157,7 @@ export default {
           path: '/demo/page-keep/keep',
           name: 'PageKeep',
           meta: {
-            title: '缓存页面',
+            title: 'menus.hasKeep',
             isKeep: true,
           },
           component: () => import('@/views/demo/page-keep/PageKeep.vue'),
@@ -166,7 +166,7 @@ export default {
           path: '/demo/page-keep/not-keep',
           name: 'NotPageKeep',
           meta: {
-            title: '不缓存页面',
+            title: 'menus.notKeep',
           },
           component: () => import('@/views/demo/page-keep/NotPageKeep.vue'),
         },
@@ -176,7 +176,7 @@ export default {
       path: '/demo/mitt',
       name: 'Mitt',
       meta: {
-        title: '全局事件总线',
+        title: 'menus.mitt',
         icon: 'material-symbols:airline-stops',
       },
       component: () => import('@/views/demo/mitt/index.vue'),
@@ -185,7 +185,7 @@ export default {
       path: '/demo/full-screen',
       name: 'FullScreen',
       meta: {
-        title: '全屏示例',
+        title: 'menus.fullScreen',
         icon: 'ep:full-screen',
       },
       component: () => import('@/views/demo/full-screen/index.vue'),

@@ -40,7 +40,7 @@ watch(() => route.path, (val) => {
             <SvgIcon :name="route.meta.icon" />
           </el-icon>
           <span style="margin-left: 3px;">
-            {{ route.meta?.title }}
+            {{ $t(route.meta?.title) }}
           </span>
         </div>
       </el-breadcrumb-item>

@@ -50,7 +50,7 @@ function showChildren({ children, meta }) {
         <SvgIcon :name="route.meta.icon" />
       </el-icon>
       <template #title>
-        {{ route.meta?.title }}
+        {{ $t(route.meta?.title) }}
       </template>
     </el-menu-item>
     <el-sub-menu v-else-if="showSubMenu(route)" :index="route.path">
@@ -58,7 +58,7 @@ function showChildren({ children, meta }) {
         <el-icon v-if="route.meta?.icon">
           <SvgIcon :name="route.meta.icon" />
         </el-icon>
-        <span>{{ route.meta?.title }}</span>
+        <span>{{ $t(route.meta?.title) }}</span>
       </template>
       <MenuItem :routes="route.children" />
     </el-sub-menu>

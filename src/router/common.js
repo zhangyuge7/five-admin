@@ -12,7 +12,7 @@ export default [
     path: '/user-info',
     name: 'UserInfo',
     meta: {
-      title: '个人中心',
+      title: 'menus.personalCenter',
       icon: 'ep:user',
     },
     component: () => import('@/views/user-info/index.vue'),

@@ -13,7 +13,7 @@ export default [
     name: 'Home',
     component: () => import('@/views/home/index.vue'),
     meta: {
-      title: '首页',
+      title: 'menus.home',
       isHide: false,
       icon: 'ph:house',
       fixedTab: true,
@@ -24,7 +24,7 @@ export default [
     name: 'Dashboard',
     redirect: '/dashboard/analysis',
     meta: {
-      title: '仪表盘',
+      title: 'menus.dashboard',
       isHide: false,
       icon: 'ant-design:dashboard-outlined',
 
@@ -34,7 +34,7 @@ export default [
         path: '/dashboard/analysis',
         name: 'Analysis',
         meta: {
-          title: '分析页',
+          title: 'menus.analysis',
           isHide: false,
           icon: 'ep:data-analysis',
         },
@@ -44,7 +44,7 @@ export default [
         path: '/dashboard/workbench',
         name: 'Workbench',
         meta: {
-          title: '工作台',
+          title: 'menus.workbench',
           isHide: false,
           icon: 'icon-park-outline:workbench',
         },

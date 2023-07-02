@@ -31,9 +31,14 @@ function getLocale() {
     return localCache.get('APPCONFIG').appConfig.defaultLanguage || sysGlobalConfig.defaultLanguage
   return sysGlobalConfig.defaultLanguage
 }
-
+// 翻译文件中不存在该键时的警告处理
+function warnHandler(missingKey, vm, locale, missing) {
+  // console.warn(`${vm}`)
+}
 // 创建 i18n
 const i18n = createI18n({
+  missing: warnHandler,
+  silentFallbackWarn: true,
   locale: getLocale(),
   messages,
 })
