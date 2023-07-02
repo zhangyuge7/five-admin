@@ -19,7 +19,7 @@ import FullScreen from './FullScreen.vue'
 <style scoped>
 .tools-item{
     @apply
-    w-6
+    w-7
     h-full
     flex
     items-center
