@@ -8,5 +8,6 @@ body,
     cursor: pointer;
     display: flex;
     align-items: center;
-    outline:none
+    outline:none;
+    user-select:none;
   }
