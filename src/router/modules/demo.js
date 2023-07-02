@@ -181,5 +181,14 @@ export default {
       },
       component: () => import('@/views/demo/mitt/index.vue'),
     },
+    {
+      path: '/demo/full-screen',
+      name: 'FullScreen',
+      meta: {
+        title: '全屏示例',
+        icon: 'ep:full-screen',
+      },
+      component: () => import('@/views/demo/full-screen/index.vue'),
+    },
   ],
 }
