@@ -27,17 +27,19 @@ export const useUserStore = defineStore('user', () => {
       return
     }
     // 初始化用户信息
-    await initUserInfo()
-    // 初始化菜单信息
-    await initMenus()
-    // 重定向
-    await router.replace(path || '/')
-    if (!path) {
-      ElNotification({
-        title: t('app.welcome'),
-        message: userInfo.value.nickName || '',
-        type: 'success',
-      })
+    const { ok } = await initUserInfo()
+    if (ok) {
+      // 初始化菜单信息
+      await initMenus()
+      // 重定向
+      await router.replace(path || '/')
+      if (!path && token.value) {
+        ElNotification({
+          title: t('app.welcome'),
+          message: userInfo.value?.nickName || '',
+          type: 'success',
+        })
+      }
     }
   }
 
@@ -46,6 +48,7 @@ export const useUserStore = defineStore('user', () => {
     const { ok, data } = await userInfoApi()
     if (ok)
       userInfo.value = data
+    return { ok }
   }
   // 登出
   async function logout() {

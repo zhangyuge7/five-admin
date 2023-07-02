@@ -158,15 +158,19 @@ export async function initMenus() {
   let rawRoutes = []
   // 获取前后端所有路由信息
   if (isMixtureRoute()) {
-    const { data } = await menuListApi()
-    if (data && data.length > 0)
+    const { data, ok } = await menuListApi()
+    if (ok)
       rawRoutes = [...frontRoutes, ...data, ...commonRoutes]
+    else
+      rawRoutes = [...frontRoutes, ...commonRoutes]
   }
   // 获取后端路由信息
   else if (isBackRoute()) {
-    const { data } = await menuListApi()
-    if (data && data.length > 0)
+    const { data, ok } = await menuListApi()
+    if (ok)
       rawRoutes = [...data, ...commonRoutes]
+    else
+      rawRoutes = [...commonRoutes]
   }
   // 获取前端路由信息
   else if (isFrontRoute()) {
@@ -206,7 +210,7 @@ export async function initMenus() {
 }
 function getHomePath() {
   const { userInfo } = useUserStore()
-  return userInfo.homePath || import.meta.env.VITE_APP_HOME_PATH
+  return userInfo?.homePath || import.meta.env.VITE_APP_HOME_PATH
 }
 // 递归处理路由的 component 属性
 function handleComponent(route) {
