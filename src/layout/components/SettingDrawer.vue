@@ -114,6 +114,17 @@ const transitionNames = [
           />
         </el-select>
       </div>
+
+      <el-divider>其它设置</el-divider>
+      <div class="setting-item">
+        <el-text :size="state.size">
+          开启主界面回到顶部
+        </el-text>
+        <el-switch
+          v-model="appStore.appConfig.enableBacktop"
+          :size="state.size"
+        />
+      </div>
     </el-drawer>
   </div>
 </template>

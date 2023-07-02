@@ -35,7 +35,7 @@ onBeforeRouteUpdate(() => {
       </el-main>
     </el-container>
   </el-container>
-  <el-backtop :right="40" :bottom="40" target=".fv-main>.el-scrollbar__wrap" />
+  <el-backtop v-if="appStore.appConfig.enableBacktop" :right="40" :bottom="40" target=".fv-main>.el-scrollbar__wrap" />
   <SettingDrawer />
 </template>
 
