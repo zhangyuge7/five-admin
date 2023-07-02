@@ -6,7 +6,9 @@ import mittBus from '@/utils/mitt'
 const state = reactive({
   showSettingDrawer: false,
   size: 'default',
+
 })
+const alert = '以上配置只支持预览，不具备持久化，刷新浏览器后恢复默认状态。不是实现不了，就是懒得做。配置可以在源码的 src/config/app.js 文件中做永久修改。'
 onMounted(() => {
   // 监听事件打开抽屉
   mittBus.on('onShowSettingDrawer', () => {
@@ -39,7 +41,9 @@ const transitionNames = [
       size="300px" class="setting-drawer"
       @close="drawerClose"
     >
-      <el-divider>侧栏菜单</el-divider>
+      <el-divider :size="state.size">
+        侧栏菜单
+      </el-divider>
       <div class="setting-item">
         <el-text :size="state.size">
           侧栏菜单是否折叠
@@ -60,7 +64,9 @@ const transitionNames = [
         />
       </div>
 
-      <el-divider>tabs 标签页</el-divider>
+      <el-divider :size="state.size">
+        tabs 标签页
+      </el-divider>
       <div class="setting-item">
         <el-text :size="state.size">
           开启多标签页
@@ -91,7 +97,9 @@ const transitionNames = [
         />
       </div>
 
-      <el-divider>过渡动画</el-divider>
+      <el-divider :size="state.size">
+        过渡动画
+      </el-divider>
       <div class="setting-item">
         <el-text :size="state.size">
           页面切换动画
@@ -115,7 +123,9 @@ const transitionNames = [
         </el-select>
       </div>
 
-      <el-divider>其它设置</el-divider>
+      <el-divider :size="state.size">
+        其它设置
+      </el-divider>
       <div class="setting-item">
         <el-text :size="state.size">
           开启主界面回到顶部
@@ -125,6 +135,11 @@ const transitionNames = [
           :size="state.size"
         />
       </div>
+
+      <el-divider :size="state.size">
+        提示
+      </el-divider>
+      <el-alert :title="alert" type="warning" :closable="false" />
     </el-drawer>
   </div>
 </template>
