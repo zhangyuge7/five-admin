@@ -31,8 +31,11 @@ watch(() => appStore.appConfig.menuIsCollapse, (val) => {
 .title{
     margin-left: 10px;
     font-size: 24px;
+
 }
 .aside-logo{
-  padding: 0 15px;
+  padding-left: 15px;
+  max-width: var(--fv-menu-width);
+  overflow-x: hidden;
 }
 </style>
