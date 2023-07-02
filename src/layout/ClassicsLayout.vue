@@ -34,9 +34,9 @@ onBeforeRouteUpdate(() => {
         </el-scrollbar>
       </el-main>
     </el-container>
-    <el-backtop :right="40" :bottom="40" target=".fv-main>.el-scrollbar__wrap" />
-    <SettingDrawer />
   </el-container>
+  <el-backtop :right="40" :bottom="40" target=".fv-main>.el-scrollbar__wrap" />
+  <SettingDrawer />
 </template>
 
 <style scoped>
