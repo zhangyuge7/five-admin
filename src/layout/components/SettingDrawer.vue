@@ -94,7 +94,7 @@ onUnmounted(() => {
           <el-text :size="state.size">
             侧栏菜单宽度
           </el-text>
-          <el-input-number :model-value="state.menuWidth" controls-position="right" @change="methods.setMenuWidth" />
+          <el-input-number :model-value="state.menuWidth" controls-position="right" :disabled="appStore.appConfig.menuIsCollapse" @change="methods.setMenuWidth" />
         </div>
 
         <el-divider :size="state.size">
