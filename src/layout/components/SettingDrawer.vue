@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, onUnmounted, reactive } from 'vue'
+import { QuestionFilled } from '@element-plus/icons-vue'
 import { useAppStore } from '@/stores/modules/app'
 import mittBus from '@/utils/mitt'
 import { getCssVal, setCssVal } from '@/utils/domUtils'
@@ -120,8 +121,15 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
+            <el-tooltip
+              content="当所有路由的 meta.fixedTab 不为 true 时，始终保持有一个 tab 不可关闭"
+              placement="top-start"
+            >
+              <el-icon><QuestionFilled /></el-icon>
+            </el-tooltip>
             始终固定一个 tab
           </el-text>
+
           <el-switch
             v-model="appStore.appConfig.tabsOneFiexd"
             :disabled="!appStore.appConfig.isTabs"
@@ -169,8 +177,38 @@ onUnmounted(() => {
         </div>
 
         <el-divider :size="state.size">
+          页脚设置
+        </el-divider>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            显示页脚
+          </el-text>
+          <el-switch
+            v-model="appStore.appConfig.showFooter"
+            :size="state.size"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            <el-tooltip
+              content="可以使用多语言翻译模板"
+              placement="top-start"
+            >
+              <el-icon><QuestionFilled /></el-icon>
+            </el-tooltip>
+            页脚内容
+          </el-text>
+
+          <el-input
+            v-model="appStore.appConfig.footerText"
+            :size="state.size"
+            :disabled="!appStore.appConfig.showFooter"
+          />
+        </div>
+        <el-divider :size="state.size">
           其它设置
         </el-divider>
+
         <div class="setting-item">
           <el-text :size="state.size">
             开启主界面回到顶部
@@ -206,6 +244,9 @@ onUnmounted(() => {
       padding-right: 0;
     }
     .el-input-number{
+      width: 85px;
+    }
+    .el-input{
       width: 85px;
     }
 }

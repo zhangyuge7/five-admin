@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import LayoutMain from './main/LayoutMain.vue'
 import LayoutAside from './main/LayoutAside.vue'
@@ -7,9 +7,11 @@ import LayoutHeader from './main/LayoutHeader.vue'
 import Tabs from '@/layout/components/Tabs.vue'
 import { useAppStore } from '@/stores/modules/app'
 import SettingDrawer from '@/layout/components/SettingDrawer.vue'
+import LayoutFooter from '@/layout/main/LayoutFooter.vue'
 
 const appStore = useAppStore()
 const scrollbar = ref()
+const footerHeight = computed(() => appStore.appConfig.showFooter ? 'var(--fv-footer-heigth)' : 0)
 // 路由变更时手动更新进度条
 onBeforeRouteUpdate(() => {
   setTimeout(() => {
@@ -32,6 +34,7 @@ onBeforeRouteUpdate(() => {
         <el-scrollbar ref="scrollbar" class="fv-main">
           <LayoutMain />
         </el-scrollbar>
+        <LayoutFooter v-if="appStore.appConfig.showFooter" />
       </el-main>
     </el-container>
   </el-container>
@@ -40,8 +43,12 @@ onBeforeRouteUpdate(() => {
 </template>
 
 <style scoped>
+.fv-main{
+  padding-bottom: v-bind(footerHeight);
+}
 .el-main{
   padding: 0;
+  position: relative;
 }
 :deep(.el-scrollbar__view){
   height: 100%;
