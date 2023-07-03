@@ -1,14 +1,13 @@
 <script  setup>
 import { computed, onBeforeMount, ref } from 'vue'
 import _ from 'lodash'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { onBeforeRouteUpdate } from 'vue-router'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import router from '@/router'
 import { useRouteStore } from '@/stores/modules/route'
 import { useAppStore } from '@/stores/modules/app'
 import { refreshPage } from '@/utils/tools'
 
-const route = useRoute()
 const appStore = useAppStore()
 const routeStore = useRouteStore()
 
@@ -123,9 +122,6 @@ function fixedLastTab() {
 onBeforeRouteUpdate((to) => {
   addTab(to)
 })
-// watch(() => route.path, () => {
-//   addTab(router.currentRoute.value)
-// })
 
 // 组件加载前
 onBeforeMount(() => {
@@ -157,7 +153,7 @@ function command(v) {
   <div class="fv-tabs">
     <el-tabs
       v-model="editableTabsValue"
-      type="border-card"
+      :type="appStore.appConfig.tabsType"
       @tab-remove="removeTab"
       @tab-change="tabChange"
     >

@@ -18,6 +18,10 @@ const transitionNames = [
   { label: '缩放', value: 'scale' },
   { label: '滑动', value: 'slide' },
 ]
+const tabsTypes = [
+  { label: '风格一', value: '' },
+  { label: '风格二', value: 'border-card' },
+]
 
 // 提示
 const alert = '以上配置只支持预览，不具备持久化，刷新浏览器后恢复默认状态。不是实现不了，就是懒得做。配置可以在源码的 src/config/app.js 文件中做永久修改。样式配置在 src/assets/styles/common/theme.scss 文件中修改'
@@ -123,6 +127,19 @@ onUnmounted(() => {
             :disabled="!appStore.appConfig.isTabs"
             :size="state.size"
           />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            tabs风格
+          </el-text>
+          <el-select v-model="appStore.appConfig.tabsType" :size="state.size" class="select" :disabled="!appStore.appConfig.isTabs">
+            <el-option
+              v-for="item in tabsTypes"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
         </div>
 
         <el-divider :size="state.size">

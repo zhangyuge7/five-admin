@@ -19,6 +19,8 @@ export default {
   tabsIcon: true,
   // 始终保持一个 tab 固定不可关闭（当所有路由的 meta.fixedTab 不为 true 时，始终保持有一个 tab 不可关闭）
   tabsOneFiexd: true,
+  // tabs风格。'' 风格一 | 'border-card' 风格二
+  tabsType: 'border-card',
 
   // ----------------------------------------过渡动画--------------------------------------------------
   // 页面切换动画。'fade' 渐变 | 'scale' 缩放 | 'slide' 滑动
