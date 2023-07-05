@@ -5,7 +5,7 @@ import router from '.'
 import { useRouteStore } from '@/stores/modules/route'
 import appConfig from '@/config/app'
 import { menuListApi } from '@/api/auth'
-import { hasRole, hasToken } from '@/utils/auth'
+import { hasRole } from '@/utils/auth'
 import { useUserStore } from '@/stores/modules/user'
 import FullLoading from '@/utils/loading'
 
@@ -19,30 +19,7 @@ const root = {
   redirect: import.meta.env.VITE_APP_HOME_PATH,
 }
 
-// 路由前置守卫
-export function routerBeforeEach(to, from, next) {
-  if (to.path === '/login') {
-    if (hasToken())
-      next('/')
-    else
-      next()
-  }
-  else {
-    if (hasToken()) {
-      const userStore = useUserStore()
-      const routeStore = useRouteStore()
-      if (!routeStore.menus || !routeStore.menus.length)
-        userStore.loginAfter(to.path)
-      else
-        next()
-    }
-    else {
-      next('/login')
-    }
-  }
-}
-
-// 构建路由表
+// 构建公共路由表
 export function buildCommonRoutes() {
   // 仅构建公共路由文件中的路由
   const rawRoutes = commonRoutes
@@ -147,7 +124,7 @@ function sortAndUniqueAll(routes) {
 export async function initMenus() {
   // 如果配置不正确，给出错误提示并停止
   if (!isMixtureRoute() && !isBackRoute() && !isFrontRoute()) {
-    console.error('/src/config/app.js routeSource配置应为\'front\' 前端 | \'back\' 后端 | \'mixture\' 混合前后端')
+    console.error('/src/config/app.js routeSource配置应为\'front\' 前端 | \'back\' 后端 | \'mixture\' 前后端都有')
     return
   }
 
@@ -178,7 +155,6 @@ export async function initMenus() {
   }
   // 排序并去重
   rawRoutes = sortAndUniqueAll(rawRoutes)
-  // rawRoutes = sortAndUnique(rawRoutes)
   // 数据深拷贝，避免路由处理过程中对原数据造成污染
   const routes = _.cloneDeep(rawRoutes)
   // 清空路由器中现有的路由表
