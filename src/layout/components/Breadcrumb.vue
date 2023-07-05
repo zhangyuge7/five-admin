@@ -53,3 +53,9 @@ watch(() => route.path, (val) => {
   margin: 0 5px;
 }
 </style>
+
+<style>
+.fv-breadcrumb .el-breadcrumb__inner a, .fv-breadcrumb .el-breadcrumb__inner.is-link{
+  font-weight: 500;
+}
+</style>
