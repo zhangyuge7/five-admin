@@ -218,21 +218,6 @@ onUnmounted(() => {
             :size="state.size"
           />
         </div>
-        <div class="setting-item">
-          <el-text :size="state.size">
-            <el-tooltip
-              content="改变后手动刷新"
-              placement="top-start"
-            >
-              <el-icon><QuestionFilled /></el-icon>
-            </el-tooltip>
-            动态html标题
-          </el-text>
-          <el-switch
-            v-model="appStore.appConfig.dynamicTitle"
-            :size="state.size"
-          />
-        </div>
 
         <el-divider :size="state.size">
           提示

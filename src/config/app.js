@@ -3,8 +3,6 @@ export default {
   defaultLanguage: 'zh-cn',
   // elementplus组件尺寸。'default' 默认 | 'large' 大 | 'small' 小
   elementSize: 'default',
-  // 路由来源。 'front' 前端 | 'back' 后端 | 'mixture' 前后端都加载
-  routeSource: 'mixture',
 
   // ----------------------------------------侧栏菜单--------------------------------------------------
   // 侧栏菜单是否折叠
@@ -35,7 +33,11 @@ export default {
 
   // ----------------------------------------其它设置--------------------------------------------------
 
-  dynamicTitle: true, // 动态 html 标题
   enableBacktop: true, // 是否开启主界面回到顶部
+
+  // ----------------------------------------固定配置（不在应用配置中出现）--------------------------------------------------
+  // 路由来源。 'front' 前端 | 'back' 后端 | 'mixture' 前后端都加载
+  routeSource: 'mixture',
+  dynamicTitle: true, // 动态 html 标题
 
 }
