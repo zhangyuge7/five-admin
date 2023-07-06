@@ -31,6 +31,6 @@ const isCollapse = computed(() => appStore.appConfig.menuIsCollapse)
 
 }
 .el-menu{
-  border-right: none
+  border-right: none;
 }
 </style>

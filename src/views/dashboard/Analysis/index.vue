@@ -5,7 +5,7 @@
 <template>
   <div>
     <div>分析页</div>
-    <div class="w-full bg-red-50">
+    <div>
       1
     </div>
     <!-- <span v-for="i in 100" :key="i">{{ i }}</span> -->
