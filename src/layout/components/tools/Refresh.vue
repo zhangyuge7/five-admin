@@ -11,9 +11,14 @@ const title = computed(() => t('tools.refresh'))
 </script>
 
 <template>
-  <div class="tools-item" :title="title" @click="reload">
-    <el-icon size="18">
-      <Refresh />
-    </el-icon>
-  </div>
+  <el-tooltip
+    :content="title"
+    placement="bottom"
+  >
+    <div class="tools-item" @click="reload">
+      <el-icon size="18">
+        <Refresh />
+      </el-icon>
+    </div>
+  </el-tooltip>
 </template>

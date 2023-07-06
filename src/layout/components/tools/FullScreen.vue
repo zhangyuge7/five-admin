@@ -18,9 +18,14 @@ if (screenfull.isEnabled) {
 </script>
 
 <template>
-  <div class="tools-item" :title="title" @click="clickSetting">
-    <el-icon size="18">
-      <SvgIcon :name="isFullscreen ? 'ri:fullscreen-exit-line' : 'ri:fullscreen-fill'" />
-    </el-icon>
-  </div>
+  <el-tooltip
+    :content="title"
+    placement="bottom"
+  >
+    <div class="tools-item" @click="clickSetting">
+      <el-icon size="18">
+        <SvgIcon :name="isFullscreen ? 'ri:fullscreen-exit-line' : 'ri:fullscreen-fill'" />
+      </el-icon>
+    </div>
+  </el-tooltip>
 </template>

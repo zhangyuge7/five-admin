@@ -19,7 +19,7 @@ import Refresh from './Refresh.vue'
 </template>
 
 <style scoped>
-.tools-item{
+:deep(.tools-item){
     @apply
     w-7
     h-full

@@ -11,9 +11,14 @@ function clickSetting() {
 </script>
 
 <template>
-  <div class="tools-item" :title="title" @click="clickSetting">
-    <el-icon size="18">
-      <Setting />
-    </el-icon>
-  </div>
+  <el-tooltip
+    :content="title"
+    placement="bottom"
+  >
+    <div class="tools-item" @click="clickSetting">
+      <el-icon size="18">
+        <Setting />
+      </el-icon>
+    </div>
+  </el-tooltip>
 </template>

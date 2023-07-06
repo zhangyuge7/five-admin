@@ -11,10 +11,15 @@ const title = computed(() => t('tools.theme'))
 </script>
 
 <template>
-  <div class="tools-item" :title="title" @click="toggleDark()">
-    <el-icon size="18">
-      <Sunny v-if="isDark" />
-      <Moon v-else />
-    </el-icon>
-  </div>
+  <el-tooltip
+    :content="title"
+    placement="bottom"
+  >
+    <div class="tools-item" @click="toggleDark()">
+      <el-icon size="18">
+        <Sunny v-if="isDark" />
+        <Moon v-else />
+      </el-icon>
+    </div>
+  </el-tooltip>
 </template>
