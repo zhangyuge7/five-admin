@@ -2,7 +2,7 @@
 import SingleAsideLayout from './SingleAsideLayout.vue'
 import DoubleAsideLayout from './DoubleAsideLayout.vue'
 import DefaultLayout from './DefaultLayout.vue'
-import CrosswiseLayout from './CrosswiseLayout.vue'
+import CrosswiseLayout from './crosswise-layout/index.vue'
 import MixtureNavLayout from './MixtureNavLayout.vue'
 import { useAppStore } from '@/stores/modules/app'
 

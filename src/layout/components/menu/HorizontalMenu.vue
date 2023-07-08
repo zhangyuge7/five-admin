@@ -6,7 +6,6 @@ import { useAppStore } from '@/stores/modules/app'
 import { useRouteStore } from '@/stores/modules/route'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
-const emit = defineEmits(['subMenuOpen', 'subMenuClose'])
 const routeStore = useRouteStore()
 const appStore = useAppStore()
 
@@ -36,6 +35,14 @@ function showSubMenu({ children, meta }) {
   }
   return true
 }
+// 当父级菜单隐藏时，是否继续显示子级菜单
+function showChildren({ children, meta }) {
+  if (!children)
+    return false
+  else if (meta && meta.hideChildren)
+    return false
+  return true
+}
 </script>
 
 <template>
@@ -43,11 +50,9 @@ function showSubMenu({ children, meta }) {
     mode="horizontal"
     :default-active="currentRoute.path" router
     :unique-opened="appStore.appConfig.subMenuUniqueOpened"
-    @open="emit('subMenuOpen')"
-    @close="emit('subMenuClose')"
   >
-    <template v-for="route in routes" :key="`${route.path}123`">
-      <el-menu-item v-if="showMenuItem(route)" :index="route.path">
+    <template v-for="(route, index) in routes">
+      <el-menu-item v-if="showMenuItem(route)" :key="route.path" :index="route.path">
         <el-icon v-if="route.meta?.icon">
           <SvgIcon :name="route.meta.icon" />
         </el-icon>
@@ -55,7 +60,7 @@ function showSubMenu({ children, meta }) {
           {{ $t(route.meta?.title) }}
         </template>
       </el-menu-item>
-      <el-sub-menu v-else-if="showSubMenu(route)" :index="route.path">
+      <el-sub-menu v-else-if="showSubMenu(route)" :key="index" :index="route.path">
         <template #title>
           <el-icon v-if="route.meta?.icon">
             <SvgIcon :name="route.meta.icon" />
@@ -64,13 +69,34 @@ function showSubMenu({ children, meta }) {
         </template>
         <MenuItem :routes="route.children" />
       </el-sub-menu>
+      <template v-else-if="showChildren(route)">
+        <template v-for="(item, i) in route.children">
+          <el-menu-item v-if="showMenuItem(item)" :key="item.path" :index="item.path">
+            <el-icon v-if="item.meta?.icon">
+              <SvgIcon :name="item.meta.icon" />
+            </el-icon>
+            <template #title>
+              {{ $t(item.meta?.title) }}
+            </template>
+          </el-menu-item>
+          <el-sub-menu v-else-if="showSubMenu(item)" :key="i" :index="item.path">
+            <template #title>
+              <el-icon v-if="item.meta?.icon">
+                <SvgIcon :name="item.meta.icon" />
+              </el-icon>
+              <span>{{ $t(item.meta?.title) }}</span>
+            </template>
+            <MenuItem :routes="item.children" />
+          </el-sub-menu>
+        </template>
+      </template>
     </template>
   </el-menu>
 </template>
 
 <style scoped>
-.el-menu{
-  border-right: none;
-  /* width: 1000px; */
+.el-menu--horizontal{
+  border-bottom: 0;
+  width: 0;
 }
 </style>
