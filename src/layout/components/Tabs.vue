@@ -158,7 +158,11 @@ onBeforeMount(() => {
   // 从 pinia 仓库中获取需要固定在标签页的路由
   state.tabs = _.cloneDeep(routeStore.fiexTabsRoutes)
   // 当前路由添加到标签
-  methods.addTab(_.cloneDeep(route))
+  methods.addTab(_.cloneDeep({
+    path: route.path,
+    name: route.name,
+    meta: route.meta,
+  }))
 })
 </script>
 
