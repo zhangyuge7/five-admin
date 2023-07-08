@@ -26,7 +26,7 @@ export default {
 
   // ----------------------------------------过渡动画--------------------------------------------------
   // 页面切换动画。'fade' 渐变 | 'scale' 缩放 | 'slide' 滑动
-  transitionNames: 'scale',
+  transitionNames: 'fade',
   // 是否启用页面切换动画
   isTransition: true,
 

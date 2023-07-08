@@ -101,6 +101,7 @@ onUnmounted(() => {
           <el-switch
             v-model="appStore.appConfig.menuIsCollapse"
             :size="state.size"
+            :disabled="appStore.appConfig.layoutType === 'crosswise'"
           />
         </div>
         <div class="setting-item">
@@ -109,7 +110,7 @@ onUnmounted(() => {
           </el-text>
           <el-switch
             v-model="appStore.appConfig.subMenuUniqueOpened"
-            :disabled="appStore.appConfig.menuIsCollapse"
+            :disabled="appStore.appConfig.menuIsCollapse || appStore.appConfig.layoutType === 'crosswise'"
             :size="state.size"
           />
         </div>
@@ -117,7 +118,12 @@ onUnmounted(() => {
           <el-text :size="state.size">
             侧栏菜单宽度
           </el-text>
-          <el-input-number :model-value="state.menuWidth" controls-position="right" :disabled="appStore.appConfig.menuIsCollapse" @change="methods.setMenuWidth" />
+          <el-input-number
+            :model-value="state.menuWidth"
+            controls-position="right"
+            :disabled="appStore.appConfig.menuIsCollapse || appStore.appConfig.layoutType === 'crosswise'"
+            @change="methods.setMenuWidth"
+          />
         </div>
 
         <el-divider :size="state.size">
