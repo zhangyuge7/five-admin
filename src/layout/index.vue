@@ -1,21 +1,32 @@
 <script setup name="Layout">
-import ClassicsLayout from './ClassicsLayout.vue'
+import SingleAsideLayout from './SingleAsideLayout.vue'
+import DoubleAsideLayout from './DoubleAsideLayout.vue'
 import DefaultLayout from './DefaultLayout.vue'
 import CrosswiseLayout from './CrosswiseLayout.vue'
 import MixtureNavLayout from './MixtureNavLayout.vue'
+import { useAppStore } from '@/stores/modules/app'
 
-const layout = 'classics'
+const appStore = useAppStore()
+
+const layoutTypes = {
+  default: DefaultLayout, // 默认
+  singleAside: SingleAsideLayout, // 单侧栏(经典)
+  doubleAside: DoubleAsideLayout, // 双侧栏
+  crosswise: CrosswiseLayout, // 横向上下布局
+  mixture: MixtureNavLayout, // 混合导航布局
+}
 </script>
 
 <template>
   <div>
+    <Component :is="layoutTypes[appStore.appConfig.layoutType]" />
     <!-- 默认布局 -->
-    <DefaultLayout v-if="layout === 'default'" />
+    <!-- <DefaultLayout v-if="layout === 'default'" /> -->
     <!-- 经典左右布局 -->
-    <ClassicsLayout v-if="layout === 'classics'" />
+    <!-- <ClassicsLayout v-if="layout === 'classics'" /> -->
     <!-- 横向上下布局 -->
-    <CrosswiseLayout v-if="layout === 'crosswise'" />
+    <!-- <CrosswiseLayout v-if="layout === 'crosswise'" /> -->
     <!-- 混合导航布局 -->
-    <MixtureNavLayout v-if="layout === 'mixture'" />
+    <!-- <MixtureNavLayout v-if="layout === 'mixture'" /> -->
   </div>
 </template>

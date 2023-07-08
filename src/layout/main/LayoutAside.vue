@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import AsideLogo from '@/layout/components/AsideLogo.vue'
-import Menu from '@/layout/components/menu/Menu.vue'
+import VerticalMenu from '@/layout/components/menu/VerticalMenu.vue'
 
 const scrollbar = ref()
 // 手动更新滚动条
@@ -18,7 +18,7 @@ function subMenuChange() {
       <AsideLogo />
     </div>
     <el-scrollbar ref="scrollbar">
-      <Menu @sub-menu-open="subMenuChange" @sub-menu-close="subMenuChange" />
+      <VerticalMenu @sub-menu-open="subMenuChange" @sub-menu-close="subMenuChange" />
     </el-scrollbar>
   </div>
 </template>

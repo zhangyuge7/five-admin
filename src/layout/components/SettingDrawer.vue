@@ -23,6 +23,13 @@ const tabsTypes = [
   { label: '风格一', value: '' },
   { label: '风格二', value: 'border-card' },
 ]
+const layoutTypes = [
+  { label: '默认', value: 'default' },
+  { label: '单侧栏(经典)', value: 'singleAside' },
+  { label: '双侧栏', value: 'doubleAside' },
+  { label: '横向上下布局', value: 'crosswise' },
+  { label: '混合导航布局', value: 'mixture' },
+]
 
 // 提示
 const alert = '以上配置只支持预览，不具备持久化，刷新浏览器后恢复默认状态。不是实现不了，就是懒得做。配置可以在源码的 src/config/app.js 文件中做永久修改。样式配置在 src/assets/styles/common/theme.scss 文件中修改'
@@ -68,6 +75,22 @@ onUnmounted(() => {
       @close="methods.drawerClose"
     >
       <el-scrollbar class=" pr-4">
+        <el-divider :size="state.size">
+          布局配置
+        </el-divider>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            布局
+          </el-text>
+          <el-select v-model="appStore.appConfig.layoutType" :size="state.size" class="select" :disabled="!appStore.appConfig.isTabs">
+            <el-option
+              v-for="item in layoutTypes"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </div>
         <el-divider :size="state.size">
           侧栏菜单
         </el-divider>
