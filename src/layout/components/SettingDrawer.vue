@@ -82,7 +82,7 @@ onUnmounted(() => {
           <el-text :size="state.size">
             布局
           </el-text>
-          <el-select v-model="appStore.appConfig.layoutType" :size="state.size" class="select" :disabled="!appStore.appConfig.isTabs">
+          <el-select v-model="appStore.appConfig.layoutType" :size="state.size" class="select">
             <el-option
               v-for="item in layoutTypes"
               :key="item.value"
