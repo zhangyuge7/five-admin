@@ -11,7 +11,7 @@ import Tools from '@/layout/components/tools/index.vue'
       <AsideLogo class="w-[200px] flex-shrink-0" />
       <HorizontalMenu class="flex-1" />
     </div>
-    <div class="flex items-center h-full w-[310px] flex-shrink-0">
+    <div class="flex items-center h-full mr-2 flex-shrink-0">
       <Tools class="mr-1" />
       <UserInfo />
     </div>
