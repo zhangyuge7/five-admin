@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, ref, watch } from 'vue'
+import { onMounted, ref, shallowReactive, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
 import { useRouteStore } from '@/stores/modules/route'
@@ -7,7 +7,7 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 import mittBus from '@/utils/mitt'
 
 const routeStore = useRouteStore()
-const routes = []
+const routes = shallowReactive([])
 const route = useRoute()
 const active = ref('') // 当前激活的
 // 定义方法
@@ -80,7 +80,7 @@ const methods = {
     }
   },
 }
-onBeforeMount(() => {
+onMounted(() => {
   methods.initMainMenus(routeStore.menus || [])
   watch(() => route.path, (val) => {
     methods.findRootPath(routes, val)

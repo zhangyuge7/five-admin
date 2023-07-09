@@ -10,14 +10,11 @@ const appStore = useAppStore()
 
 const route = useRoute()
 const routes = shallowRef([])
-const showMenu = shallowRef(false)
 const isCollapse = computed(() => appStore.appConfig.menuIsCollapse)
 
 onBeforeMount(() => {
   mittBus.on('onMainMenuChange', (menus) => {
-    showMenu.value = false
     routes.value = menus
-    showMenu.value = true
   })
 })
 onUnmounted(() => {
@@ -27,7 +24,7 @@ onUnmounted(() => {
 
 <template>
   <el-menu
-    v-if="showMenu" :default-active="route.path" router
+    :default-active="route.path" router
     :collapse="isCollapse"
     :unique-opened="appStore.appConfig.subMenuUniqueOpened"
     @open="emit('subMenuOpen')"
