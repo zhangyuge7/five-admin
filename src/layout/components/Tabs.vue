@@ -288,4 +288,10 @@ onBeforeMount(() => {
 .fv-tabs .el-tabs__nav{
   height: var(--fv-tabs-height);
 }
+.fv-tabs .el-tabs__nav-wrap::after{
+  height: 1px;
+}
+.fv-tabs .el-tabs__item,.is-active .tabs-item-title{
+  /* color: var(--el-color-primary); */
+}
 </style>

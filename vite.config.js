@@ -12,8 +12,9 @@ export default defineConfig(({ command, mode }) => {
       alias,
     },
     server: {
-      open: false,
+      open: true,
       host: true,
+      port: 9999,
       proxy: initProxy(),
     },
   }
