@@ -11,6 +11,9 @@ const state = reactive({
   showSettingDrawer: false, // 控制显示抽屉
   size: 'default', // 组件尺寸
   menuWidth: 0, // 侧栏菜单宽度
+  menuItemHeight: 0, // 侧栏菜单项高度
+  mainMenuWidth: 0, // 侧栏主菜单宽度
+  mainMenuItemHeight: 0, // 侧栏主菜单项高度
 
 })
 // 页面切换动画效果
@@ -41,13 +44,34 @@ const methods = {
   },
   // 初始化数据
   initState() {
-  // 获取侧栏菜单宽度
+    // 获取侧栏菜单宽度
     const menuWidth = getCssVal('--fv-menu-width')
     state.menuWidth = Number.parseInt(menuWidth.substring(0, menuWidth.lastIndexOf('px')))
+    // 获取侧栏菜单项高度
+    const menuItemHeight = getCssVal('--fv-menu-item-height')
+    state.menuItemHeight = Number.parseInt(menuItemHeight.substring(0, menuItemHeight.lastIndexOf('px')))
+    // 获取侧栏主菜单宽度
+    const mainMenuWidth = getCssVal('--fv-main-menu-width')
+    state.mainMenuWidth = Number.parseInt(mainMenuWidth.substring(0, mainMenuWidth.lastIndexOf('px')))
+    // 获取侧栏主菜单项高度
+    const mainMenuItemHeight = getCssVal('--fv-main-menu-item-height')
+    state.mainMenuItemHeight = Number.parseInt(mainMenuItemHeight.substring(0, mainMenuItemHeight.lastIndexOf('px')))
   },
   // 设置侧栏菜单宽度
   setMenuWidth(v) {
     setCssVal('--fv-menu-width', `${v}px`)
+  },
+  // 设置侧栏菜单项高度
+  setMenuItemHeight(v) {
+    setCssVal('--fv-menu-item-height', `${v}px`)
+  },
+  // 设置侧栏主菜单宽度
+  setMainMenuWidth(v) {
+    setCssVal('--fv-main-menu-width', `${v}px`)
+  },
+  // 设置侧栏主菜单项高度
+  setMainMenuItemHeight(v) {
+    setCssVal('--fv-main-menu-item-height', `${v}px`)
   },
 
 }
@@ -123,6 +147,50 @@ onUnmounted(() => {
             controls-position="right"
             :disabled="appStore.appConfig.menuIsCollapse || appStore.appConfig.layoutType === 'crosswise'"
             @change="methods.setMenuWidth"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            侧栏菜单项高度
+          </el-text>
+          <el-input-number
+            :model-value="state.menuItemHeight"
+            controls-position="right"
+            :disabled="appStore.appConfig.layoutType === 'crosswise'"
+            @change="methods.setMenuItemHeight"
+          />
+        </div>
+
+        <div class="setting-item">
+          <el-text :size="state.size">
+            主菜单标题
+          </el-text>
+          <el-switch
+            v-model="appStore.appConfig.isMainMenuShowTitle"
+            :disabled="appStore.appConfig.layoutType !== 'doubleAside'"
+            :size="state.size"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            侧栏主菜单宽度
+          </el-text>
+          <el-input-number
+            :model-value="state.mainMenuWidth"
+            controls-position="right"
+            :disabled="appStore.appConfig.layoutType !== 'doubleAside'"
+            @change="methods.setMainMenuWidth"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            侧栏主菜单项高度
+          </el-text>
+          <el-input-number
+            :model-value="state.mainMenuItemHeight"
+            controls-position="right"
+            :disabled="appStore.appConfig.layoutType !== 'doubleAside'"
+            @change="methods.setMainMenuItemHeight"
           />
         </div>
 
@@ -265,6 +333,7 @@ onUnmounted(() => {
     .setting-item{
         display: flex;
         justify-content: space-between;
+        margin: 2px 0;
     }
     .select{
         width: 85px;
