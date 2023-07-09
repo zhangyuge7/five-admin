@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onBeforeMount, onUnmounted, shallowRef } from 'vue'
 import { useRoute } from 'vue-router'
-import MenuItem from './MenuItem.vue'
+import MenuItem from '@/layout/components/MenuItem.vue'
 import { useAppStore } from '@/stores/modules/app'
 import mittBus from '@/utils/mitt'
 

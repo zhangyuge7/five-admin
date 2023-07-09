@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import MenuItem from './MenuItem.vue'
+import MenuItem from '@/layout/components/MenuItem.vue'
 import router from '@/router'
 import { useAppStore } from '@/stores/modules/app'
 import { useRouteStore } from '@/stores/modules/route'

@@ -1,8 +1,8 @@
 <script setup>
+import HorizontalMenu from './HorizontalMenu.vue'
 import AsideLogo from '@/layout/components/AsideLogo.vue'
 import UserInfo from '@/layout/components/UserInfo.vue'
 import Tools from '@/layout/components/tools/index.vue'
-import HorizontalMenu from '@/layout/components/menu/HorizontalMenu.vue'
 </script>
 
 <template>

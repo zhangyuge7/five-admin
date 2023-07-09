@@ -1,9 +1,9 @@
-<script setup>
+<script setup name="SingleAsideLayout">
 import { computed, ref } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
-import LayoutMain from './main/LayoutMain.vue'
-import LayoutAside from './main/LayoutAside.vue'
-import LayoutHeader from './main/LayoutHeader.vue'
+import LayoutAside from './LayoutAside.vue'
+import LayoutHeader from './LayoutHeader.vue'
+import LayoutMain from '@/layout/main/LayoutMain.vue'
 import Tabs from '@/layout/components/Tabs.vue'
 import { useAppStore } from '@/stores/modules/app'
 import SettingDrawer from '@/layout/components/SettingDrawer.vue'

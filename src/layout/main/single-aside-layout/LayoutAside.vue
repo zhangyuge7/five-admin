@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
+import VerticalMenu from './VerticalMenu.vue'
 import AsideLogo from '@/layout/components/AsideLogo.vue'
-import VerticalMenu from '@/layout/components/menu/VerticalMenu.vue'
 
 const scrollbar = ref()
 // 手动更新滚动条
