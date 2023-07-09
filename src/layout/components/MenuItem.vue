@@ -65,3 +65,12 @@ function showChildren({ children, meta }) {
     <MenuItem v-else-if="showChildren(route)" :routes="route.children" />
   </template>
 </template>
+
+<style scoped>
+.el-menu-item{
+  height: var(--fv-menu-item-height);
+}
+:deep(.el-sub-menu__title){
+  height: var(--fv-menu-item-height);
+}
+</style>

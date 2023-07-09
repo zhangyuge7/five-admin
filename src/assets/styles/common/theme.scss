@@ -1,8 +1,9 @@
 :root {
     // -----------------------布局-----------------------------
-    --fv-main-menu-width:75px; // 主菜单宽度
-    --fv-main-menu-item-height:60px; // 主菜单宽度
+    --fv-main-menu-width:75px; // 侧栏主菜单宽度
+    --fv-main-menu-item-height:60px; // 侧栏主菜单项高度
     --fv-menu-width:200px; // 侧栏菜单宽度
+    --fv-menu-item-height:auto;// 侧栏菜单项高度，包括子菜单，可以为 auto
     --fv-header-height:58px; // 顶栏高度
     --fv-tabs-heigth:30px; // tabs 高度 // 并不能控制tabs的高度，只是用来控制主界面顶边界与顶栏的距离
     --fv-footer-heigth:20px; // 页脚高度
