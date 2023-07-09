@@ -11,7 +11,7 @@ const layoutTypes = {
   // 单侧栏(经典)
   singleAside: defineAsyncComponent(() => import('./main/single-aside-layout/index.vue')),
   // 双侧栏
-  doubleAside: defineAsyncComponent(() => import('./DoubleAsideLayout.vue')),
+  doubleAside: defineAsyncComponent(() => import('./main/double-aside-layout/index.vue')),
   // 横向上下布局
   crosswise: defineAsyncComponent(() => import('./main/crosswise-layout/index.vue')),
   // 混合导航布局
