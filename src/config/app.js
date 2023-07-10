@@ -45,5 +45,6 @@ export default {
   // 路由来源。 'front' 前端 | 'back' 后端 | 'mixture' 前后端都加载
   routeSource: 'mixture',
   dynamicTitle: true, // 动态 html 标题
+  enableGray: false, // 开启灰色模式
 
 }

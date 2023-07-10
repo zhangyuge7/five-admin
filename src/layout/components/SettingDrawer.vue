@@ -315,6 +315,15 @@ onUnmounted(() => {
             :size="state.size"
           />
         </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            灰色模式
+          </el-text>
+          <el-switch
+            v-model="appStore.appConfig.enableGray"
+            :size="state.size"
+          />
+        </div>
 
         <el-divider :size="state.size">
           提示
