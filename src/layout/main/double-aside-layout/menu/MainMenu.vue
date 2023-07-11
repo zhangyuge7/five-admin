@@ -124,7 +124,6 @@ onMounted(() => {
   line-height: normal;
   padding: 0;
   justify-content: center;
-  height: var(--fv-main-menu-item-height);
 }
 </style>
 

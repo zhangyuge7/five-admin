@@ -24,11 +24,9 @@ onUnmounted(() => {
 
 <template>
   <el-menu
-    :default-active="route.path" router
-    :collapse="isCollapse"
+    :default-active="route.path" router :collapse="isCollapse"
     :unique-opened="appStore.appConfig.subMenuUniqueOpened"
-    @open="emit('subMenuOpen')"
-    @close="emit('subMenuClose')"
+    @open="emit('subMenuOpen')" @close="emit('subMenuClose')"
   >
     <MenuItem :routes="routes" />
   </el-menu>
@@ -39,7 +37,8 @@ onUnmounted(() => {
   width: var(--fv-menu-width);
 
 }
-.el-menu{
+
+.el-menu {
   border-right: none;
 }
 </style>

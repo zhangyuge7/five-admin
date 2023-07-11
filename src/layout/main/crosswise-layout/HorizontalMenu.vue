@@ -96,7 +96,9 @@ function showChildren({ children, meta }) {
 
 <style scoped>
 .el-menu--horizontal{
+  --el-menu-item-height:calc(var(--fv-header-height) - 3px);
   border-bottom: 0;
   width: 0;
+
 }
 </style>

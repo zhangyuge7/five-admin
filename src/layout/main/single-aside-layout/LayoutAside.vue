@@ -17,7 +17,7 @@ function subMenuChange() {
     <div class="fv-aside-logo flex items-center shrink-0">
       <AsideLogo />
     </div>
-    <el-scrollbar ref="scrollbar">
+    <el-scrollbar ref="scrollbar" class="fv-aside-menu-scrollbar">
       <VerticalMenu @sub-menu-open="subMenuChange" @sub-menu-close="subMenuChange" />
     </el-scrollbar>
   </div>
@@ -30,6 +30,7 @@ function subMenuChange() {
 }
 .fv-aside{
   border-right: 1px solid var(--el-border-color);
+  background-color:var(--el-menu-bg-color);
   @apply
   flex flex-col h-full
 }

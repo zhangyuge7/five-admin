@@ -24,19 +24,19 @@ watch(() => appStore.appConfig.menuIsCollapse, (val) => {
 <template>
   <div class="flex flex-row aside-logo">
     <img src="../../assets/images/logo.svg" class=" w-[32px]">
-    <span v-if="showTitle || appStore.appConfig.layoutType === 'crosswise'" class="title">{{ title }}</span>
+    <span v-if="showTitle || appStore.appConfig.layoutType === 'crosswise'" class="fv-title">{{ title }}</span>
   </div>
 </template>
 
 <style scoped>
-.title{
-    margin-left: 10px;
-    font-size: 24px;
-
-}
 .aside-logo{
   padding-left: 15px;
   max-width: var(--fv-menu-width);
   overflow-x: hidden;
+}
+.fv-title{
+  margin-left: 10px;
+  font-size: 24px;
+  color: var(--fv-logo-title-color);
 }
 </style>
