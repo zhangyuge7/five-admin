@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -9,7 +9,7 @@ function handleIframeLoad() {
   load.value = false
 }
 // 侦听路由
-watchEffect(() => {
+watch(() => route.path, () => {
   load.value = true
   linkSrc.value = route.meta?.link
 }, { immediate: true })

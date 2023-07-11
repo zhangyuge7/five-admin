@@ -1,5 +1,5 @@
 <script setup>
-import { watchEffect } from 'vue'
+import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
 
@@ -10,7 +10,7 @@ function openLink(route) {
     window.open(router.currentRoute.value.meta.link)
 }
 // 侦听路由
-watchEffect(() => {
+watch(() => route.path, () => {
   openLink(route)
 }, { immediate: true })
 </script>
