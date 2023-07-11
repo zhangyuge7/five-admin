@@ -157,14 +157,16 @@ export async function initMenus() {
   rawRoutes = sortAndUniqueAll(rawRoutes)
   // 数据深拷贝，避免路由处理过程中对原数据造成污染
   const routes = _.cloneDeep(rawRoutes)
-  // 清空路由器中现有的路由表
-  clearRoutes()
+  
 
   // 初始化需要固定在标签页的路由
   initFixedTabRoutes(routes)
 
   // 设置用户的 homePath
   root.redirect = getHomePath()
+
+  // 清空路由器中现有的路由表
+  clearRoutes()
 
   // 转二级路由并根据角色权限过滤
   const twoRoutes = multToTwo(routes, true)
