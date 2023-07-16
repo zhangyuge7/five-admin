@@ -18,7 +18,7 @@ export const successCode = 0
 export const resultProp = {
   data: 'data',
   code: 'code',
-  message: 'msg',
+  message: 'message',
   ok: 'ok',
 }
 // 响应后消息提示类型
@@ -94,9 +94,9 @@ axiosInstance.interceptors.response.use((res) => {
   FiveNProgress.done() // 请求进度条结束
   return data
 }, (err) => {
-  const { status, statusText } = err.response
+  const { status, statusText, data } = err.response
   let i18nMsg = ''
-  switch (status) {
+  switch (data.code) {
     case 401:
       i18nMsg = t('http.error401')
       break
