@@ -48,25 +48,11 @@ axiosInstance.interceptors.response.use((res) => {
   const { data, config } = res
   // 获取请求时配置的成功消息提示类型与错误消息提示类型
   const { errorMsgType, successMsgType } = config
+  const code = data[resultProp.code]
   // 异常响应时
-  if (data[resultProp.code] !== successCode) {
-    if (!errorMsgType || !Object.keys(msgType).includes(errorMsgType) || errorMsgType === msgType.msg) {
-      ElMessage.error(data[resultProp.message] || t('http.error'))
-    }
-    else if (errorMsgType === msgType.box) {
-      ElMessageBox.confirm(
-        data[resultProp.message] || t('http.error'),
-        t('messageBox.hint'),
-        {
-          showCancelButton: false,
-          confirmButtonText: t('messageBox.iKnow'),
-          type: 'error',
-          showClose: false,
-
-        },
-      )
-    }
-    switch (data[resultProp.code]) {
+  if (code !== successCode) {
+    errorMessageAlert(data[resultProp.message] || t('http.error'), errorMsgType)
+    switch (code) {
       case 401:
         setToken()
         router.push('/login')
@@ -75,45 +61,72 @@ axiosInstance.interceptors.response.use((res) => {
   }
   // 正常响应时
   else {
-    if (successMsgType && successMsgType === msgType.msg) {
-      ElMessage.success(data[resultProp.message] || t('http.success'))
-    }
-    else if (successMsgType && successMsgType === msgType.box) {
-      ElMessageBox.confirm(
-        data[resultProp.message] || t('http.success'),
-        t('messageBox.hint'),
-        {
-          showCancelButton: false,
-          confirmButtonText: t('messageBox.close'),
-          type: 'success',
-          showClose: false,
-        },
-      )
-    }
+    successMessageAlert(data[resultProp.message] || t('http.success'), successMsgType)
   }
   FiveNProgress.done() // 请求进度条结束
   return data
 }, (err) => {
   const { status, statusText, data } = err.response
-  let i18nMsg = ''
-  switch (data.code) {
+  let i18nMsg = data[resultProp.message]
+  switch (status) {
     case 401:
-      i18nMsg = t('http.error401')
+      i18nMsg = i18nMsg || t('http.error401')
+      setToken()
+      router.push('/login')
       break
     case 403:
-      i18nMsg = t('http.error403')
+      i18nMsg = i18nMsg || t('http.error403')
       break
     case 500:
-      i18nMsg = t('http.error500')
+      i18nMsg = i18nMsg || t('http.error500')
       break
     case 404:
-      i18nMsg = t('http.error404')
+      i18nMsg = i18nMsg || t('http.error404')
       break
     default:
-      i18nMsg = statusText
+      i18nMsg = i18nMsg || statusText
   }
   ElMessage.error(i18nMsg)
   FiveNProgress.done()
   return Promise.reject(err)
 })
+
+// 错误消息提示
+function errorMessageAlert(message, messageType) {
+  if (!messageType || !Object.keys(msgType).includes(messageType) || messageType === msgType.msg) {
+    ElMessage.error(message)
+  }
+  else if (messageType === msgType.box) {
+    ElMessageBox.confirm(
+      message,
+      t('messageBox.hint'),
+      {
+        showCancelButton: false,
+        confirmButtonText: t('messageBox.iKnow'),
+        type: 'error',
+        showClose: false,
+      },
+    )
+  }
+}
+
+// 成功消息提示
+function successMessageAlert(message, messageType) {
+  if (messageType && messageType === msgType.msg) {
+    ElMessage.success(message)
+  }
+  else if (messageType && messageType === msgType.box) {
+    ElMessageBox.confirm(
+      message,
+      t('messageBox.hint'),
+      {
+        showCancelButton: false,
+        confirmButtonText: t('messageBox.close'),
+        type: 'success',
+        showClose: false,
+      },
+    )
+  }
+}
+
 export default axiosInstance
