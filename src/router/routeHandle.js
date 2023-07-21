@@ -157,7 +157,6 @@ export async function initMenus() {
   rawRoutes = sortAndUniqueAll(rawRoutes)
   // 数据深拷贝，避免路由处理过程中对原数据造成污染
   const routes = _.cloneDeep(rawRoutes)
-  
 
   // 初始化需要固定在标签页的路由
   initFixedTabRoutes(routes)
@@ -197,7 +196,7 @@ function handleComponent(route) {
     url = route.component.endsWith('.vue')
       ? `/src/views/${route.component}`
       : `/src/views/${route.component}.vue`
-    route.component = views[url]
+    route.component = views[url] || null
   }
   if (route.children) {
     route.children.forEach((item) => {
