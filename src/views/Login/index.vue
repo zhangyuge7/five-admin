@@ -1,101 +1,94 @@
 <script setup>
+import { onMounted, onUnmounted, reactive, ref } from 'vue'
 import { useUserStore } from '@/stores/modules/user'
 
 const title = import.meta.env.VITE_APP_TITLE
 const useUser = useUserStore()
-function doLogin() {
-  const usernameEl = document.getElementById('username')
-  const passwordEl = document.getElementById('password')
-  const formData = {
-    username: usernameEl.value,
-    password: passwordEl.value,
-  }
-  useUser.login(formData)
+
+const formRef = ref()
+const rules = {
+  username: [
+    { required: true, message: '请输入用户名', trigger: 'blur' },
+    { min: 3, max: 16, message: '3 到 16 个字符长度', trigger: 'blur' },
+  ],
+  password: [
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 3, max: 30, message: '6 到 30 个字符长度', trigger: 'blur' },
+  ],
 }
+const form = reactive({
+  username: 'admin',
+  password: '123',
+})
+const loginLoading = ref(false)
+function resetForm(formEl) {
+  if (!formEl)
+    return
+  formEl.resetFields()
+}
+async function onSubmit(formEl) {
+  if (!formEl)
+    return
+  await formEl.validate((valid) => {
+    if (valid) {
+      loginLoading.value = true
+      doLogin()
+    }
+  })
+}
+
+async function doLogin() {
+  await useUser.login({ ...form })
+  loginLoading.value = false
+}
+
+function enterKey(event) {
+  const code = event.keyCode
+    ? event.keyCode
+    : event.which
+      ? event.which
+      : event.charCode
+  if (code === 13 && !loginLoading.value)
+    onSubmit(formRef.value)
+}
+onMounted(() => {
+  document.addEventListener('keyup', enterKey)
+})
+onUnmounted(() => {
+  document.removeEventListener('keyup', enterKey)
+})
 </script>
 
 <template>
-  <div class="container-login">
-    <div class="login-wrapper">
-      <div class="header">
-        {{ title }}
-      </div>
-      <div class="form-wrapper">
-        <input id="username" type="text" name="username" value="admin" placeholder="username" class="input-item">
-        <input id="password" type="password" name="password" value="admin" placeholder="password" class="input-item">
-        <div class="btn cursor-pointer" @click="doLogin">
-          登录
+  <div class="login-container">
+    <el-card shadow="always" :body-style="{ padding: '20px' }">
+      <template #header>
+        <div>
+          <span>{{ title }}</span>
         </div>
-      </div>
-      <div class="msg">
-        没有账号?
-        <a href="#">去注册</a>
-      </div>
-      <div class="msg">
-        <p>账号：admin 密码：admin</p>
-        <p>账号：test 密码：test</p>
-      </div>
-    </div>
+      </template>
+      <el-form ref="formRef" :model="form" :rules="rules" label-width="80px" :inline="false">
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="form.username" />
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input v-model="form.password" type="password" />
+        </el-form-item>
+        <el-form-item>
+          <el-button :loading="loginLoading" type="primary" @click="onSubmit(formRef)">
+            登录
+          </el-button>
+          <el-button @click="resetForm(formRef)">
+            重置
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
   </div>
 </template>
 
 <style scoped>
-.container-login {
-    height: 100%;
-    background-color: antiquewhite;
-    background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
-}
-
-.login-wrapper {
-    background-color: #fff;
-    width: 358px;
-    height: 588px;
-    border-radius: 15px;
-    padding: 0 50px;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.header {
-    font-size: 38px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 200px;
-}
-
-.input-item {
-    display: block;
-    width: 100%;
-    margin-bottom: 20px;
-    border: 0;
-    padding: 10px;
-    border-bottom: 1px solid rgb(128, 125, 125);
-    font-size: 15px;
-    outline: none;
-}
-
-.input-item:placeholder {
-    text-transform: uppercase;
-}
-
-.btn {
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-    margin-top: 40px;
-    background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
-    color: #fff;
-}
-
-.msg {
-    text-align: center;
-    line-height: 88px;
-}
-
-a {
-    text-decoration-line: none;
-    color: #abc1ee;
+.login-container {
+    @apply h-full w-full flex justify-center items-center
 }
 </style>
