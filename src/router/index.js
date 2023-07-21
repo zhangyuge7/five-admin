@@ -38,8 +38,13 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to) => {
   const appStore = useAppStore()
   // 判断动态 html 标题是否开启
-  if (appStore.appConfig.dynamicTitle)
-    document.title = `${import.meta.env.VITE_APP_TITLE} - ${t(to.meta?.title || '')}`
+  if (appStore.appConfig.dynamicTitle) {
+    if (to.meta?.title)
+      document.title = `${import.meta.env.VITE_APP_TITLE} - ${t(to.meta?.title)}`
+
+    else
+      document.title = import.meta.env.VITE_APP_TITLE
+  }
 })
 function setupRouter(app) {
   app.use(router)
