@@ -46,5 +46,4 @@ export default {
   routeSource: 'back',
   dynamicTitle: true, // 动态 html 标题
   enableGray: false, // 开启灰色模式
-
 }

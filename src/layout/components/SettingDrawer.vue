@@ -9,7 +9,7 @@ const appStore = useAppStore()
 // 响应式数据定义
 const state = reactive({
   showSettingDrawer: false, // 控制显示抽屉
-  size: 'default', // 组件尺寸
+  size: 'small', // 组件尺寸
   menuWidth: 0, // 侧栏菜单宽度
   menuItemHeight: 0, // 侧栏菜单项高度
   mainMenuWidth: 0, // 侧栏主菜单宽度
@@ -34,7 +34,7 @@ const layoutTypes = [
 ]
 
 // 提示
-const alert = '以上配置只支持预览，不具备持久化，刷新浏览器后恢复默认状态。不是实现不了，就是懒得做。配置可以在源码的 src/config/app.js 文件中做永久修改。样式配置在 src/assets/styles/common/theme.scss 文件中修改'
+const alert = '以上配置只支持预览，不具备持久化，刷新浏览器后恢复默认状态。配置可以在源码的 src/config/app.js 文件中做永久修改。样式配置在 src/assets/styles/common/theme.scss 文件中修改'
 
 const methods = {
   // 抽屉关闭时
@@ -135,6 +135,7 @@ onUnmounted(() => {
           </el-text>
           <el-input-number
             :model-value="state.menuWidth"
+            :size="state.size"
             controls-position="right"
             :disabled="appStore.appConfig.menuIsCollapse || appStore.appConfig.layoutType === 'crosswise'"
             @change="methods.setMenuWidth"
@@ -146,6 +147,7 @@ onUnmounted(() => {
           </el-text>
           <el-input-number
             :model-value="state.menuItemHeight"
+            :size="state.size"
             controls-position="right"
             :disabled="appStore.appConfig.layoutType === 'crosswise'"
             @change="methods.setMenuItemHeight"
@@ -168,6 +170,7 @@ onUnmounted(() => {
           </el-text>
           <el-input-number
             :model-value="state.mainMenuWidth"
+            :size="state.size"
             controls-position="right"
             :disabled="appStore.appConfig.layoutType !== 'doubleAside'"
             @change="methods.setMainMenuWidth"
