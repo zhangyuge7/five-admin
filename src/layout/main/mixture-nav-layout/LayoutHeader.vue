@@ -34,9 +34,7 @@ import Burger from '@/layout/components/Burger.vue'
 .fv-tools-mixture-nav *{
   color: var(--fv-header-text-color);
 }
-.fv-header-mixture-nav .el-menu{
-  background-color: var(--fv-header-bg-color);
-}
+
 .fv-burger--mixture-nav{
   color: var(--fv-header-text-color);
 }

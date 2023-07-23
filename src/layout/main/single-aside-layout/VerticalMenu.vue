@@ -31,8 +31,13 @@ const isCollapse = computed(() => appStore.appConfig.menuIsCollapse)
 
 }
 .el-menu{
+  --el-menu-text-color:var(--fv-menu-text-color);
+  --el-menu-hover-bg-color:var(--fv-menu-hover-bg-color);
+  --el-menu-item-height: var(--fv-menu-item-height);
+  --el-menu-active-color: var(--fv-menu-active-color);
+  --el-menu-item-font-size: var(--fv-menu-item-font-size);
+  --el-menu-bg-color:var(--fv-side-bg-color);
   border-right: 0;
-  background-color: var(--fv-side-bg-color);
 }
 :deep().el-menu--inline{
   background-color: var(--fv-menu-inline-bg-color);

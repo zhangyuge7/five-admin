@@ -50,7 +50,6 @@ function showChildren({ children, meta }) {
     mode="horizontal"
     :default-active="currentRoute.path" router
     :unique-opened="appStore.appConfig.subMenuUniqueOpened"
-    background-color="var(--fv-header-bg-color)"
   >
     <template v-for="(route, index) in routes">
       <el-menu-item v-if="showMenuItem(route)" :key="route.path" :index="route.path">
@@ -96,6 +95,14 @@ function showChildren({ children, meta }) {
 </template>
 
 <style scoped>
+.el-menu{
+  --el-menu-text-color:var(--fv-menu-text-color);
+  --el-menu-hover-bg-color:var(--fv-menu-hover-bg-color);
+  --el-menu-item-height: var(--fv-menu-item-height);
+  --el-menu-active-color: var(--fv-menu-active-color);
+  --el-menu-item-font-size: var(--fv-menu-item-font-size);
+  --el-menu-bg-color:var(--fv-header-bg-color);
+}
 .el-menu--horizontal{
   --el-menu-item-height:calc(var(--fv-header-height) - 3px);
   border-bottom: 0;

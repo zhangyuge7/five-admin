@@ -70,7 +70,7 @@ const methods = {
     const menuWidth = getCssVal('--fv-menu-width')
     state.menuWidth = Number.parseInt(menuWidth.substring(0, menuWidth.lastIndexOf('px')))
     // 获取侧栏菜单项高度
-    const menuItemHeight = getCssVal('--el-menu-item-height')
+    const menuItemHeight = getCssVal('--fv-menu-item-height')
     state.menuItemHeight = Number.parseInt(menuItemHeight.substring(0, menuItemHeight.lastIndexOf('px')))
     // 获取侧栏主菜单宽度
     const mainMenuWidth = getCssVal('--fv-main-menu-width')
@@ -96,11 +96,11 @@ const methods = {
     state.sideBgColor = getCssVal('--fv-side-bg-color')
 
     // 获取菜单内容颜色
-    state.menuTextColor = getCssVal('--el-menu-text-color')
+    state.menuTextColor = getCssVal('--fv-menu-text-color')
     // 获取菜单鼠标移入背景颜色
-    state.menuHoverBgColor = getCssVal('--el-menu-hover-bg-color')
+    state.menuHoverBgColor = getCssVal('--fv-menu-hover-bg-color')
     // 获取菜单选中文本颜色
-    state.menuActiveColor = getCssVal('--el-menu-active-color')
+    state.menuActiveColor = getCssVal('--fv-menu-active-color')
     // 获取菜单选中文本颜色
     state.menuInlineColor = getCssVal('--fv-menu-inline-bg-color')
 
@@ -294,7 +294,7 @@ onUnmounted(() => {
             :size="state.size"
             controls-position="right"
             :disabled="appStore.appConfig.layoutType === 'crosswise'"
-            @change="methods.updateSizeCssValue($event, '--el-menu-item-height')"
+            @change="methods.updateSizeCssValue($event, '--fv-menu-item-height')"
           />
         </div>
         <el-divider :size="state.size">
@@ -317,7 +317,7 @@ onUnmounted(() => {
           <el-color-picker
             v-model="state.menuTextColor"
             :size="state.size"
-            show-alpha @change="methods.updateColorCssValue($event, '--el-menu-text-color')"
+            show-alpha @change="methods.updateColorCssValue($event, '--fv-menu-text-color')"
           />
         </div>
         <div class="setting-item">
@@ -327,7 +327,7 @@ onUnmounted(() => {
           <el-color-picker
             v-model="state.menuHoverBgColor"
             :size="state.size"
-            show-alpha @change="methods.updateColorCssValue($event, '--el-menu-hover-bg-color')"
+            show-alpha @change="methods.updateColorCssValue($event, '--fv-menu-hover-bg-color')"
           />
         </div>
         <div class="setting-item">
@@ -337,7 +337,7 @@ onUnmounted(() => {
           <el-color-picker
             v-model="state.menuActiveColor"
             :size="state.size"
-            show-alpha @change="methods.updateColorCssValue($event, '--el-menu-active-color')"
+            show-alpha @change="methods.updateColorCssValue($event, '--fv-menu-active-color')"
           />
         </div>
         <div class="setting-item">

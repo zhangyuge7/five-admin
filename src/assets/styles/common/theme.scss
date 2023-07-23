@@ -17,12 +17,17 @@
     --fv-menu-width:220px; // 侧栏菜单宽度
 
     // -----------------------菜单-----------------------------
+    --fv-menu-text-color:#ffffff; // 菜单内容颜色
     // --el-menu-text-color:#ffffff; // 菜单内容颜色
     // --fv-menu-active-bg-color: #b8d8f6; // 激活项的菜单背景颜色
+    --fv-menu-active-color: var(--el-color-primary); // 激活项的菜单文本颜色
     // --el-menu-active-color: var(--el-color-primary); // 激活项的菜单文本颜色
+    --fv-menu-hover-bg-color: #0C2135; // 鼠标移入菜单背景颜色
     // --el-menu-hover-bg-color: #0C2135; // 鼠标移入菜单背景颜色
     --fv-menu-inline-bg-color:#1F2D3D; // 子菜单展开背景颜色
+    --fv-menu-item-height: 60px; // 侧栏菜单项高度（包括双侧栏布局的主菜单项）
     // --el-menu-item-height: 60px; // 侧栏菜单项高度（包括双侧栏布局的主菜单项）
+    --fv-menu-item-font-size: var(--el-font-size-base); // 菜单字体尺寸
     // --el-menu-item-font-size: var(--el-font-size-base); // 菜单字体尺寸
     
     // -----------------------LOGO标题-----------------------------
