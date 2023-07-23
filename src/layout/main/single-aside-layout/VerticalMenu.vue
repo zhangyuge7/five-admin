@@ -32,8 +32,12 @@ const isCollapse = computed(() => appStore.appConfig.menuIsCollapse)
 }
 .el-menu{
   border-right: 0;
+  background-color: var(--fv-side-bg-color);
 }
 :deep().el-menu--inline{
   background-color: var(--fv-menu-inline-bg-color);
+}
+:deep().el-menu-item.is-active{
+  background-color: var(--fv-menu-active-bg-color);
 }
 </style>

@@ -6,25 +6,19 @@ import mittBus from '@/utils/mitt'
 import { getCssVal, setCssVal } from '@/utils/domUtils'
 
 const appStore = useAppStore()
-// 响应式数据定义
-const state = reactive({
-  showSettingDrawer: false, // 控制显示抽屉
-  size: 'small', // 组件尺寸
-  menuWidth: 0, // 侧栏菜单宽度
-  menuItemHeight: 0, // 侧栏菜单项高度
-  mainMenuWidth: 0, // 侧栏主菜单宽度
 
-})
 // 页面切换动画效果
 const transitionNames = [
   { label: '渐变', value: 'fade' },
   { label: '缩放', value: 'scale' },
   { label: '滑动', value: 'slide' },
 ]
+// tabs 风格
 const tabsTypes = [
   { label: '风格一', value: '' },
   { label: '风格二', value: 'border-card' },
 ]
+// 布局
 const layoutTypes = [
   { label: '默认', value: 'default' },
   { label: '单侧栏(经典)', value: 'singleAside' },
@@ -36,6 +30,35 @@ const layoutTypes = [
 // 提示
 const alert = '以上配置只支持预览，不具备持久化，刷新浏览器后恢复默认状态。配置可以在源码的 src/config/app.js 文件中做永久修改。样式配置在 src/assets/styles/common/theme.scss 文件中修改'
 
+// 响应式数据定义
+const state = reactive({
+  showSettingDrawer: false, // 控制显示抽屉
+  size: 'default', // 当前组件的子组件尺寸
+  menuWidth: 0, // 侧栏菜单宽度
+  menuItemHeight: 0, // 侧栏菜单项高度
+  mainMenuWidth: 0, // 侧栏主菜单宽度
+
+  footerHeight: 0, // 页脚高度
+  footerBgColor: '', // 页脚背景颜色
+  footerTextColor: '', // 页脚文本颜色
+
+  headerHeight: 0, // 顶栏高度
+  headerBgColor: '', // 顶栏背景颜色
+  headerTextColor: '', // 顶栏文本颜色
+
+  sideBgColor: '', // 侧栏背景颜色
+
+  menuTextColor: '', // 菜单内容颜色
+  menuHoverBgColor: '', // 菜单鼠标移入背景颜色
+  menuActiveColor: '', // 菜单选中文本颜色
+  menuInlineColor: '', // 子菜单展开背景颜色
+
+  logoBgColor: '', // LOGO背景
+  logoTitleColor: '', // LOGO标题颜色
+
+})
+
+// 方法定义
 const methods = {
   // 抽屉关闭时
   drawerClose() {
@@ -52,18 +75,48 @@ const methods = {
     // 获取侧栏主菜单宽度
     const mainMenuWidth = getCssVal('--fv-main-menu-width')
     state.mainMenuWidth = Number.parseInt(mainMenuWidth.substring(0, mainMenuWidth.lastIndexOf('px')))
+
+    // 获取页脚背景颜色
+    state.footerBgColor = getCssVal('--fv-footer-bg-color')
+    // 获取页脚文本颜色
+    state.footerTextColor = getCssVal('--fv-footer-text-color')
+    // 获取页脚高度
+    const footerHeight = getCssVal('--fv-footer-heigth')
+    state.footerHeight = Number.parseInt(footerHeight.substring(0, footerHeight.lastIndexOf('px')))
+
+    // 获取顶栏背景颜色
+    state.headerBgColor = getCssVal('--fv-header-bg-color')
+    // 获取顶栏文本颜色
+    state.headerTextColor = getCssVal('--fv-header-text-color')
+    // 获取顶栏高度
+    const headerHeight = getCssVal('--fv-header-height')
+    state.headerHeight = Number.parseInt(headerHeight.substring(0, headerHeight.lastIndexOf('px')))
+
+    // 获取侧栏背景颜色
+    state.sideBgColor = getCssVal('--fv-side-bg-color')
+
+    // 获取菜单内容颜色
+    state.menuTextColor = getCssVal('--el-menu-text-color')
+    // 获取菜单鼠标移入背景颜色
+    state.menuHoverBgColor = getCssVal('--el-menu-hover-bg-color')
+    // 获取菜单选中文本颜色
+    state.menuActiveColor = getCssVal('--el-menu-active-color')
+    // 获取菜单选中文本颜色
+    state.menuInlineColor = getCssVal('--fv-menu-inline-bg-color')
+
+    // 获取logo背景颜色
+    state.logoBgColor = getCssVal('--fv-logo-bg-color')
+    // 获取logo标题颜色
+    state.logoTitleColor = getCssVal('--fv-logo-title-color')
   },
-  // 设置侧栏菜单宽度
-  setMenuWidth(v) {
-    setCssVal('--fv-menu-width', `${v}px`)
+
+  // 修改尺寸
+  updateSizeCssValue(v, cssKey) {
+    cssKey && setCssVal(cssKey, `${v}px`)
   },
-  // 设置侧栏菜单项高度
-  setMenuItemHeight(v) {
-    setCssVal('--el-menu-item-height', `${v}px`)
-  },
-  // 设置侧栏主菜单宽度
-  setMainMenuWidth(v) {
-    setCssVal('--fv-main-menu-width', `${v}px`)
+  // 修改颜色
+  updateColorCssValue(v, cssKey) {
+    cssKey && setCssVal(cssKey, v)
   },
 }
 
@@ -107,11 +160,80 @@ onUnmounted(() => {
           </el-select>
         </div>
         <el-divider :size="state.size">
-          侧栏菜单
+          LOGO
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            侧栏菜单是否折叠
+            显示logo
+          </el-text>
+          <el-switch
+            v-model="appStore.appConfig.showLogo"
+            :size="state.size"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            logo背景
+          </el-text>
+          <el-color-picker
+            v-model="state.logoBgColor"
+            :size="state.size"
+            :disabled="!appStore.appConfig.showLogo"
+            show-alpha @change="methods.updateColorCssValue($event, '--fv-logo-bg-color')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            标题颜色
+          </el-text>
+          <el-color-picker
+            v-model="state.logoTitleColor"
+            :size="state.size"
+            :disabled="!appStore.appConfig.showLogo"
+            show-alpha @change="methods.updateColorCssValue($event, '--fv-logo-title-color')"
+          />
+        </div>
+        <el-divider :size="state.size">
+          顶栏配置
+        </el-divider>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            顶栏背景
+          </el-text>
+          <el-color-picker
+            v-model="state.headerBgColor"
+            :size="state.size"
+            show-alpha @change="methods.updateColorCssValue($event, '--fv-header-bg-color')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            顶栏文本
+          </el-text>
+          <el-color-picker
+            v-model="state.headerTextColor"
+            :size="state.size"
+            show-alpha @change="methods.updateColorCssValue($event, '--fv-header-text-color')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            顶栏高度
+          </el-text>
+          <el-input-number
+            :model-value="state.headerHeight"
+            :size="state.size"
+            controls-position="right"
+            @change="methods.updateSizeCssValue($event, '--fv-header-height')"
+          />
+        </div>
+
+        <el-divider :size="state.size">
+          侧栏配置
+        </el-divider>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            是否折叠
           </el-text>
           <el-switch
             v-model="appStore.appConfig.menuIsCollapse"
@@ -121,42 +243,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            只保持一个子菜单展开
-          </el-text>
-          <el-switch
-            v-model="appStore.appConfig.subMenuUniqueOpened"
-            :disabled="appStore.appConfig.menuIsCollapse || appStore.appConfig.layoutType === 'crosswise'"
-            :size="state.size"
-          />
-        </div>
-        <div class="setting-item">
-          <el-text :size="state.size">
-            侧栏菜单宽度
-          </el-text>
-          <el-input-number
-            :model-value="state.menuWidth"
-            :size="state.size"
-            controls-position="right"
-            :disabled="appStore.appConfig.menuIsCollapse || appStore.appConfig.layoutType === 'crosswise'"
-            @change="methods.setMenuWidth"
-          />
-        </div>
-        <div class="setting-item">
-          <el-text :size="state.size">
-            侧栏菜单项高度
-          </el-text>
-          <el-input-number
-            :model-value="state.menuItemHeight"
-            :size="state.size"
-            controls-position="right"
-            :disabled="appStore.appConfig.layoutType === 'crosswise'"
-            @change="methods.setMenuItemHeight"
-          />
-        </div>
-
-        <div class="setting-item">
-          <el-text :size="state.size">
-            主菜单标题
+            主栏标题
           </el-text>
           <el-switch
             v-model="appStore.appConfig.isMainMenuShowTitle"
@@ -166,17 +253,103 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            侧栏主菜单宽度
+            侧栏背景
+          </el-text>
+          <el-color-picker
+            v-model="state.sideBgColor"
+            :size="state.size"
+            show-alpha @change="methods.updateColorCssValue($event, '--fv-side-bg-color')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            侧栏宽度
+          </el-text>
+          <el-input-number
+            :model-value="state.menuWidth"
+            :size="state.size"
+            controls-position="right"
+            :disabled="appStore.appConfig.menuIsCollapse || appStore.appConfig.layoutType === 'crosswise'"
+            @change="methods.updateSizeCssValue($event, '--fv-menu-width')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            主栏宽度
           </el-text>
           <el-input-number
             :model-value="state.mainMenuWidth"
             :size="state.size"
             controls-position="right"
             :disabled="appStore.appConfig.layoutType !== 'doubleAside'"
-            @change="methods.setMainMenuWidth"
+            @change="methods.updateSizeCssValue($event, '--fv-main-menu-width')"
           />
         </div>
-
+        <div class="setting-item">
+          <el-text :size="state.size">
+            内容高度
+          </el-text>
+          <el-input-number
+            :model-value="state.menuItemHeight"
+            :size="state.size"
+            controls-position="right"
+            :disabled="appStore.appConfig.layoutType === 'crosswise'"
+            @change="methods.updateSizeCssValue($event, '--el-menu-item-height')"
+          />
+        </div>
+        <el-divider :size="state.size">
+          菜单
+        </el-divider>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            仅开一个
+          </el-text>
+          <el-switch
+            v-model="appStore.appConfig.subMenuUniqueOpened"
+            :disabled="appStore.appConfig.menuIsCollapse || appStore.appConfig.layoutType === 'crosswise'"
+            :size="state.size"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            菜单内容
+          </el-text>
+          <el-color-picker
+            v-model="state.menuTextColor"
+            :size="state.size"
+            show-alpha @change="methods.updateColorCssValue($event, '--el-menu-text-color')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            移入背景
+          </el-text>
+          <el-color-picker
+            v-model="state.menuHoverBgColor"
+            :size="state.size"
+            show-alpha @change="methods.updateColorCssValue($event, '--el-menu-hover-bg-color')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            激活内容
+          </el-text>
+          <el-color-picker
+            v-model="state.menuActiveColor"
+            :size="state.size"
+            show-alpha @change="methods.updateColorCssValue($event, '--el-menu-active-color')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            展开背景
+          </el-text>
+          <el-color-picker
+            v-model="state.menuInlineColor"
+            :size="state.size"
+            show-alpha @change="methods.updateColorCssValue($event, '--fv-menu-inline-bg-color')"
+          />
+        </div>
         <el-divider :size="state.size">
           tabs 标签页
         </el-divider>
@@ -270,6 +443,38 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
+            页脚背景
+          </el-text>
+          <el-color-picker
+            v-model="state.footerBgColor"
+            :size="state.size"
+            :disabled="!appStore.appConfig.showFooter" show-alpha @change="methods.updateColorCssValue($event, '--fv-footer-bg-color')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            页脚文本
+          </el-text>
+          <el-color-picker
+            v-model="state.footerTextColor"
+            :size="state.size"
+            :disabled="!appStore.appConfig.showFooter" show-alpha @change="methods.updateColorCssValue($event, '--fv-footer-text-color')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            页脚高度
+          </el-text>
+          <el-input-number
+            :model-value="state.footerHeight"
+            :size="state.size"
+            controls-position="right"
+            :disabled="!appStore.appConfig.showFooter"
+            @change="methods.updateSizeCssValue($event, '--fv-footer-heigth')"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
             <el-tooltip
               content="可以使用多语言翻译模板"
               placement="top-start"
@@ -285,10 +490,10 @@ onUnmounted(() => {
             :disabled="!appStore.appConfig.showFooter"
           />
         </div>
+
         <el-divider :size="state.size">
           其它设置
         </el-divider>
-
         <div class="setting-item">
           <el-text :size="state.size">
             开启主界面回到顶部
@@ -307,7 +512,6 @@ onUnmounted(() => {
             :size="state.size"
           />
         </div>
-
         <el-divider :size="state.size">
           提示
         </el-divider>

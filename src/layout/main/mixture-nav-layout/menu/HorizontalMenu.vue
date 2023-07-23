@@ -112,4 +112,7 @@ onMounted(() => {
   border-bottom: 0;
   width: 0;
 }
+:deep().el-menu-item.is-active{
+  background-color: var(--fv-menu-active-bg-color);
+}
 </style>

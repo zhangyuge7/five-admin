@@ -6,7 +6,7 @@ import Tools from '@/layout/components/tools/index.vue'
 </script>
 
 <template>
-  <div class="fv-header flex items-center justify-between">
+  <div class="fv-header-double-aside flex items-center justify-between">
     <div class="h-full flex items-center">
       <Burger />
       <Breadcrumb style="margin-left: 8px;" />
@@ -19,8 +19,15 @@ import Tools from '@/layout/components/tools/index.vue'
 </template>
 
 <style scoped>
-.fv-header{
+.fv-header-double-aside{
   height: var(--fv-header-height);
   border-bottom: 1px solid var(--el-border-color);
+  background-color: var(--fv-header-bg-color);
+}
+</style>
+
+<style>
+.fv-header-double-aside *{
+  color: var(--fv-header-text-color);
 }
 </style>

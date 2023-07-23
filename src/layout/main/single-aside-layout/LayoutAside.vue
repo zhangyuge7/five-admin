@@ -2,6 +2,9 @@
 import { ref } from 'vue'
 import VerticalMenu from './VerticalMenu.vue'
 import AsideLogo from '@/layout/components/AsideLogo.vue'
+import { useAppStore } from '@/stores/modules/app'
+
+const appStore = useAppStore()
 
 const scrollbar = ref()
 // 手动更新滚动条
@@ -14,7 +17,7 @@ function subMenuChange() {
 
 <template>
   <div class=" fv-aside">
-    <div class="fv-aside-logo flex items-center shrink-0">
+    <div v-if="appStore.appConfig.showLogo" class="fv-aside-logo flex items-center shrink-0">
       <AsideLogo />
     </div>
     <el-scrollbar ref="scrollbar" class="fv-aside-menu-scrollbar">
@@ -26,12 +29,15 @@ function subMenuChange() {
 <style scoped>
 .fv-aside-logo{
   height: var(--fv-header-height);
-  /* border-bottom: 1px solid var(--el-border-color); */
+  background-color: var(--fv-logo-bg-color);
 }
 .fv-aside{
-  /* border-right: 1px solid var(--el-border-color); */
-  background-color:var(--el-menu-bg-color);
   @apply
   flex flex-col h-full
+}
+
+.fv-aside-menu-scrollbar{
+  background-color:var(--fv-side-bg-color);
+  /* border-right: 1px solid var(--el-border-color); */
 }
 </style>

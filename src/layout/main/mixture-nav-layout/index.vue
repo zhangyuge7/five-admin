@@ -31,7 +31,7 @@ onBeforeRouteUpdate(() => {
         <Tabs v-if="appStore.appConfig.isTabs" />
       </el-header>
       <el-main>
-        <el-scrollbar ref="scrollbar" class="fv-main">
+        <el-scrollbar ref="scrollbar" class="fv-main fv-main-bg-color">
           <LayoutMain />
         </el-scrollbar>
         <LayoutFooter v-if="appStore.appConfig.showFooter" />

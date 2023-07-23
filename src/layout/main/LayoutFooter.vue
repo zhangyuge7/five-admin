@@ -6,7 +6,7 @@ const appStore = useAppStore()
 
 <template>
   <div class="fv-footer">
-    <span style="font-size: 12px;">
+    <span style="font-size: var(--fv-footer-font-size);">
       {{ $t(appStore.appConfig.footerText) }}
     </span>
   </div>

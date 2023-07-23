@@ -294,4 +294,7 @@ onBeforeMount(() => {
 .fv-tabs .el-tabs__item,.is-active .tabs-item-title{
   /* color: var(--el-color-primary); */
 }
+.fv-tabs .el-tabs__nav-wrap::after{
+  background-color: rgba(63, 63, 63, 0.3);
+}
 </style>

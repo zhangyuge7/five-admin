@@ -41,5 +41,12 @@ onUnmounted(() => {
 }
 .el-menu{
   border-right: none;
+  background-color: transparent;
+}
+:deep().el-menu--inline{
+  background-color: var(--fv-menu-inline-bg-color);
+}
+:deep().el-menu-item.is-active{
+  background-color: var(--fv-menu-active-bg-color);
 }
 </style>

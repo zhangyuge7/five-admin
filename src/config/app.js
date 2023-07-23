@@ -8,6 +8,10 @@ export default {
   // 布局类型。'default' 默认 | 'singleAside' 单侧栏(经典) | 'doubleAside' 双侧栏 | 'crosswise' 横向上下布局 | 'mixture' 混合导航布局
   layoutType: 'singleAside',
 
+  // ----------------------------------------LOGO--------------------------------------------------
+  // 显示 logo
+  showLogo: true,
+
   // ----------------------------------------侧栏菜单--------------------------------------------------
   // 侧栏菜单是否折叠
   menuIsCollapse: false,

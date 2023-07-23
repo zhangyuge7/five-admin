@@ -1,30 +1,42 @@
 // 默认
 :root {
     // -----------------------布局-----------------------------
+    --fv-tabs-heigth:30px; // tabs 高度 // 并不能控制tabs的高度，只是用来控制主界面顶边界与顶栏的距离
+
+    // -----------------------主界面-----------------------------
+    // 主界面背景颜色
+    --fv-main-bg-color:#F4F4F4;
+    // -----------------------顶栏-----------------------------
+    --fv-header-height:52px; // 顶栏高度
+    --fv-header-bg-color:#1F2D3D; // 顶栏背景颜色
+    --fv-header-text-color:#fff; // 顶栏内容颜色
+
+    // -----------------------侧栏-----------------------------
+    --fv-side-bg-color:#304156; // 侧栏背景颜色
     --fv-main-menu-width:75px; // 侧栏主菜单宽度
     --fv-menu-width:220px; // 侧栏菜单宽度
-    --fv-header-height:52px; // 顶栏高度
-    --fv-tabs-heigth:30px; // tabs 高度 // 并不能控制tabs的高度，只是用来控制主界面顶边界与顶栏的距离
-    --fv-footer-heigth:20px; // 页脚高度
-    --el-menu-item-height: 60px; // 侧栏菜单项高度（包括双侧栏布局的主菜单项）
-    
-
-    // -----------------------页脚-----------------------------
-    --fv-footer-bg-color:#F5F7FA; // 页脚背景颜色
-    --fv-footer-text-color:#909399; // 页脚文本颜色
 
     // -----------------------菜单-----------------------------
-    --fv-logo-title-color:#ffffff; //标题颜色
-    --fv-menu-inline-bg-color:#1F2D3D; // 子菜单展开内容背景颜色
-
-    --el-menu-bg-color:#304156; // 菜单背景颜色
-    
-    --el-menu-text-color:#ffffff; // 菜单内容颜色
-    --el-menu-active-color: var(--el-color-primary); // 活动菜单项的文本颜色
-    --el-menu-hover-bg-color: #0C2135; // 鼠标移入菜单背景颜色
+    // --el-menu-text-color:#ffffff; // 菜单内容颜色
+    // --fv-menu-active-bg-color: #b8d8f6; // 激活项的菜单背景颜色
+    // --el-menu-active-color: var(--el-color-primary); // 激活项的菜单文本颜色
+    // --el-menu-hover-bg-color: #0C2135; // 鼠标移入菜单背景颜色
+    --fv-menu-inline-bg-color:#1F2D3D; // 子菜单展开背景颜色
+    // --el-menu-item-height: 60px; // 侧栏菜单项高度（包括双侧栏布局的主菜单项）
     // --el-menu-item-font-size: var(--el-font-size-base); // 菜单字体尺寸
+    
+    // -----------------------LOGO标题-----------------------------
+    --fv-logo-bg-color:#1F2D3D; // LOGO背景
+    --fv-logo-title-color:#ffffff; //标题颜色
+
+    // -----------------------页脚-----------------------------
+    --fv-footer-heigth:26px; // 页脚高度
+    --fv-footer-bg-color:#1F2D3D; // 页脚背景颜色
+    --fv-footer-text-color:#909399; // 页脚文本颜色
+    --fv-footer-font-size:14px; // 页脚字体尺寸
+    
     // -----------------------工具栏-----------------------------
-    --fv-tools-hover-bg-color:var(--el-color-primary-light-9);
+    --fv-tools-hover-bg-color:rgba(5, 106, 247, 0.103);
 
 }
 // 暗黑模式

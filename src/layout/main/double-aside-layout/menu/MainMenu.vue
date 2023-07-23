@@ -124,6 +124,10 @@ onMounted(() => {
   line-height: normal;
   padding: 0;
   justify-content: center;
+
+}
+:deep().el-menu-item.is-active{
+  background-color: var(--fv-menu-active-bg-color);
 }
 </style>
 
