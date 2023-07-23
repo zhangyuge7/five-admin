@@ -26,10 +26,11 @@ function subMenuChange() {
 <style scoped>
 .fv-aside-logo{
   height: var(--fv-header-height);
-  border-bottom: 1px solid var(--el-border-color);
+  /* border-bottom: 1px solid var(--el-border-color); */
 }
 .fv-aside{
-  border-right: 1px solid var(--el-border-color);
+  /* border-right: 1px solid var(--el-border-color); */
+  background-color: var(--el-menu-bg-color);
   @apply
   flex flex-col h-full
 }

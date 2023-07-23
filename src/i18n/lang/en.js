@@ -27,6 +27,7 @@ export default {
   tools: {
     refresh: 'Refresh',
     fullScreen: 'Full Screen',
+    exitFullScreen: 'Exit Full Screen',
     theme: 'Theme',
     setting: 'App Setting',
   },

@@ -18,7 +18,8 @@ const locale = computed(() => appStore.appConfig.defaultLanguage)
     <el-dropdown class="h-full" size="default" @command="command">
       <div class="el-dropdown-link">
         <el-icon size="18">
-          <SvgIcon name="vscode-icons:file-type-locale" />
+          <!-- <SvgIcon name="vscode-icons:file-type-locale" /> -->
+          <SvgIcon name="ant-design:global-outlined" />
         </el-icon>
       </div>
       <template #dropdown>

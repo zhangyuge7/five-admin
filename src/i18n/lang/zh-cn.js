@@ -28,6 +28,7 @@ export default {
   tools: {
     refresh: '刷新',
     fullScreen: '全屏',
+    exitFullScreen: '退出全屏',
     theme: '主题',
     setting: '应用配置',
   },

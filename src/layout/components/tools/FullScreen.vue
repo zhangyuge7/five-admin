@@ -5,7 +5,7 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 import { t } from '@/i18n'
 
 const isFullscreen = ref(screenfull.isFullscreen)
-const title = computed(() => t('tools.fullScreen'))
+const title = computed(() => isFullscreen.value ? t('tools.exitFullScreen') : t('tools.fullScreen'))
 function clickSetting() {
   if (screenfull.isEnabled)
     screenfull.toggle()
@@ -24,7 +24,7 @@ if (screenfull.isEnabled) {
   >
     <div class="tools-item" @click="clickSetting">
       <el-icon size="18">
-        <SvgIcon :name="isFullscreen ? 'ri:fullscreen-exit-line' : 'ri:fullscreen-fill'" />
+        <SvgIcon :name="isFullscreen ? 'ant-design:fullscreen-exit-outlined' : 'ant-design:fullscreen-outlined'" />
       </el-icon>
     </div>
   </el-tooltip>

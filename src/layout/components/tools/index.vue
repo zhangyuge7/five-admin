@@ -27,6 +27,6 @@ import Refresh from './Refresh.vue'
     items-center
     justify-center
     cursor-pointer
-    hover:bg-[var(--el-color-primary-light-9)]
+    hover:bg-[var(--fv-tools-hover-bg-color)]
 }
 </style>

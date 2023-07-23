@@ -1,11 +1,13 @@
 /**
  * 全屏 loading
  */
-import { nextTick } from 'vue'
 
 import '@/assets/styles/common/loading.scss'
+import { ElLoading } from 'element-plus'
+import { nextTick } from 'vue'
 
 const FullLoading = {
+
   // 创建 loading
   start: () => {
     const bodys = document.body
@@ -39,6 +41,20 @@ const FullLoading = {
         const el = document.querySelector('.five-loader')
         if (el && el.parentNode)
           el.parentNode.removeChild(el)
+      }, time)
+    })
+  },
+}
+
+const FullLoading1 = {
+  loadingInstance: null,
+  start() {
+    this.loadingInstance = ElLoading.service()
+  },
+  done(time = 0) {
+    nextTick(() => {
+      setTimeout(() => {
+        this.loadingInstance.close()
       }, time)
     })
   },

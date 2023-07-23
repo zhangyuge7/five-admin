@@ -2,7 +2,7 @@
 :root {
     // -----------------------布局-----------------------------
     --fv-main-menu-width:75px; // 侧栏主菜单宽度
-    --fv-menu-width:200px; // 侧栏菜单宽度
+    --fv-menu-width:220px; // 侧栏菜单宽度
     --fv-header-height:52px; // 顶栏高度
     --fv-tabs-heigth:30px; // tabs 高度 // 并不能控制tabs的高度，只是用来控制主界面顶边界与顶栏的距离
     --fv-footer-heigth:20px; // 页脚高度
@@ -14,18 +14,25 @@
     --fv-footer-text-color:#909399; // 页脚文本颜色
 
     // -----------------------菜单-----------------------------
-    // --fv-logo-title-color:#ffffff; //标题颜色
-    // --el-menu-bg-color:#001529; // 菜单背景颜色
-    // --el-menu-text-color:#ffffff; // 侧栏菜单内容颜色
-    // --el-menu-active-color: var(--el-color-primary); // 活动菜单项的文本颜色
-    // --el-menu-hover-bg-color: #0C2135; // 鼠标移入菜单背景颜色
+    --fv-logo-title-color:#ffffff; //标题颜色
+    --fv-menu-inline-bg-color:#1F2D3D; // 子菜单展开内容背景颜色
+
+    --el-menu-bg-color:#304156; // 菜单背景颜色
+    
+    --el-menu-text-color:#ffffff; // 菜单内容颜色
+    --el-menu-active-color: var(--el-color-primary); // 活动菜单项的文本颜色
+    --el-menu-hover-bg-color: #0C2135; // 鼠标移入菜单背景颜色
     // --el-menu-item-font-size: var(--el-font-size-base); // 菜单字体尺寸
+    // -----------------------工具栏-----------------------------
+    --fv-tools-hover-bg-color:var(--el-color-primary-light-9);
 
 }
 // 暗黑模式
 html.dark{
     // -----------------------页脚-----------------------------
     --fv-footer-bg-color:#121212; // 页脚背景颜色
+
+
 
 }
 // 灰色模式
