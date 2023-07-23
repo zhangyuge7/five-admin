@@ -2,13 +2,13 @@ export const baseApi = '/api'
 
 export class R {
   code
-  msg
+  message
   data
   ok
 
-  constructor(code, msg, data, ok) {
+  constructor(code, message, data, ok) {
     this.code = code
-    this.msg = msg
+    this.message = message
     this.data = data
     this.ok = ok
   }
@@ -17,7 +17,7 @@ export class R {
     return new R(0, '成功', data || null, true)
   }
 
-  static fail(msg, code = -1) {
-    return new R(code, msg, null, false)
+  static fail(message, code = -1) {
+    return new R(code, message, null, false)
   }
 }

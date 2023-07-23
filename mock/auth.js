@@ -72,7 +72,7 @@ const menuList = [
 export default [
   // 登录
   {
-    url: `${baseApi}/login`,
+    url: `${baseApi}/auth/login`,
     method: 'post',
     response: ({ body }) => {
       let token = ''
@@ -87,7 +87,7 @@ export default [
   },
   // 用户信息
   {
-    url: `${baseApi}/getUserInfo`,
+    url: `${baseApi}/auth/userInfo`,
     method: 'get',
     response: ({ headers }) => {
       let userInfo
@@ -101,7 +101,7 @@ export default [
 
   // 菜单信息
   {
-    url: `${baseApi}/getMenuList`,
+    url: `${baseApi}/auth/menuList`,
     method: 'get',
     response: () => {
       return R.ok(menuList)
@@ -109,7 +109,7 @@ export default [
   },
   // 登出
   {
-    url: `${baseApi}/logout`,
+    url: `${baseApi}/auth/logout`,
     method: 'post',
     response: () => {
       return R.ok()

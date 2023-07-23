@@ -18,7 +18,7 @@ const rules = {
 }
 const form = reactive({
   username: 'admin',
-  password: '123',
+  password: 'admin',
 })
 const loginLoading = ref(false)
 function resetForm(formEl) {
