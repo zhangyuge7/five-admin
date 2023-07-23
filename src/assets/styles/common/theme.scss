@@ -18,17 +18,12 @@
 
     // -----------------------菜单-----------------------------
     --fv-menu-text-color:#ffffff; // 菜单内容颜色
-    // --el-menu-text-color:#ffffff; // 菜单内容颜色
     // --fv-menu-active-bg-color: #b8d8f6; // 激活项的菜单背景颜色
     --fv-menu-active-color: var(--el-color-primary); // 激活项的菜单文本颜色
-    // --el-menu-active-color: var(--el-color-primary); // 激活项的菜单文本颜色
     --fv-menu-hover-bg-color: #0C2135; // 鼠标移入菜单背景颜色
-    // --el-menu-hover-bg-color: #0C2135; // 鼠标移入菜单背景颜色
     --fv-menu-inline-bg-color:#1F2D3D; // 子菜单展开背景颜色
     --fv-menu-item-height: 60px; // 侧栏菜单项高度（包括双侧栏布局的主菜单项）
-    // --el-menu-item-height: 60px; // 侧栏菜单项高度（包括双侧栏布局的主菜单项）
     --fv-menu-item-font-size: var(--el-font-size-base); // 菜单字体尺寸
-    // --el-menu-item-font-size: var(--el-font-size-base); // 菜单字体尺寸
     
     // -----------------------LOGO标题-----------------------------
     --fv-logo-bg-color:#1F2D3D; // LOGO背景
@@ -46,9 +41,35 @@
 }
 // 暗黑模式
 html.dark{
-    // -----------------------页脚-----------------------------
-    --fv-footer-bg-color:#121212; // 页脚背景颜色
 
+    // -----------------------主界面-----------------------------
+    // 主界面背景颜色
+    --fv-main-bg-color:#1F1F1F;
+    // -----------------------顶栏-----------------------------
+    --fv-header-bg-color:#191919; // 顶栏背景颜色
+    --fv-header-text-color:#CFD3DC; // 顶栏内容颜色
+
+    // -----------------------侧栏-----------------------------
+    --fv-side-bg-color:#191919; // 侧栏背景颜色
+
+    // -----------------------菜单-----------------------------
+    --fv-menu-text-color:#CFD3DC; // 菜单内容颜色
+    // --fv-menu-active-bg-color: #b8d8f6; // 激活项的菜单背景颜色
+    --fv-menu-active-color: var(--el-color-primary); // 激活项的菜单文本颜色
+    --fv-menu-hover-bg-color: #000; // 鼠标移入菜单背景颜色
+    --fv-menu-inline-bg-color:#1F1F1F; // 子菜单展开背景颜色
+    --fv-menu-item-font-size: var(--el-font-size-base); // 菜单字体尺寸
+    
+    // -----------------------LOGO标题-----------------------------
+    --fv-logo-bg-color:#191919; // LOGO背景
+    --fv-logo-title-color:#CFD3DC; //标题颜色
+
+    // -----------------------页脚-----------------------------
+    --fv-footer-bg-color:#191919; // 页脚背景颜色
+    --fv-footer-text-color:#CFD3DC; // 页脚文本颜色
+    
+    // -----------------------工具栏-----------------------------
+    --fv-tools-hover-bg-color:rgba(5, 106, 247, 0.103);
 
 
 }
