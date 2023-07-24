@@ -167,10 +167,11 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="fv-tabs">
+  <div class="fv-tabs flex justify-between">
     <el-tabs
       v-model="state.currTabPath"
       :type="appStore.appConfig.tabsType"
+      class="flex-1 overflow-hidden"
       @tab-remove="methods.removeTab"
       @tab-click="methods.tabClick"
     >
@@ -231,70 +232,102 @@ onBeforeMount(() => {
         </template>
       </el-tab-pane>
     </el-tabs>
+    <el-dropdown @command="methods.command">
+      <div class="el-dropdown-link fv-tabs-operation">
+        <el-icon size="24">
+          <SvgIcon name="ep:arrow-down" />
+        </el-icon>
+      </div>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item :command="{ flag: 'refresh', tab: { path: state.currTabPath } }">
+            <el-icon>
+              <SvgIcon name="ep:refresh" />
+            </el-icon>
+            <span>
+              {{ $t('tabs.refresh') }}
+            </span>
+          </el-dropdown-item>
+          <el-dropdown-item :command="{ flag: 'close-other', tab: { path: state.currTabPath } }">
+            <el-icon>
+              <SvgIcon name="mdi:close-box-multiple-outline" />
+            </el-icon>
+            <span>
+              {{ $t('tabs.closeOther') }}
+            </span>
+          </el-dropdown-item>
+          <el-dropdown-item :command="{ flag: 'close-all', tab: { path: state.currTabPath } }">
+            <el-icon>
+              <SvgIcon name="codicon:close-all" />
+            </el-icon>
+            <span>
+              {{ $t('tabs.closeAll') }}
+            </span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
   </div>
 </template>
 
 <style>
-.fv-tabs .el-tabs--border-card > .el-tabs__header{
-    border-bottom: none;
-}
-
-.fv-tabs  .el-tabs__header {
-    margin: 0;
-}
-
-.fv-tabs .el-tabs__content{
-    display: none;
-}
 .fv-tabs .el-tabs--border-card{
-    border:none;
+  border:0;
 }
-
-.fv-tabs .el-tabs__item{
-  padding: 0;
-  height: auto;
-}
-.fv-tabs .el-tabs--top.el-tabs--border-card > .el-tabs__header .el-tabs__item:last-child{
-  padding: 0;
-}
-.fv-tabs .el-tabs--top.el-tabs--border-card > .el-tabs__header .el-tabs__item:nth-child(2){
-  padding: 0;
-}
-
-.fv-tabs .is-closable .tabs-dropdown{
-  padding: 8px 25px 8px 15px;
-}
-.fv-tabs  .tabs-dropdown{
-  padding: 8px 15px 8px 15px;
+.fv-tabs-operation{
+  border-bottom: 1px solid var(--el-border-color);
+  height: calc(var(--fv-tabs-height) - 1px);
+  width: 40px;
   display: flex;
+  justify-content: center;
+  /* background-color: var(--el-bg-color-overlay); */
 }
-.fv-tabs .el-tabs__item .is-icon-close{
-  margin-left: 0;
-  position: absolute;
-  right: 8px;
+.fv-tabs-operation:hover{
+  background-color: var(--fv-tools-hover-bg-color);
 }
-.fv-tabs .tabs-item-title{
-  margin-left: 4px;
-}
-.fv-tabs .el-tabs__nav-wrap.is-scrollable{
+.tabs-dropdown{
+  height: var(--fv-tabs-height);
   display: flex;
   align-items: center;
-  padding: 0 30px;
+}
+.fv-tabs .is-active *{
+  color: var(--el-color-primary);
+}
+.fv-tabs .el-tabs__item:hover *{
+  color: var(--el-color-primary);
+}
+.tabs-item-title{
+  margin-left: 2px;
+}
+.fv-tabs .el-tabs__nav-wrap{
+  margin-bottom: 0;
+}
+.fv-tabs .el-tabs__nav-wrap.is-scrollable{
+  padding: 0 40px;
+}
+.fv-tabs .el-tabs__nav-next:hover, .fv-tabs .el-tabs__nav-prev:hover{
+  background-color: var(--fv-tools-hover-bg-color);
+  color:var(--el-color-primary);
 }
 .fv-tabs .el-tabs__nav-next, .fv-tabs .el-tabs__nav-prev{
-  line-height: none;
-  width: 30px;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--el-text-color-secondary);
+    width: 40px;
+    text-align: center;
 }
-.fv-tabs .el-tabs__nav{
-  height: var(--fv-tabs-height);
+.fv-tabs .el-tabs{
+  --el-tabs-header-height: var(--fv-tabs-height);
 }
-.fv-tabs .el-tabs__nav-wrap::after{
-  height: 1px;
+.fv-tabs .el-tabs__header{
+  margin: -1px;
 }
-.fv-tabs .el-tabs__item,.is-active .tabs-item-title{
-  /* color: var(--el-color-primary); */
-}
-.fv-tabs .el-tabs__nav-wrap::after{
-  background-color: rgba(63, 63, 63, 0.3);
+.fv-tabs .el-tabs--border-card > .el-tabs__content{
+  padding: 0;
 }
 </style>

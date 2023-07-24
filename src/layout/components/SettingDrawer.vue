@@ -15,8 +15,9 @@ const transitionNames = [
 ]
 // tabs 风格
 const tabsTypes = [
-  { label: '风格一', value: '' },
+  { label: '风格一', value: 'card' },
   { label: '风格二', value: 'border-card' },
+  { label: '风格三', value: '' },
 ]
 // 布局
 const layoutTypes = [
@@ -55,6 +56,8 @@ const state = reactive({
 
   logoBgColor: '', // LOGO背景
   logoTitleColor: '', // LOGO标题颜色
+
+  tabsHeight: 0, // tabs高度
 
 })
 
@@ -108,6 +111,10 @@ const methods = {
     state.logoBgColor = getCssVal('--fv-logo-bg-color')
     // 获取logo标题颜色
     state.logoTitleColor = getCssVal('--fv-logo-title-color')
+
+    // 获取tabs高度
+    const tabsHeight = getCssVal('--fv-tabs-height')
+    state.tabsHeight = Number.parseInt(tabsHeight.substring(0, tabsHeight.lastIndexOf('px')))
   },
 
   // 修改尺寸
@@ -355,7 +362,7 @@ onUnmounted(() => {
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            开启多标签页
+            开启
           </el-text>
           <el-switch
             v-model="appStore.appConfig.isTabs"
@@ -364,7 +371,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            多标签页图标
+            显示图标
           </el-text>
           <el-switch
             v-model="appStore.appConfig.tabsIcon"
@@ -380,7 +387,7 @@ onUnmounted(() => {
             >
               <el-icon><QuestionFilled /></el-icon>
             </el-tooltip>
-            始终固定一个 tab
+            固定唯一
           </el-text>
 
           <el-switch
@@ -402,13 +409,24 @@ onUnmounted(() => {
             />
           </el-select>
         </div>
-
+        <div class="setting-item">
+          <el-text :size="state.size">
+            高度
+          </el-text>
+          <el-input-number
+            :model-value="state.tabsHeight"
+            :size="state.size"
+            controls-position="right"
+            :disabled="!appStore.appConfig.isTabs"
+            @change="methods.updateSizeCssValue($event, '--fv-tabs-height')"
+          />
+        </div>
         <el-divider :size="state.size">
           过渡动画
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            页面切换动画
+            开启动画
           </el-text>
           <el-switch
             v-model="appStore.appConfig.isTransition"

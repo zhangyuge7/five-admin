@@ -27,8 +27,8 @@ export default {
   tabsIcon: true,
   // 始终保持一个 tab 固定不可关闭（当所有路由的 meta.fixedTab 不为 true 时，始终保持有一个 tab 不可关闭）
   tabsOneFiexd: true,
-  // tabs风格。'' 风格一 | 'border-card' 风格二
-  tabsType: '',
+  // tabs风格。'card' 风格一 | 'border-card' 风格二 | '' 风格三
+  tabsType: 'border-card',
 
   // ----------------------------------------过渡动画--------------------------------------------------
   // 页面切换动画。'fade' 渐变 | 'scale' 缩放 | 'slide' 滑动
@@ -44,10 +44,11 @@ export default {
   // ----------------------------------------其它设置--------------------------------------------------
 
   enableBacktop: true, // 是否开启主界面回到顶部
+  enableGray: false, // 开启灰色模式
 
   // ----------------------------------------固定配置（不在应用配置中出现）--------------------------------------------------
   // 路由来源。 'front' 前端 | 'back' 后端 | 'mixture' 前后端都加载
   routeSource: 'front',
   dynamicTitle: true, // 动态 html 标题
-  enableGray: false, // 开启灰色模式
+
 }

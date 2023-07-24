@@ -48,7 +48,7 @@ onBeforeRouteUpdate(() => {
   height: 100%;
 }
 .fv-tab-header{
-  height: calc(var(--fv-header-height) + var(--fv-tabs-heigth));
+  height: calc(var(--fv-header-height) + var(--fv-tabs-height));
 }
 .fv-header{
   height: var(--fv-header-height);

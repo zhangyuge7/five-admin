@@ -9,7 +9,7 @@ import { getToken, setToken } from '@/utils/auth'
 // 创建 axios 实例
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
-  timeout: 10000,
+  timeout: 100000,
 })
 
 // 定义成功响应码
