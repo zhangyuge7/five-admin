@@ -96,7 +96,7 @@ function showChildren({ children, meta }) {
 
 <style scoped>
 .el-menu{
-  --el-menu-text-color:var(--fv-menu-text-color);
+  --el-menu-text-color:var(--fv-header-text-color);
   --el-menu-hover-bg-color:var(--fv-menu-hover-bg-color);
   --el-menu-item-height: var(--fv-menu-item-height);
   --el-menu-active-color: var(--fv-menu-active-color);
