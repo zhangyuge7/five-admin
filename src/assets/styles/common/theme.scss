@@ -27,7 +27,7 @@
     --fv-menu-item-font-size: var(--el-font-size-base); // 菜单字体尺寸
     
     // -----------------------LOGO标题-----------------------------
-    --fv-logo-bg-color:#1F2D3D; // LOGO背景
+    --fv-logo-bg-color:#304156; // LOGO背景
     --fv-logo-title-color:#ffffff; //标题颜色
 
     // -----------------------页脚-----------------------------
@@ -84,4 +84,9 @@ html.gray {
     -o-filter: grayscale(100%);
     filter: grayscale(100%);
     filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+}
+// 色弱模式
+html.webkit{
+    filter: invert(80%);
+    -webkit-filter: invert(80%); 
 }
