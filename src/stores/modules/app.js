@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import sysGlobalConfig from '@/config/app.js'
-import { cancelColorWeakness, cancelGray, setColorWeakness, setGray } from '@/utils/tools'
+import { cancelColorWeakness, cancelGray, setColorWeakness, setGray } from '@/utils/theme'
 
 const PREFIX = import.meta.env.VITE_APP_STORAGE_PREFIX
 

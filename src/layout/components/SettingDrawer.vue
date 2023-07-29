@@ -4,6 +4,7 @@ import { QuestionFilled } from '@element-plus/icons-vue'
 import { useAppStore } from '@/stores/modules/app'
 import mittBus from '@/utils/mitt'
 import { getCssVal, setCssVal } from '@/utils/domUtils'
+import { setPrimaryColor } from '@/utils/theme'
 
 const appStore = useAppStore()
 
@@ -59,6 +60,7 @@ const state = reactive({
 
   tabsHeight: 0, // tabs高度
 
+  primaryColor: '', // primary颜色
 })
 
 // 方法定义
@@ -115,6 +117,9 @@ const methods = {
     // 获取tabs高度
     const tabsHeight = getCssVal('--fv-tabs-height')
     state.tabsHeight = Number.parseInt(tabsHeight.substring(0, tabsHeight.lastIndexOf('px')))
+
+    // 获取菜单选中文本颜色
+    state.primaryColor = getCssVal('--el-color-primary')
   },
 
   // 修改尺寸
@@ -165,6 +170,20 @@ onUnmounted(() => {
               :value="item.value"
             />
           </el-select>
+        </div>
+
+        <el-divider :size="state.size">
+          主题
+        </el-divider>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            primary
+          </el-text>
+          <el-color-picker
+            v-model="state.primaryColor"
+            :size="state.size"
+            @change="setPrimaryColor($event)"
+          />
         </div>
         <el-divider :size="state.size">
           LOGO
