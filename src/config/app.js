@@ -45,7 +45,7 @@ export default {
 
   enableBacktop: true, // 是否开启主界面回到顶部
   enableGray: false, // 开启灰色模式
-
+  enableColorWeakness: false, // 开启色弱模式
   // ----------------------------------------固定配置（不在应用配置中出现）--------------------------------------------------
   // 路由来源。 'front' 前端 | 'back' 后端 | 'mixture' 前后端都加载
   routeSource: 'front',

@@ -530,6 +530,15 @@ onUnmounted(() => {
             :size="state.size"
           />
         </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
+            色弱模式
+          </el-text>
+          <el-switch
+            v-model="appStore.appConfig.enableColorWeakness"
+            :size="state.size"
+          />
+        </div>
         <el-divider :size="state.size">
           提示
         </el-divider>

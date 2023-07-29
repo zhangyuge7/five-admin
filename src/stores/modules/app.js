@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import sysGlobalConfig from '@/config/app.js'
-import { cancelGray, setGray } from '@/utils/tools'
+import { cancelColorWeakness, cancelGray, setColorWeakness, setGray } from '@/utils/tools'
 
 const PREFIX = import.meta.env.VITE_APP_STORAGE_PREFIX
 
@@ -12,6 +12,12 @@ export const useAppStore = defineStore('app', () => {
   watch(() => appConfig.value.enableGray, (val) => {
     val ? setGray() : cancelGray()
   }, { immediate: true })
+
+  // 侦听色弱模式
+  watch(() => appConfig.value.enableColorWeakness, (val) => {
+    val ? setColorWeakness() : cancelColorWeakness()
+  }, { immediate: true })
+
   return { appConfig }
 }, {
   persist: {
