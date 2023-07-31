@@ -9,6 +9,9 @@ import { hasRole } from '@/utils/auth'
 import { useUserStore } from '@/stores/modules/user'
 import FullLoading from '@/utils/loading'
 
+const layoutLink = () => import('@/layout/main/LayoutLink.vue')
+const layoutIframe = () => import('@/layout/main/LayoutIframe.vue')
+
 const views = import.meta.glob('@/views/**/*.vue')
 
 // 根路由
@@ -192,12 +195,19 @@ function getHomePath() {
 // 递归处理路由的 component 属性
 function handleComponent(route) {
   let url = ''
-  if (route.component && typeof (route.component) === 'string') {
+  if (route.meta?.link) {
+    if (route.meta?.isIframe)
+      route.component = layoutIframe
+    else
+      route.component = layoutLink
+  }
+  else if (route.component && typeof (route.component) === 'string') {
     url = route.component.endsWith('.vue')
       ? `/src/views/${route.component}`
       : `/src/views/${route.component}.vue`
     route.component = views[url] || null
   }
+
   if (route.children) {
     route.children.forEach((item) => {
       handleComponent(item)
