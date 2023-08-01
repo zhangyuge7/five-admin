@@ -269,6 +269,16 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
+            折叠动画
+          </el-text>
+          <el-switch
+            v-model="appStore.appConfig.enableCollapseTransition"
+            :size="state.size"
+            :disabled="appStore.appConfig.layoutType === 'crosswise'"
+          />
+        </div>
+        <div class="setting-item">
+          <el-text :size="state.size">
             主栏标题
           </el-text>
           <el-switch

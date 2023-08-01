@@ -24,6 +24,7 @@ onUnmounted(() => {
 
 <template>
   <el-menu
+    :collapse-transition="appStore.appConfig.enableCollapseTransition"
     :default-active="route.path" router
     :collapse="isCollapse"
     :unique-opened="appStore.appConfig.subMenuUniqueOpened"
