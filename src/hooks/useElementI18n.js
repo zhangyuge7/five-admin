@@ -1,6 +1,6 @@
-import zhCn from 'element-plus/lib/locale/lang/zh-cn'
-import zhTw from 'element-plus/lib/locale/lang/zh-tw'
-import en from 'element-plus/lib/locale/lang/en'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import zhTw from 'element-plus/dist/locale/zh-tw.mjs'
+import en from 'element-plus/dist/locale/en.mjs'
 import { computed } from 'vue'
 import { useAppStore } from '@/stores/modules/app'
 
