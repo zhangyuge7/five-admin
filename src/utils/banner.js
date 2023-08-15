@@ -12,7 +12,8 @@ const Banner = {
 |    |_|     |___|    \\_/    |_____|   /_/   \\_\\ |____/  |_|  |_| |___| |_| \\_|      |
   ——————————————————————————————————————————————————————————————————————————————————
     `
-    console.log(text)
+    const style = 'color: #409EFF;'
+    console.info(`%c${text}`, style)
   },
 }
 export default Banner
