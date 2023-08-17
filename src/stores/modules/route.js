@@ -22,8 +22,15 @@ const views = import.meta.glob('@/views/**/*.vue')
 const outRoutes = []
 // 判断路由是否为外链内嵌路由
 function isIframe(route) {
-  if (route.meta?.iframeLink)
-    return true
+  if (route.meta?.iframeLink) {
+    if (route.meta.iframeLink.startsWith('http:') || route.meta.iframeLink.startsWith('https:')) {
+      return true
+    }
+    else {
+      console.warn(`${route.path} 路由不符合此框架内嵌外链接规则, route.meta.iframeLink 应以 'http:' 或 'https:' 开头`, route)
+      return false
+    }
+  }
   return false
 }
 
