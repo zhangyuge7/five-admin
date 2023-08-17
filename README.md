@@ -26,7 +26,7 @@
 
 ## 路由来源配置
 
-+ 在 '/src/config/app.js' 中配置路由的来源。'front' 前端 | 'back' 后端 | 'mixture' 混合前后端
++ 在 '/src/appConfig.js' 中配置路由的来源。'frontend' 前端 | 'backend' 后端 | 'mixture' 混合前后端
 + 'front'：只加载前端路由文件中的路由
 + 'back'：只加载后端请求的路由
 + 'mixture'：前端路由文件中的路由 及 后端请求的路由都会被加载
@@ -49,19 +49,11 @@
     icon:'el:home', // 在菜单中显示的图标。（选填）
     isHide: Boolean, // 是否在菜单中隐藏。（选填，默认为 false）
     hideChildren: Boolean, // 是否在菜单中隐藏所有子级。（选填，默认为 false）。注意，只有当 isHide 为 true 时生效
-    link:String, // 外链接地址。（选填）。当 isIframe 为 false 时，新窗口打开；isIframe 为 true 时，内嵌 iframe 内打开
-    isIframe:Boolean, // 是否为 iframe 内嵌外链接。（选填，默认为 false）
+    iframeLink:String, // 如果有值并以 http: 或 https: 开头，则以外链内嵌方式打开
     isOuter:Boolean, // 在 layout 框架外打开。（选填，默认为 false）。如登录页面，数据大屏等。
     roles:Array, // 角色权限。（选填，默认为 空 值）为 [] 时所有角色都不显示，为 空 值时所有角色都显示，当没有权限时 hideChildren 永远为 true
-    sort:Number, // 菜单排序显示。（选填）。只对一级菜单有效。
     isKeep:Boolean, //是否缓存组件实例。（选填，默认为 false）。注意：组件必须声明 name ，并且组件的 name 要与对应路由的 name 匹配
     transition:String, // 页面切换动画。（选填）。只对页面有效，目录无效
-}
-
-// 后端获取路由时注意
-{
-    roles:null | undefind, // 建议不填。为null或不定义都可以，否则将把路由的权限交给前端处理
-    sort:Number, // 建议填，否则可能出现与预想排序不一致
 }
 
 ```

@@ -30,7 +30,7 @@ const layoutTypes = [
 ]
 
 // 提示
-const alert = '以上配置只支持预览，不具备持久化，刷新浏览器后恢复默认状态。配置可以在源码的 src/config/app.js 文件中做永久修改。样式配置在 src/assets/styles/common/theme.scss 文件中修改'
+const alert = '以上配置只支持预览，不具备持久化，刷新浏览器后恢复默认状态。配置可以在源码的 src/appConfig.js 文件中做永久修改。样式配置在 src/assets/styles/common/theme.scss 文件中修改'
 
 // 响应式数据定义
 const state = reactive({

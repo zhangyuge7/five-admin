@@ -26,7 +26,7 @@ onBeforeRouteUpdate(() => {
       <Tabs v-if="appStore.appConfig.isTabs" />
     </el-header>
     <el-main>
-      <el-scrollbar ref="scrollbar" class="fv-main fv-main-bg-color">
+      <el-scrollbar ref="scrollbar" class="fv-main">
         <LayoutMain />
       </el-scrollbar>
       <LayoutFooter v-if="appStore.appConfig.showFooter" />
@@ -39,6 +39,7 @@ onBeforeRouteUpdate(() => {
 <style scoped>
 .fv-main{
   padding-bottom: v-bind(footerHeight);
+  background-color: var(--fv-main-bg-color);
 }
 .el-main{
   padding: 0;

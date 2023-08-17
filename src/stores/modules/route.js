@@ -4,7 +4,7 @@ import TreeOperate from 'tree-operate-j'
 import { menuListApi } from '@/api/auth'
 import router from '@/router'
 import { hasRole } from '@/utils/auth'
-import appConfig from '@/config/app'
+import appConfig from '@/appConfig'
 import routeModuleList from '@/router/modules'
 import { useUserStore } from '@/stores/modules/user'
 

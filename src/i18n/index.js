@@ -1,5 +1,5 @@
 import { createI18n } from 'vue-i18n'
-import sysGlobalConfig from '@/config/app'
+import sysGlobalConfig from '@/appConfig'
 import { localCache } from '@/utils/cache'
 
 // 定义多语言文本

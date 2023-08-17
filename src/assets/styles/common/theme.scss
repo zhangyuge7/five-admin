@@ -1,8 +1,8 @@
 // 默认
 :root {
     // -----------------------tabs-----------------------------
-    --fv-tabs-height:30px; // tabs 高度 // 并不能控制tabs的高度，只是用来控制主界面顶边界与顶栏的距离
-
+    --fv-tabs-height:30px; // tabs 高度
+    --fv-tabs-bg-color:#F4F4F4; // tabs 背景颜色
     // -----------------------主界面-----------------------------
     // 主界面背景颜色
     --fv-main-bg-color:#F4F4F4;
@@ -43,7 +43,8 @@
 }
 // 暗黑模式
 html.dark{
-
+    // -----------------------tabs-----------------------------
+    --fv-tabs-bg-color:#141414; // tabs 背景颜色
     // -----------------------主界面-----------------------------
     // 主界面背景颜色
     --fv-main-bg-color:#1F1F1F;
@@ -59,7 +60,7 @@ html.dark{
     // --fv-menu-active-bg-color: #b8d8f6; // 激活项的菜单背景颜色
     --fv-menu-active-color: var(--el-color-primary); // 激活项的菜单文本颜色
     --fv-menu-hover-bg-color: #000; // 鼠标移入菜单背景颜色
-    --fv-menu-inline-bg-color:#1F1F1F; // 子菜单展开背景颜色
+    --fv-menu-inline-bg-color:#080808; // 子菜单展开背景颜色
     --fv-menu-item-font-size: var(--el-font-size-base); // 菜单字体尺寸
     
     // -----------------------LOGO标题-----------------------------

@@ -271,6 +271,9 @@ onBeforeMount(() => {
 </template>
 
 <style>
+.fv-tabs{
+    background-color: var(--fv-tabs-bg-color);
+}
 .fv-tabs .el-tabs--border-card{
   border:0;
 }
