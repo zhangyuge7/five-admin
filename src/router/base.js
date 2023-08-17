@@ -7,6 +7,6 @@ export default [
   {
     path: '/:path(.*)*',
     name: 'NotFound',
-    component: () => import('@/views/error/404.vue'),
+    component: () => import('@/views/error-page/404.vue'),
   },
 ]
