@@ -1,15 +1,16 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { buildCommonRoutes } from './routeHandle'
+import baseRoutes from './base'
 import { hasToken } from '@/utils/auth'
 import { t } from '@/i18n'
 import { useAppStore } from '@/stores/modules/app'
 import { useUserStore } from '@/stores/modules/user'
 import { useRouteStore } from '@/stores/modules/route'
 
-const commonRoutes = buildCommonRoutes()
+export const WHITE_LIST = []
+
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: commonRoutes,
+  routes: baseRoutes,
 })
 
 // 前置守卫
@@ -19,6 +20,9 @@ router.beforeEach((to, from, next) => {
       next('/')
     else
       next()
+  }
+  else if (WHITE_LIST.includes(to.path)) {
+    next()
   }
   else {
     if (hasToken()) {

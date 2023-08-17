@@ -36,7 +36,7 @@ watch(() => appStore.appConfig.menuIsCollapse, (val) => {
 }
 .fv-title{
   margin-left: 10px;
-  font-size: 24px;
+  font-size: 18px;
   color: var(--fv-logo-title-color);
 }
 </style>

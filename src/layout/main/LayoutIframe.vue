@@ -11,7 +11,7 @@ function handleIframeLoad() {
 // 侦听路由
 watch(() => route.path, () => {
   load.value = true
-  linkSrc.value = route.meta?.link
+  linkSrc.value = route.meta?.iframeLink
 }, { immediate: true })
 </script>
 

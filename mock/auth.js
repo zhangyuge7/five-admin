@@ -28,6 +28,17 @@ const userList = [
 // 定义菜单信息
 const menuList = [
   {
+    path: '/home',
+    name: 'Home',
+    component: 'home/index',
+    meta: {
+      title: 'menus.home',
+      isHide: false,
+      icon: 'ph:house',
+      fixedTab: true,
+    },
+  },
+  {
     path: '/system',
     name: 'System',
     meta: {
@@ -65,6 +76,192 @@ const menuList = [
           isHide: false,
           icon: 'carbon:user-role',
         },
+      },
+    ],
+  },
+  {
+    path: '/demo',
+    name: 'Demo',
+    meta: {
+      title: 'menus.demo',
+      isHide: false,
+      icon: 'mdi:ev-plug-chademo',
+    },
+    children: [
+      {
+        path: '/link',
+        name: 'Link',
+        meta: {
+          title: 'menus.externalLink',
+          isHide: false,
+          icon: 'ph:link-light',
+        },
+        children: [
+          {
+            path: 'https://www.baidu.com',
+            name: 'Baidu',
+            meta: {
+              title: 'menus.baidu',
+              isHide: false,
+              icon: 'tabler:brand-baidu',
+            },
+          },
+          {
+            path: 'https://www.ixigua.com/',
+            name: 'LinkXigua',
+            meta: {
+              title: 'menus.xigua',
+              isHide: false,
+              icon: 'icon-park-outline:xigua',
+            },
+          },
+        ],
+      },
+      {
+        path: '/iframe-link',
+        name: 'IfrmameLink',
+        meta: {
+          title: 'menus.iframeLink',
+          isHide: false,
+          icon: 'material-symbols:join-inner',
+        },
+        children: [
+          {
+            path: '/iframe-link/doc1',
+            name: 'Doc1',
+            meta: {
+              title: 'menus.games',
+              isHide: false,
+              icon: 'mdi:nodejs',
+              iframeLink: 'https://games.infinitynewtab.com/',
+            },
+          },
+          {
+            path: '/iframe-link/doc2',
+            name: 'Doc2',
+            meta: {
+              title: 'menus.bilibili',
+              isHide: false,
+              icon: 'tabler:brand-bilibili',
+              iframeLink: 'https://www.bilibili.com/',
+            },
+          },
+        ],
+      },
+      {
+        path: '/screen',
+        name: 'Screen',
+        meta: {
+          title: 'menus.dataBigScreen',
+          icon: 'ph:monitor-thin',
+        },
+        children: [
+          {
+            path: '/screen/1',
+            name: 'BigScreen1',
+            meta: {
+              title: 'menus.dataBigScreen1',
+              icon: 'ph:monitor-thin',
+              isOuter: true,
+            },
+            component: 'demo/data-big-screen/BigScreen1',
+          },
+          {
+            path: '/screen/2',
+            name: 'BigScreen2',
+            meta: {
+              title: 'menus.dataBigScreen2',
+              icon: 'ph:monitor-thin',
+              isOuter: true,
+            },
+            component: 'demo/data-big-screen/BigScreen2',
+          },
+        ],
+
+      },
+      {
+        path: '/demo/permission',
+        name: 'Permission',
+        meta: {
+          title: 'menus.permission',
+          icon: 'arcticons:permissionsmanager',
+        },
+        children: [
+          {
+            path: '/demo/permission/button',
+            name: 'PermissionButton',
+            meta: {
+              title: 'menus.permissionButton',
+              icon: 'ic:twotone-radio-button-unchecked',
+            },
+            component: 'demo/permission/ButtonPerm',
+          },
+          {
+            path: '/demo/permission/page-admin',
+            name: 'PermissionPageAdmin',
+            meta: {
+              title: 'menus.permissionPage',
+              icon: 'streamline:interface-content-book-page-pages-content-books-book-open',
+              roles: ['admin'],
+            },
+            component: 'demo/permission/PagePermAdmin',
+          },
+          {
+            path: '/demo/permission/page-test',
+            name: 'PermissionPageTest',
+            meta: {
+              title: 'menus.permissionPage',
+              icon: 'streamline:interface-content-book-page-pages-content-books-book-open',
+              roles: ['test'],
+            },
+            component: 'demo/permission/PagePermTest',
+          },
+        ],
+      },
+      {
+        path: '/demo/page-keep',
+        name: 'PageKeep1',
+        meta: {
+          title: 'menus.pageKeep',
+          icon: 'material-symbols:360',
+        },
+        children: [
+          {
+            path: '/demo/page-keep/keep',
+            name: 'PageKeep',
+            meta: {
+              title: 'menus.hasKeep',
+              isKeep: true,
+            },
+            component: 'demo/page-keep/PageKeep',
+          },
+          {
+            path: '/demo/page-keep/not-keep',
+            name: 'NotPageKeep',
+            meta: {
+              title: 'menus.notKeep',
+            },
+            component: 'demo/page-keep/NotPageKeep',
+          },
+        ],
+      },
+      {
+        path: '/demo/mitt',
+        name: 'Mitt',
+        meta: {
+          title: 'menus.mitt',
+          icon: 'material-symbols:airline-stops',
+        },
+        component: 'demo/mitt/index',
+      },
+      {
+        path: '/demo/full-screen',
+        name: 'FullScreen',
+        meta: {
+          title: 'menus.fullScreen',
+          icon: 'ep:full-screen',
+        },
+        component: 'demo/full-screen/index',
       },
     ],
   },

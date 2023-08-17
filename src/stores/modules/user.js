@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import { shallowRef } from 'vue'
+
 import { ElNotification } from 'element-plus'
+import { useRouteStore } from './route'
 import router from '@/router'
 import { loginApi, logoutApi, userInfoApi } from '@/api/auth'
-import { initMenus } from '@/router/routeHandle'
 import { t } from '@/i18n'
 
 const PREFIX = import.meta.env.VITE_APP_STORAGE_PREFIX
@@ -22,6 +23,8 @@ export const useUserStore = defineStore('user', () => {
   }
   // 登录之后
   async function loginAfter(path) {
+    const routeStore = useRouteStore()
+    const { initMenus } = routeStore
     if (!token.value) {
       router.replace('/login')
       return
@@ -56,14 +59,16 @@ export const useUserStore = defineStore('user', () => {
       await logoutApi()
     }
     finally {
-      token.value = undefined
-      router.replace('/login')
+      const routeStore = useRouteStore()
+      token.value = ''
+      userInfo.value = null
+      await router.replace('/login')
+      routeStore.$reset()
     }
   }
 
   return { token, userInfo, login, logout, loginAfter }
 }, {
-
   persist: {
     key: `${PREFIX}USER`,
     paths: ['token'],
