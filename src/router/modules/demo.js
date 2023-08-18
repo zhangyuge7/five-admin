@@ -75,6 +75,7 @@ export default {
       meta: {
         title: 'menus.dataBigScreen',
         icon: 'ph:monitor-thin',
+
       },
       children: [
         {
