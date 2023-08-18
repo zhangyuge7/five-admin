@@ -5,29 +5,9 @@ import { useAppStore } from '@/stores/modules/app'
 import mittBus from '@/utils/mitt'
 import { getCssVal, setCssVal } from '@/utils/domUtils'
 import { setPrimaryColor } from '@/utils/theme'
+import { layoutTypes, tabsTypes, transitionNames } from '@/appConfig'
 
 const appStore = useAppStore()
-
-// 页面切换动画效果
-const transitionNames = [
-  { label: '渐变', value: 'fade' },
-  { label: '缩放', value: 'scale' },
-  { label: '滑动', value: 'slide' },
-]
-// tabs 风格
-const tabsTypes = [
-  { label: '风格一', value: 'card' },
-  { label: '风格二', value: 'border-card' },
-  { label: '风格三', value: '' },
-]
-// 布局
-const layoutTypes = [
-  { label: '默认', value: 'default' },
-  { label: '单侧栏(经典)', value: 'singleAside' },
-  { label: '双侧栏', value: 'doubleAside' },
-  { label: '横向上下布局', value: 'crosswise' },
-  { label: '混合导航布局', value: 'mixture' },
-]
 
 // 提示
 const alert = '以上配置只支持预览，不具备持久化，刷新浏览器后恢复默认状态。配置可以在源码的 src/appConfig.js 文件中做永久修改。样式配置在 src/assets/styles/common/theme.scss 文件中修改'
@@ -130,6 +110,26 @@ const methods = {
   updateColorCssValue(v, cssKey) {
     cssKey && setCssVal(cssKey, v)
   },
+
+  onLayoutClick(item) {
+    if (item.value !== appStore.appConfig.layoutType)
+      appStore.appConfig.layoutType = item.value
+  },
+  getLayoutIconText(item) {
+    const { value } = item
+    switch (value) {
+      case 'default':
+        return '默'
+      case 'singleAside':
+        return '单'
+      case 'doubleAside':
+        return '双'
+      case 'crosswise':
+        return '横'
+      case 'mixture':
+        return '混'
+    }
+  },
 }
 
 onMounted(() => {
@@ -159,17 +159,23 @@ onUnmounted(() => {
           布局配置
         </el-divider>
         <div class="setting-item">
-          <el-text :size="state.size">
+          <!-- <el-text :size="state.size">
             布局
-          </el-text>
-          <el-select v-model="appStore.appConfig.layoutType" :size="state.size" class="select">
-            <el-option
+          </el-text> -->
+          <ul class="fv-layout-mini-box">
+            <li
               v-for="item in layoutTypes"
               :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
+              :class="appStore.appConfig.layoutType === item.value ? 'fv-layout-mini-box-item fv-layout-mini-box-item-selected' : 'fv-layout-mini-box-item'"
+              @click="methods.onLayoutClick(item)"
+            >
+              <p :title="item.label" class="w-full h-full flex justify-center items-center">
+                <el-icon size="24" :color="appStore.appConfig.layoutType === item.value ? 'var(--el-color-primary)' : ''">
+                  {{ methods.getLayoutIconText(item) }}
+                </el-icon>
+              </p>
+            </li>
+          </ul>
         </div>
 
         <el-divider :size="state.size">
@@ -466,7 +472,7 @@ onUnmounted(() => {
           <el-text :size="state.size">
             动画效果
           </el-text>
-          <el-select v-model="appStore.appConfig.transitionNames" :size="state.size" class="select" :disabled="!appStore.appConfig.isTransition">
+          <el-select v-model="appStore.appConfig.transitionName" :size="state.size" class="select" :disabled="!appStore.appConfig.isTransition">
             <el-option
               v-for="item in transitionNames"
               :key="item.value"
@@ -598,6 +604,26 @@ onUnmounted(() => {
     }
     .el-input{
       width: 85px;
+    }
+    .fv-layout-mini-box{
+      display: flex;
+      // justify-content: center;
+      // align-items: center;
+      flex-flow:row wrap;
+    }
+    .fv-layout-mini-box-item{
+      width: 50px;
+      height: 50px;
+      margin: 5px 5px;
+      cursor: pointer;
+      border: 1px solid var(--el-border-color);
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .fv-layout-mini-box-item-selected{
+      border: 1px solid var(--el-color-primary);
     }
 }
 </style>

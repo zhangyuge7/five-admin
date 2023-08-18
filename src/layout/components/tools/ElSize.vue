@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { useAppStore } from '@/stores/modules/app'
+import { elementSizes } from '@/appConfig'
 
 const appStore = useAppStore()
 
@@ -21,14 +22,8 @@ const size = computed(() => appStore.appConfig.elementSize)
       </div>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item command="default" :disabled="size === 'default'">
-            {{ $t('size.default') }}
-          </el-dropdown-item>
-          <el-dropdown-item command="large" :disabled="size === 'large'">
-            {{ $t('size.large') }}
-          </el-dropdown-item>
-          <el-dropdown-item command="small" :disabled="size === 'small'">
-            {{ $t('size.small') }}
+          <el-dropdown-item v-for="item in elementSizes" :key="item.value" :command="item.value" :disabled="size === item.value">
+            {{ $t(item.label) }}
           </el-dropdown-item>
         </el-dropdown-menu>
       </template>

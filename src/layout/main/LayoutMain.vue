@@ -48,7 +48,7 @@ onUnmounted(() => {
 
 <template>
   <RouterView v-slot="{ Component, route }">
-    <Transition v-if="appStore.appConfig.isTransition" :name="route.meta?.transition || appStore.appConfig.transitionNames" mode="out-in">
+    <Transition v-if="appStore.appConfig.isTransition" :name="route.meta?.transition || appStore.appConfig.transitionName" mode="out-in">
       <KeepAlive :include="routeStore.keepAliveViews" :exclude="state.exc">
         <Component :is="Component" v-if="state.show" :key="state.key" />
       </KeepAlive>

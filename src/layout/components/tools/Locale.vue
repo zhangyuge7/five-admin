@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { useAppStore } from '@/stores/modules/app'
 import i18n from '@/i18n'
+import { defaultLanguages } from '@/appConfig'
 
 const appStore = useAppStore()
 
@@ -24,14 +25,8 @@ const locale = computed(() => appStore.appConfig.defaultLanguage)
       </div>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item command="zh-cn" :disabled="locale === 'zh-cn'">
-            简体中文
-          </el-dropdown-item>
-          <el-dropdown-item command="zh-tw" :disabled="locale === 'zh-tw'">
-            繁體中文
-          </el-dropdown-item>
-          <el-dropdown-item command="en" :disabled="locale === 'en'">
-            English
+          <el-dropdown-item v-for="item in defaultLanguages" :key="item.value" :command="item.value" :disabled="locale === item.value">
+            {{ item.label }}
           </el-dropdown-item>
         </el-dropdown-menu>
       </template>
