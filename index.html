@@ -1,61 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>%VITE_APP_TITLE%</title>
 
     <style>
-      .page-loading {
-          position: fixed;
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .loading,
+      .loading>div {
+        position: relative;
+        box-sizing: border-box;
+      }
+  
+      .loading {
+        display: block;
+        font-size: 0;
+        color: #0d8ddd;
+      }
+  
+      .loading.la-dark {
+        color: #333;
+      }
+  
+      .loading>div {
+        display: inline-block;
+        float: none;
+        background-color: currentColor;
+        border: 0 solid currentColor;
+      }
+  
+      .loading {
+        width: 120px;
+        height: 72px;
+      }
+  
+      .loading>div:nth-child(1) {
+        position: absolute;
+        bottom: 32%;
+        left: 18%;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        transform-origin: center bottom;
+        animation: ball-climbing-dot-jump 0.6s ease-in-out infinite;
+      }
+  
+      .loading>div:not(:nth-child(1)) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 2px;
+        border-radius: 0;
+        transform: translate(60%, 0);
+        animation: ball-climbing-dot-steps 1.8s linear infinite;
+      }
+  
+      .loading>div:not(:nth-child(1)):nth-child(2) {
+        animation-delay: 0ms;
+      }
+  
+      .loading>div:not(:nth-child(1)):nth-child(3) {
+        animation-delay: -600ms;
+      }
+  
+      .loading>div:not(:nth-child(1)):nth-child(4) {
+        animation-delay: -1200ms;
+      }
+  
+      @keyframes ball-climbing-dot-jump {
+        0% {
+          transform: scale(1, 0.7);
+        }
+  
+        20% {
+          transform: scale(0.7, 1.2);
+        }
+  
+        40% {
+          transform: scale(1, 1);
+        }
+  
+        50% {
+          bottom: 125%;
+        }
+  
+        46% {
+          transform: scale(1, 1);
+        }
+  
+        80% {
+          transform: scale(0.7, 1.2);
+        }
+  
+        90% {
+          transform: scale(0.7, 1.2);
+        }
+  
+        100% {
+          transform: scale(1, 0.7);
+        }
+      }
+  
+      @keyframes ball-climbing-dot-steps {
+        0% {
           top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          /* background-color: rgba(0, 0, 0, .4); */
-          /* opacity: 0; */
-          transition: opacity .3s;
+          right: 0;
+          opacity: 0;
+        }
+  
+        50% {
+          opacity: 1;
+        }
+  
+        100% {
+          top: 100%;
+          right: 100%;
+          opacity: 0;
+        }
       }
-      
-      .page-loading .loading {
-          position: absolute;
-          top: calc(50% - 50px);
-          left: calc(50% - 50px);
-          transform: translate(-50%, -50%);
-          width: 100px;
-          height: 100px;
-          background: #81ecec;
-          perspective: 120px;
-          /* transition: background .2s; */
-          animation: pageLoading 1.8s infinite ease-in-out;
-      }
-      
-      @keyframes pageLoading {
-          0% {
-              transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-              background: #55efc4;
-          }
-      
-          50% {
-              transform: rotateY(0deg) rotateX(-180.1deg);
-              background: #74b9ff;
-          }
-      
-          100% {
-              transform: rotateY(-179.9deg) rotateX(-180deg);
-              background: #00cec9;
-          }
-      }
-      
-      </style>
-  </head>
-  <body>
+    </style>
+        
+</head>
+
+<body>
     <div id="app">
-    <div class="page-loading">
-        <span class="loading"></span>
-    </div>
+      <div style="width: 100vw;height: 100vh;display: flex;justify-content: center;align-items: center;">
+        <div class="loading">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
     </div>
     <script type="module" src="/src/main.js"></script>
-  </body>
+</body>
+
 </html>
