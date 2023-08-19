@@ -14,7 +14,7 @@ export default defineConfig(({ command, mode }) => {
     server: {
       open: true,
       host: true,
-      port: 9999,
+      port: env.VITE_APP_PORT,
       proxy: initProxy(),
     },
   }
