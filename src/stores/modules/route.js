@@ -15,7 +15,7 @@ const root = {
   name: 'Root',
   meta: {
     icon: 'ph:house',
-    title: 'HOME',
+    // title: 'HOME',
   },
   component: () => import('@/layout/index.vue'),
   redirect: import.meta.env.VITE_APP_HOME_PATH,

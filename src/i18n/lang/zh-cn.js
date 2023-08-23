@@ -70,6 +70,7 @@ export default {
     error500: '服务器内部错误',
   },
   app: {
+    loginSuccess: '登录成功',
     welcome: '欢迎回来',
   },
   messageBox: {

@@ -69,6 +69,7 @@ export default {
     error500: '服務器內部錯誤',
   },
   app: {
+    loginSuccess: '登錄成功',
     welcome: '歡迎回來',
   },
   messageBox: {

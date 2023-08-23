@@ -38,8 +38,8 @@ export const useUserStore = defineStore('user', () => {
       await router.replace(path || '/')
       if (!path && token.value) {
         ElNotification({
-          title: t('app.welcome'),
-          message: userInfo.value?.nickName || '',
+          title: t('app.loginSuccess'),
+          message: `${t('app.welcome')} ${userInfo.value?.nickName || ''}`,
           type: 'success',
         })
       }

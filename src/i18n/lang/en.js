@@ -69,6 +69,7 @@ export default {
     error500: 'Server internal error',
   },
   app: {
+    loginSuccess: 'Login Success',
     welcome: 'Welcome',
   },
   messageBox: {
