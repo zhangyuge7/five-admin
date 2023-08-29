@@ -96,6 +96,53 @@ const methods = {
       methods.fixedLastTab()
     }
   },
+  // 关闭左侧 tabs
+  removeLeftTabs(targetPath) {
+    if (state.tabs.length < 2)
+      return
+    const tabs = state.tabs
+    let targetIndex = 0
+    let currentIndex = 0
+    let currentRt
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].path === targetPath)
+        targetIndex = i
+      if (tabs[i].path === state.currTabPath) {
+        currentIndex = i
+        currentRt = tabs[i]
+      }
+    }
+    if (currentIndex < targetIndex && !currentRt.meta?.fixedTab)
+      methods.changeCurrPath(targetPath)
+
+    state.tabs = tabs.filter((item, i) => {
+      return item.meta?.fixedTab || i >= targetIndex
+    })
+    methods.fixedLastTab()
+  },
+  // 关闭右侧 tabs
+  removeRightTabs(targetPath) {
+    if (state.tabs.length < 2)
+      return
+    const tabs = state.tabs
+    let targetIndex = 0
+    let currentIndex = 0
+    let currentRt
+    for (let i = 0; i < tabs.length; i++) {
+      if (tabs[i].path === targetPath)
+        targetIndex = i
+      if (tabs[i].path === state.currTabPath) {
+        currentIndex = i
+        currentRt = tabs[i]
+      }
+    }
+    if (currentIndex > targetIndex && !currentRt.meta?.fixedTab)
+      methods.changeCurrPath(targetPath)
+    state.tabs = tabs.filter((item, i) => {
+      return item.meta?.fixedTab || i <= targetIndex
+    })
+    methods.fixedLastTab()
+  },
   // tab 被点击时
   tabClick(pane) {
     if (route.path !== pane.props.name)
@@ -109,7 +156,7 @@ const methods = {
       // 判断标签页列表是否只有一个
       if (state.tabs.length === 1) {
         // 判断这一个标签是否为固定配置
-        if (!state.tabs[0].meta.fixedTab) {
+        if (!state.tabs[0].meta?.fixedTab) {
           // 固定这个标签不可被关闭
           state.tabs[0].meta.fixedTab = true
           // 保存这个被设置为固定状态的 path
@@ -138,6 +185,10 @@ const methods = {
     // 关闭其它
     else if (flag === 'close-other')
       methods.removeOtherTabs(tab.path)
+    else if (flag === 'close-left')
+      methods.removeLeftTabs(tab.path)
+    else if (flag === 'close-right')
+      methods.removeRightTabs(tab.path)
     // 关闭所有
     else if (flag === 'close-all')
       methods.removeAllTabs()
@@ -207,6 +258,22 @@ onBeforeMount(() => {
                     {{ $t('tabs.close') }}
                   </span>
                 </el-dropdown-item>
+                <el-dropdown-item :command="{ flag: 'close-left', tab: item }">
+                  <el-icon>
+                    <SvgIcon name="ant-design:swap-left-outlined" />
+                  </el-icon>
+                  <span>
+                    {{ $t('tabs.closeLeft') }}
+                  </span>
+                </el-dropdown-item>
+                <el-dropdown-item :command="{ flag: 'close-right', tab: item }">
+                  <el-icon>
+                    <SvgIcon name="ant-design:swap-right-outlined" />
+                  </el-icon>
+                  <span>
+                    {{ $t('tabs.closeRight') }}
+                  </span>
+                </el-dropdown-item>
                 <el-dropdown-item :command="{ flag: 'close-other', tab: item }">
                   <el-icon>
                     <SvgIcon name="mdi:close-box-multiple-outline" />
@@ -246,6 +313,22 @@ onBeforeMount(() => {
             </el-icon>
             <span>
               {{ $t('tabs.refresh') }}
+            </span>
+          </el-dropdown-item>
+          <el-dropdown-item :command="{ flag: 'close-left', tab: { path: state.currTabPath } }">
+            <el-icon>
+              <SvgIcon name="ant-design:swap-left-outlined" />
+            </el-icon>
+            <span>
+              {{ $t('tabs.closeLeft') }}
+            </span>
+          </el-dropdown-item>
+          <el-dropdown-item :command="{ flag: 'close-right', tab: { path: state.currTabPath } }">
+            <el-icon>
+              <SvgIcon name="ant-design:swap-right-outlined" />
+            </el-icon>
+            <span>
+              {{ $t('tabs.closeRight') }}
             </span>
           </el-dropdown-item>
           <el-dropdown-item :command="{ flag: 'close-other', tab: { path: state.currTabPath } }">

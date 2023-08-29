@@ -44,9 +44,11 @@ export default {
   },
   tabs: {
     refresh: 'Refresh',
-    close: 'Close Tab',
-    closeOther: 'Close Other Tabs',
-    closeAll: 'Close All Tabs',
+    close: 'Close',
+    closeLeft: 'Close Left',
+    closeRight: 'Close Right',
+    closeOther: 'Close Other',
+    closeAll: 'Close All',
   },
   button: {
     add: 'Add',

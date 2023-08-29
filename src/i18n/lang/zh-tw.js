@@ -44,6 +44,8 @@ export default {
   },
   tabs: {
     refresh: '刷新',
+    closeLeft: '關閉左側',
+    closeRight: '關閉右側',
     close: '關閉當前',
     closeOther: '關閉其它',
     closeAll: '關閉所有',
