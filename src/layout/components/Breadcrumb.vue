@@ -7,7 +7,7 @@ const route = useRoute()
 
 <template>
   <div class="fv-breadcrumb">
-    <el-breadcrumb separator=">">
+    <el-breadcrumb separator="/">
       <el-breadcrumb-item v-for="item in route.matched" :key="item.path" :to="{ path: item.path }">
         <div class="flex">
           <el-icon v-if="item.meta?.icon">
