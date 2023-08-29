@@ -29,6 +29,7 @@ function doBack() {
   height: 100%;
   padding-top: 40%;
   background: url('/src/assets/images/error/404.png') no-repeat;
+  background-color: #f3f7ff;
   background-position: 50% 20%;
 }
 </style>
