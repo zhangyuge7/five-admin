@@ -47,7 +47,7 @@ export function setupI18n(app) {
   app.use(i18n)
 }
 // 方便在代码中使用翻译函数
-export function t(...args) {
-  return i18n.global.t(...args)
+export function t(key) {
+  return i18n.global.t(key)
 }
 export default i18n

@@ -41,7 +41,9 @@ export default {
   elementSize: elementSizes[0].value,
 
   // ----------------------------------------布局配置--------------------------------------------------
-  // 布局类型。'default' 默认 | 'singleAside' 单侧栏(经典) | 'doubleAside' 双侧栏 | 'crosswise' 横向上下布局 | 'mixture' 混合导航布局
+  // 布局类型。
+  // 'default' 默认 | 'singleAside' 单侧栏(经典) | 'doubleAside' 双侧栏 |
+  // 'crosswise' 横向上下布局 | 'mixture' 混合导航布局
   layoutType: layoutTypes[1].value,
 
   // ----------------------------------------LOGO--------------------------------------------------
@@ -63,7 +65,8 @@ export default {
   isTabs: true,
   // 标签显示图标
   tabsIcon: true,
-  // 始终保持一个 tab 固定不可关闭（当所有路由的 meta.fixedTab 不为 true 时，始终保持有一个 tab 不可关闭）
+  // 始终保持一个 tab 固定不可关闭
+  // 当所有路由的 meta.fixedTab 不为 true 时，始终保持唯一一个 tab 不可关闭
   tabsOneFiexd: true,
   // tabs风格。'card' 风格一 | 'border-card' 风格二 | '' 风格三
   tabsType: tabsTypes[0].value,
@@ -75,17 +78,23 @@ export default {
   isTransition: true,
 
   // ----------------------------------------页脚--------------------------------------------------
-  showFooter: false, // 是否显示页脚
+  // 是否显示页脚
+  showFooter: false,
   // 页脚显示的文本内容,可以使用多语言翻译模板
-  footerText: 'Copyright © 2023 ZhangYuge 拥有所有版权',
+  footerText: 'Copyright © 2023 XXX 拥有所有版权',
 
   // ----------------------------------------其它设置--------------------------------------------------
 
-  enableBacktop: true, // 是否开启主界面回到顶部
-  enableGray: false, // 开启灰色模式
-  enableColorWeakness: false, // 开启色弱模式
+  // 是否开启主界面回到顶部
+  enableBacktop: true,
+  // 开启灰色模式
+  enableGray: false,
+  // 开启色弱模式
+  enableColorWeakness: false,
+
   // ----------------------------------------固定配置（不在应用配置中出现）--------------------------------------------------
   // 路由来源。 'frontend' 前端 | 'backend' 后端 | 'mixture' 前后端都加载
-  routeSource: routeSources[1].value,
-  dynamicTitle: true, // 动态 html 标题
+  routeSource: routeSources[0].value,
+  // 动态 html 标题
+  dynamicTitle: true,
 }
