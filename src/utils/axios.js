@@ -6,10 +6,11 @@ import { t } from '@/i18n'
 import router from '@/router'
 import { getToken, setToken } from '@/utils/auth'
 
+const timeout = import.meta.env.VITE_REQUEST_TIMEOUT
 // 创建 axios 实例
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
-  timeout: 100000,
+  timeout: timeout ? Number.parseInt(timeout) : 0,
 })
 
 // 定义成功响应码
