@@ -4,6 +4,8 @@ import 'virtual:svg-icons-register'
 
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
+
+import { setupProdMockServer } from '../mock/createProductionServer'
 import { setupRouter } from './router'
 import { setupStore } from './stores'
 import { setupI18n } from './i18n'
@@ -11,6 +13,7 @@ import App from './App.vue'
 import { setupDirectives } from '@/directives'
 import Banner from '@/utils/banner'
 
+import.meta.env.VITE_USE_MOCK === 'true' && setupProdMockServer()
 Banner.print() // 控制台 banner 输出
 const app = createApp(App) // 创建 vue 应用
 window.vm = app // 将 app 挂载到全局方便调用

@@ -1,5 +1,6 @@
-export function initProxy(env,isDev) {
-  if(!isDev) return {}
+export function initProxy(env, isDev) {
+  if (!isDev)
+    return {}
   const proxy = {}
   const rawProxy = JSON.parse(env.VITE_DEV_PROXY)
   Object.keys(rawProxy).forEach((key) => {

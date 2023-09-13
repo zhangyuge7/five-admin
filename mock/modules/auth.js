@@ -1,4 +1,4 @@
-import { R, baseApi } from '.'
+import { R, baseApi } from '..'
 
 // 定义用户信息
 const userList = [

@@ -1,4 +1,4 @@
-import { baseApi } from '..'
+import { baseApi } from '../../index'
 
 export default [
   {
