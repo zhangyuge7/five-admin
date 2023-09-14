@@ -7,7 +7,7 @@ const count = ref(0)
 
 <template>
   <div>
-    数据大屏1
+    数据大屏1-缓存组件
     <el-input-number v-model="count" />
     <RouterLink to="/screen/2">
       去大屏2

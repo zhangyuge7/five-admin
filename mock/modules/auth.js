@@ -163,6 +163,7 @@ const menuList = [
               title: 'menus.dataBigScreen1',
               icon: 'ph:monitor-thin',
               isOuter: true,
+              isKeep: true,
             },
             component: 'demo/data-big-screen/BigScreen1',
           },

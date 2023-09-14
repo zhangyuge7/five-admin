@@ -85,6 +85,7 @@ export default {
             title: 'menus.dataBigScreen1',
             icon: 'ph:monitor-thin',
             isOuter: true,
+            isKeep: true,
           },
           component: () => import('@/views/demo/data-big-screen/BigScreen1.vue'),
         },
