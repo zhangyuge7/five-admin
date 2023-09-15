@@ -1,11 +1,9 @@
 <script setup>
-import { computed } from 'vue'
-import { useUserStore } from '@/stores/modules/user'
-import { hasRole } from '@/utils/auth'
+import useAuth from '@/hooks/useAuth'
 
-const userStore = useUserStore()
-const getRoles = computed(() => userStore.userInfo.roles)
-const getPerms = computed(() => userStore.userInfo.perms)
+const { hasRole, hasPerm, userInfo } = useAuth()
+const getRoles = userInfo.roles
+const getPerms = userInfo.perms
 </script>
 
 <template>
@@ -46,6 +44,17 @@ const getPerms = computed(() => userStore.userInfo.perms)
     </el-button>
     <el-button v-hasPerm="['admin:button', 'test:button']" type="warning">
       ['admin:button', 'test:button']可见
+    </el-button>
+
+    <p>函数方式</p>
+    <el-button v-if="hasPerm('admin:button')" type="primary">
+      拥有 admin:button 标识符可见
+    </el-button>
+    <el-button v-if="hasPerm('test:button')" type="primary">
+      拥有 test:button 标识符可见
+    </el-button>
+    <el-button v-if="hasPerm(['admin:button', 'test:button'])" type="warning">
+      拥有 ['admin:button', 'test:button'] 标识符可见
     </el-button>
   </div>
 </template>

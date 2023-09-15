@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import TreeOperate from 'tree-operate-j'
 import { menuListApi } from '@/api/auth'
 import router from '@/router'
-import { hasRole } from '@/utils/auth'
+import useAuth from '@/hooks/useAuth'
 import appConfig from '@/appConfig'
 import routeModuleList from '@/router/modules'
 import { useUserStore } from '@/stores/modules/user'
@@ -58,6 +58,7 @@ function getHomePath() {
 }
 
 export const useRouteStore = defineStore('route', () => {
+  const { hasRole } = useAuth()
   // 菜单列表
   const menus = ref([])
   // 需要在移除组件时缓存的路由 name 列表
