@@ -13,7 +13,9 @@ import App from './App.vue'
 import { setupDirectives } from '@/directives'
 import Banner from '@/utils/banner'
 
+// 使用 mock 模拟接口，如果确定不再使用请将这行代码和引入一并删除
 import.meta.env.VITE_USE_MOCK === 'true' && setupProdMockServer()
+
 Banner.print() // 控制台 banner 输出
 const app = createApp(App) // 创建 vue 应用
 window.vm = app // 将 app 挂载到全局方便调用
