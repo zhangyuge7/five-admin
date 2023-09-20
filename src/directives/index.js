@@ -1,4 +1,4 @@
-import { hasPerm, hasPermAll, hasRole, hasRoleAll } from '@/utils/auth'
+import useAuth from '@/hooks/useAuth'
 
 /**
  * 基于角色权限指令
@@ -9,6 +9,7 @@ import { hasPerm, hasPermAll, hasRole, hasRoleAll } from '@/utils/auth'
  */
 const hasRoleDirective = {
   mounted(el, binding) {
+    const { hasRole, hasRoleAll } = useAuth()
     const { value, arg } = binding
     let isShow = false
     if (!arg || arg === 'or')
@@ -34,6 +35,7 @@ const hasRoleDirective = {
  */
 const hasPermDirective = {
   mounted(el, binding) {
+    const { hasPerm, hasPermAll } = useAuth()
     const { value, arg } = binding
     let isShow = false
     if (!arg || arg === 'or')

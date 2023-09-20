@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import baseRoutes from './base'
-import { hasToken } from '@/utils/auth'
+import useAuth from '@/hooks/useAuth'
 import { t } from '@/i18n'
 import { useAppStore } from '@/stores/modules/app'
 import { useUserStore } from '@/stores/modules/user'
@@ -15,8 +15,9 @@ const router = createRouter({
 
 // 前置守卫
 router.beforeEach((to, from, next) => {
+  const { hasToken } = useAuth()
   if (to.path === '/login') {
-    if (hasToken())
+    if (hasToken)
       next('/')
     else
       next()
@@ -25,7 +26,7 @@ router.beforeEach((to, from, next) => {
     next()
   }
   else {
-    if (hasToken()) {
+    if (hasToken) {
       const userStore = useUserStore()
       const routeStore = useRouteStore()
       if (!routeStore.menus || !routeStore.menus.length)

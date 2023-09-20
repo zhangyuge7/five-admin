@@ -4,7 +4,7 @@ import { FiveNProgress } from '@/utils/nprogress'
 import { t } from '@/i18n'
 
 import router from '@/router'
-import { getToken, setToken } from '@/utils/auth'
+import useAuth from '@/hooks/useAuth'
 
 const timeout = import.meta.env.VITE_REQUEST_TIMEOUT
 // 创建 axios 实例
@@ -31,10 +31,10 @@ export const msgType = {
 
 // 请求拦截器
 axiosInstance.interceptors.request.use((config) => {
+  const { token } = useAuth()
   FiveNProgress.start() // 请求进度条开始
-
   // 请求头携带token
-  config.headers.Authorization = getToken()
+  config.headers.Authorization = token
   // 为所有请求添加时间戳参数
   config.url = `${config.url}?_t=${new Date().getTime()}`
 
@@ -46,6 +46,7 @@ axiosInstance.interceptors.request.use((config) => {
 
 // 响应拦截器
 axiosInstance.interceptors.response.use((res) => {
+  const { setToken } = useAuth()
   const { data, config } = res
   // 获取请求时配置的成功消息提示类型与错误消息提示类型
   const { errorMsgType, successMsgType } = config
@@ -67,6 +68,7 @@ axiosInstance.interceptors.response.use((res) => {
   FiveNProgress.done() // 请求进度条结束
   return data
 }, (err) => {
+  const { setToken } = useAuth()
   const { status, statusText, data } = err.response
   let i18nMsg = data[resultProp.message]
   switch (status) {
