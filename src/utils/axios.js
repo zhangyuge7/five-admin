@@ -24,7 +24,7 @@ export const resultProp = {
 }
 // 响应后消息提示类型
 export const msgType = {
-  none: 'node',
+  none: 'none',
   msg: 'msg',
   box: 'box',
 }
