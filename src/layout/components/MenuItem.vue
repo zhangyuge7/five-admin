@@ -35,7 +35,7 @@ function showChildren({ children, meta }) {
   return true
 }
 function isLink({ children, path, meta }) {
-  if ((path.startsWith('http') || path.startsWith('https')) && !children?.length && !meta?.isIframe)
+  if ((path.startsWith('http:') || path.startsWith('https:')) && !children?.length && !meta?.isIframe)
     return true
   return false
 }
