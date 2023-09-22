@@ -8,7 +8,7 @@ import appConfig from '@/appConfig'
 import routeModuleList from '@/router/modules'
 import { useUserStore } from '@/stores/modules/user'
 
-const { routeSource } = appConfig
+const { routeSource, innerNotFound } = appConfig
 // 根路由
 const root = {
   path: '/',
@@ -22,6 +22,13 @@ const root = {
 }
 const layoutIframe = () => import('@/layout/main/LayoutIframe.vue')
 const views = import.meta.glob('@/views/**/*.vue')
+
+const notFound = {
+  path: '/:path(.*)*',
+  name: 'NotFound',
+  component: () => import('@/views/error-page/404.vue'),
+}
+
 // 定义需要在 layout 框架外显示的路由列表
 const outRoutes = []
 // 判断路由是否为外链内嵌路由
@@ -97,7 +104,12 @@ export const useRouteStore = defineStore('route', () => {
     // 获取homePath
     root.redirect = getHomePath()
     // 添加路由到路由器
-    root.children = [...data]
+    if (innerNotFound)
+      root.children = [...data, notFound]
+
+    else
+      root.children = [...data]
+
     router.addRoute(root)
     // 提升需要在 layout 框架外显示的路由与 root 路由平级
     outRoutes.forEach((outRoute) => {

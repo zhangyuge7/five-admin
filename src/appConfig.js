@@ -94,7 +94,9 @@ export default {
 
   // ----------------------------------------固定配置（不在应用配置中出现）--------------------------------------------------
   // 路由来源。 'frontend' 前端 | 'backend' 后端 | 'mixture' 前后端都加载
-  routeSource: routeSources[1].value,
+  routeSource: routeSources[0].value,
   // 动态 html 标题
   dynamicTitle: true,
+  // 404页面位置, true layout内，false layout 外
+  innerNotFound: true,
 }
