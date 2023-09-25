@@ -7,5 +7,6 @@ export default {
     isHide: false,
     icon: 'ph:house',
     fixedTab: true,
+    sortNo: 1,
   },
 }

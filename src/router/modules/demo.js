@@ -5,6 +5,7 @@ export default {
     title: 'menus.demo',
     isHide: false,
     icon: 'mdi:ev-plug-chademo',
+    sortNo: 12,
   },
   children: [
     {

@@ -9,11 +9,11 @@ export const elementSizes = [
   { label: 'size.small', value: 'small' },
 ]
 export const layoutTypes = [
-  { label: '默认', value: 'default' },
   { label: '单侧栏(经典)', value: 'singleAside' },
   { label: '双侧栏', value: 'doubleAside' },
   { label: '横向上下布局', value: 'crosswise' },
   { label: '混合导航布局', value: 'mixture' },
+  // { label: '默认', value: 'default' },
 ]
 
 export const tabsTypes = [
@@ -44,7 +44,7 @@ export default {
   // 布局类型。
   // 'default' 默认 | 'singleAside' 单侧栏(经典) | 'doubleAside' 双侧栏 |
   // 'crosswise' 横向上下布局 | 'mixture' 混合导航布局
-  layoutType: layoutTypes[1].value,
+  layoutType: layoutTypes[0].value,
 
   // ----------------------------------------LOGO--------------------------------------------------
   // 显示 logo
@@ -92,11 +92,11 @@ export default {
   // 开启色弱模式
   enableColorWeakness: false,
 
-  // ----------------------------------------固定配置（不在应用配置中出现）--------------------------------------------------
+  // ----------------------------------------固定配置（不在应用配置抽屉中出现）--------------------------------------------------
   // 路由来源。 'frontend' 前端 | 'backend' 后端 | 'mixture' 前后端都加载
   routeSource: routeSources[0].value,
   // 动态 html 标题
   dynamicTitle: true,
-  // 404页面位置, true layout内，false layout 外
+  // 404页面显示位置, true layout内，false layout 外
   innerNotFound: true,
 }

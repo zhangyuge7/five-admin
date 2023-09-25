@@ -74,9 +74,34 @@ export const useRouteStore = defineStore('route', () => {
   // 需要在 tabs 标签中固定的路由
   const fiexTabsRoutes = ref([])
 
+  // 根据 route.meta.sortNo 进行排序，仅支持一级菜单有效
+  function routesSort(routes) {
+    routes.sort((a, b) => {
+      if (Number.isNaN(a.meta?.sortNo) || Number.isNaN(b.meta?.sortNo))
+        return 0
+      return a.meta.sortNo - b.meta.sortNo
+    })
+  }
+
+  // 将路由注册到路由器
+  function addRoutesToRoot(routes) {
+    if (innerNotFound)
+      root.children = [...routes, notFound]
+
+    else
+      root.children = [...routes]
+
+    router.addRoute(root)
+    // 提升需要在 layout 框架外显示的路由与 root 路由平级
+    outRoutes.forEach((outRoute) => {
+      router.addRoute(outRoute)
+    })
+  }
+
   // 来自前端的路由列表
   function fromFrontendRoutes() {
     let data = routeModuleList
+    routesSort(data)
     const treeOperate = new TreeOperate({ id: 'path' })
     // 根据角色过滤
     data = treeOperate.filter((route) => {
@@ -104,19 +129,8 @@ export const useRouteStore = defineStore('route', () => {
     // 获取homePath
     root.redirect = getHomePath()
     // 添加路由到路由器
-    if (innerNotFound)
-      root.children = [...data, notFound]
-
-    else
-      root.children = [...data]
-
-    router.addRoute(root)
-    // 提升需要在 layout 框架外显示的路由与 root 路由平级
-    outRoutes.forEach((outRoute) => {
-      router.addRoute(outRoute)
-    })
+    addRoutesToRoot(data)
   }
-
   // 来自后端的路由列表
   async function fromBackendRoutes() {
     // 请求路由
@@ -152,18 +166,14 @@ export const useRouteStore = defineStore('route', () => {
     root.redirect = getHomePath()
 
     // 添加路由到路由器
-    root.children = [...data]
-    router.addRoute(root)
-    // 提升需要在 layout 框架外显示的路由与 root 路由平级
-    outRoutes.forEach((outRoute) => {
-      router.addRoute(outRoute)
-    })
+    addRoutesToRoot(data)
   }
   // 来自前端与后端的路由列表
   async function formMixtureRoutes() {
     // 请求路由
     let { data } = await menuListApi()
     data = [...routeModuleList, ...data]
+    routesSort(data)
     const treeOperate = new TreeOperate({ id: 'path' })
     // 根据角色过滤
     data = treeOperate.filter((route) => {
@@ -194,12 +204,7 @@ export const useRouteStore = defineStore('route', () => {
     // 获取homePath
     root.redirect = getHomePath()
     // 添加路由到路由器
-    root.children = [...data]
-    router.addRoute(root)
-    // 提升需要在 layout 框架外显示的路由与 root 路由平级
-    outRoutes.forEach((outRoute) => {
-      router.addRoute(outRoute)
-    })
+    addRoutesToRoot(data)
   }
   // 初始化菜单列表
   async function initMenus() {

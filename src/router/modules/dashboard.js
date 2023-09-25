@@ -6,7 +6,7 @@ export default {
     title: 'menus.dashboard',
     isHide: false,
     icon: 'ant-design:dashboard-outlined',
-
+    sortNo: 2,
   },
   children: [
     {
