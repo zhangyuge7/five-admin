@@ -6,11 +6,9 @@ export default {
     workbench: '工作台',
     demo: '演示',
     externalLink: '外部链接',
-    baidu: '百度',
-    xigua: '西瓜视频',
+    vuedocs: 'vue文档',
     iframeLink: '外部链接内嵌',
     bilibili: '哔哩哔哩',
-    games: '游戏',
     dataBigScreen: '数据大屏',
     dataBigScreen1: '数据大屏1',
     dataBigScreen2: '数据大屏2',
@@ -23,6 +21,10 @@ export default {
     mitt: '全局事件总线',
     fullScreen: '全屏示例',
     personalCenter: '个人中心',
+    sysManage: '系统管理',
+    menuManage: '菜单管理',
+    userManage: '用户管理',
+    roleManage: '角色管理',
 
   },
   tools: {

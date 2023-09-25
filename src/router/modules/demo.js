@@ -18,21 +18,21 @@ export default {
       },
       children: [
         {
-          path: 'https://www.baidu.com',
-          name: 'Baidu',
+          path: 'https://cn.vuejs.org/',
+          name: 'VueDocs',
           meta: {
-            title: 'menus.baidu',
+            title: 'menus.vuedocs',
             isHide: false,
-            icon: 'tabler:brand-baidu',
+            icon: 'vscode-icons:file-type-vue',
           },
         },
         {
-          path: 'https://www.ixigua.com/',
-          name: 'LinkXigua',
+          path: 'https://developer.mozilla.org/zh-CN/',
+          name: 'mozilla',
           meta: {
-            title: 'menus.xigua',
+            title: 'MDN Web Docs',
             isHide: false,
-            icon: 'icon-park-outline:xigua',
+            icon: 'simple-icons:mdnwebdocs',
           },
         },
       ],
@@ -50,10 +50,10 @@ export default {
           path: '/iframe-link/doc1',
           name: 'Doc1',
           meta: {
-            title: 'menus.games',
+            title: 'ElementPlus',
             isHide: false,
-            icon: 'mdi:nodejs',
-            iframeLink: 'https://games.infinitynewtab.com/',
+            icon: 'logos:element',
+            iframeLink: 'https://element-plus.org/zh-CN/',
           },
           component: () => import('@/layout/main/LayoutIframe.vue'),
         },

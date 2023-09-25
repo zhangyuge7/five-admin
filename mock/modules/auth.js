@@ -27,24 +27,25 @@ const userList = [
 ]
 // 定义菜单信息
 const menuList = [
-  {
-    path: '/home',
-    name: 'Home',
-    component: 'home/index',
-    meta: {
-      title: 'menus.home',
-      isHide: false,
-      icon: 'ph:house',
-      fixedTab: true,
-    },
-  },
+  // {
+  //   path: '/home',
+  //   name: 'Home',
+  //   component: 'home/index',
+  //   meta: {
+  //     title: 'menus.home',
+  //     isHide: false,
+  //     icon: 'ph:house',
+  //     fixedTab: true,
+  //   },
+  // },
   {
     path: '/system',
     name: 'System',
     meta: {
-      title: '系统管理',
+      title: 'menus.sysManage',
       isHide: false,
       icon: 'icon-park-outline:all-application',
+      sortNo: 2,
     },
     children: [
       {
@@ -52,7 +53,7 @@ const menuList = [
         name: 'SystemMenu',
         component: 'system/menu/index',
         meta: {
-          title: '菜单管理',
+          title: 'menus.menuManage',
           isHide: false,
           icon: 'material-symbols:event-list-outline-rounded',
         },
@@ -62,7 +63,7 @@ const menuList = [
         name: 'SystemUser',
         component: 'system/user/index',
         meta: {
-          title: '用户管理',
+          title: 'menus.userManage',
           isHide: false,
           icon: 'ep:user',
         },
@@ -72,200 +73,200 @@ const menuList = [
         name: 'SystemRole',
         component: 'system/role/index',
         meta: {
-          title: '角色管理',
+          title: 'menus.roleManage',
           isHide: false,
           icon: 'carbon:user-role',
         },
       },
     ],
   },
-  {
-    path: '/demo',
-    name: 'Demo',
-    meta: {
-      title: 'menus.demo',
-      isHide: false,
-      icon: 'mdi:ev-plug-chademo',
-    },
-    children: [
-      {
-        path: '/link',
-        name: 'Link',
-        meta: {
-          title: 'menus.externalLink',
-          isHide: false,
-          icon: 'ph:link-light',
-        },
-        children: [
-          {
-            path: 'https://www.baidu.com',
-            name: 'Baidu',
-            meta: {
-              title: 'menus.baidu',
-              isHide: false,
-              icon: 'tabler:brand-baidu',
-            },
-          },
-          {
-            path: 'https://www.ixigua.com/',
-            name: 'LinkXigua',
-            meta: {
-              title: 'menus.xigua',
-              isHide: false,
-              icon: 'icon-park-outline:xigua',
-            },
-          },
-        ],
-      },
-      {
-        path: '/iframe-link',
-        name: 'IfrmameLink',
-        meta: {
-          title: 'menus.iframeLink',
-          isHide: false,
-          icon: 'material-symbols:join-inner',
-        },
-        children: [
-          {
-            path: '/iframe-link/doc1',
-            name: 'Doc1',
-            meta: {
-              title: 'menus.games',
-              isHide: false,
-              icon: 'mdi:nodejs',
-              iframeLink: 'https://games.infinitynewtab.com/',
-            },
-          },
-          {
-            path: '/iframe-link/doc2',
-            name: 'Doc2',
-            meta: {
-              title: 'menus.bilibili',
-              isHide: false,
-              icon: 'tabler:brand-bilibili',
-              iframeLink: 'https://www.bilibili.com/',
-            },
-          },
-        ],
-      },
-      {
-        path: '/screen',
-        name: 'Screen',
-        meta: {
-          title: 'menus.dataBigScreen',
-          icon: 'ph:monitor-thin',
-        },
-        children: [
-          {
-            path: '/screen/1',
-            name: 'BigScreen1',
-            meta: {
-              title: 'menus.dataBigScreen1',
-              icon: 'ph:monitor-thin',
-              isOuter: true,
-              isKeep: true,
-            },
-            component: 'demo/data-big-screen/BigScreen1',
-          },
-          {
-            path: '/screen/2',
-            name: 'BigScreen2',
-            meta: {
-              title: 'menus.dataBigScreen2',
-              icon: 'ph:monitor-thin',
-              isOuter: true,
-            },
-            component: 'demo/data-big-screen/BigScreen2',
-          },
-        ],
+  // {
+  //   path: '/demo',
+  //   name: 'Demo',
+  //   meta: {
+  //     title: 'menus.demo',
+  //     isHide: false,
+  //     icon: 'mdi:ev-plug-chademo',
+  //   },
+  //   children: [
+  //     {
+  //       path: '/link',
+  //       name: 'Link',
+  //       meta: {
+  //         title: 'menus.externalLink',
+  //         isHide: false,
+  //         icon: 'ph:link-light',
+  //       },
+  //       children: [
+  //         {
+  //           path: 'https://cn.vuejs.org/',
+  //           name: 'VueDocs',
+  //           meta: {
+  //             title: 'menus.vuedocs',
+  //             isHide: false,
+  //             icon: 'vscode-icons:file-type-vue',
+  //           },
+  //         },
+  //         {
+  //           path: 'https://developer.mozilla.org/zh-CN/',
+  //           name: 'mozilla',
+  //           meta: {
+  //             title: 'MDN Web Docs',
+  //             isHide: false,
+  //             icon: 'simple-icons:mdnwebdocs',
+  //           },
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       path: '/iframe-link',
+  //       name: 'IfrmameLink',
+  //       meta: {
+  //         title: 'menus.iframeLink',
+  //         isHide: false,
+  //         icon: 'material-symbols:join-inner',
+  //       },
+  //       children: [
+  //         {
+  //           path: '/iframe-link/doc1',
+  //           name: 'Doc1',
+  //           meta: {
+  //             title: 'ElementPlus',
+  //             isHide: false,
+  //             icon: 'logos:element',
+  //             iframeLink: 'https://element-plus.org/zh-CN/',
+  //           },
+  //         },
+  //         {
+  //           path: '/iframe-link/doc2',
+  //           name: 'Doc2',
+  //           meta: {
+  //             title: 'menus.bilibili',
+  //             isHide: false,
+  //             icon: 'tabler:brand-bilibili',
+  //             iframeLink: 'https://www.bilibili.com/',
+  //           },
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       path: '/screen',
+  //       name: 'Screen',
+  //       meta: {
+  //         title: 'menus.dataBigScreen',
+  //         icon: 'ph:monitor-thin',
+  //       },
+  //       children: [
+  //         {
+  //           path: '/screen/1',
+  //           name: 'BigScreen1',
+  //           meta: {
+  //             title: 'menus.dataBigScreen1',
+  //             icon: 'ph:monitor-thin',
+  //             isOuter: true,
+  //             isKeep: true,
+  //           },
+  //           component: 'demo/data-big-screen/BigScreen1',
+  //         },
+  //         {
+  //           path: '/screen/2',
+  //           name: 'BigScreen2',
+  //           meta: {
+  //             title: 'menus.dataBigScreen2',
+  //             icon: 'ph:monitor-thin',
+  //             isOuter: true,
+  //           },
+  //           component: 'demo/data-big-screen/BigScreen2',
+  //         },
+  //       ],
 
-      },
-      {
-        path: '/demo/permission',
-        name: 'Permission',
-        meta: {
-          title: 'menus.permission',
-          icon: 'arcticons:permissionsmanager',
-        },
-        children: [
-          {
-            path: '/demo/permission/button',
-            name: 'PermissionButton',
-            meta: {
-              title: 'menus.permissionButton',
-              icon: 'ic:twotone-radio-button-unchecked',
-            },
-            component: 'demo/permission/ButtonPerm',
-          },
-          {
-            path: '/demo/permission/page-admin',
-            name: 'PermissionPageAdmin',
-            meta: {
-              title: 'menus.permissionPage',
-              icon: 'streamline:interface-content-book-page-pages-content-books-book-open',
-              roles: ['admin'],
-            },
-            component: 'demo/permission/PagePermAdmin',
-          },
-          {
-            path: '/demo/permission/page-test',
-            name: 'PermissionPageTest',
-            meta: {
-              title: 'menus.permissionPage',
-              icon: 'streamline:interface-content-book-page-pages-content-books-book-open',
-              roles: ['test'],
-            },
-            component: 'demo/permission/PagePermTest',
-          },
-        ],
-      },
-      {
-        path: '/demo/page-keep',
-        name: 'PageKeep1',
-        meta: {
-          title: 'menus.pageKeep',
-          icon: 'material-symbols:360',
-        },
-        children: [
-          {
-            path: '/demo/page-keep/keep',
-            name: 'PageKeep',
-            meta: {
-              title: 'menus.hasKeep',
-              isKeep: true,
-            },
-            component: 'demo/page-keep/PageKeep',
-          },
-          {
-            path: '/demo/page-keep/not-keep',
-            name: 'NotPageKeep',
-            meta: {
-              title: 'menus.notKeep',
-            },
-            component: 'demo/page-keep/NotPageKeep',
-          },
-        ],
-      },
-      {
-        path: '/demo/mitt',
-        name: 'Mitt',
-        meta: {
-          title: 'menus.mitt',
-          icon: 'material-symbols:airline-stops',
-        },
-        component: 'demo/mitt/index',
-      },
-      {
-        path: '/demo/full-screen',
-        name: 'FullScreen',
-        meta: {
-          title: 'menus.fullScreen',
-          icon: 'ep:full-screen',
-        },
-        component: 'demo/full-screen/index',
-      },
-    ],
-  },
+  //     },
+  //     {
+  //       path: '/demo/permission',
+  //       name: 'Permission',
+  //       meta: {
+  //         title: 'menus.permission',
+  //         icon: 'arcticons:permissionsmanager',
+  //       },
+  //       children: [
+  //         {
+  //           path: '/demo/permission/button',
+  //           name: 'PermissionButton',
+  //           meta: {
+  //             title: 'menus.permissionButton',
+  //             icon: 'ic:twotone-radio-button-unchecked',
+  //           },
+  //           component: 'demo/permission/ButtonPerm',
+  //         },
+  //         {
+  //           path: '/demo/permission/page-admin',
+  //           name: 'PermissionPageAdmin',
+  //           meta: {
+  //             title: 'menus.permissionPage',
+  //             icon: 'streamline:interface-content-book-page-pages-content-books-book-open',
+  //             roles: ['admin'],
+  //           },
+  //           component: 'demo/permission/PagePermAdmin',
+  //         },
+  //         {
+  //           path: '/demo/permission/page-test',
+  //           name: 'PermissionPageTest',
+  //           meta: {
+  //             title: 'menus.permissionPage',
+  //             icon: 'streamline:interface-content-book-page-pages-content-books-book-open',
+  //             roles: ['test'],
+  //           },
+  //           component: 'demo/permission/PagePermTest',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       path: '/demo/page-keep',
+  //       name: 'PageKeep1',
+  //       meta: {
+  //         title: 'menus.pageKeep',
+  //         icon: 'material-symbols:360',
+  //       },
+  //       children: [
+  //         {
+  //           path: '/demo/page-keep/keep',
+  //           name: 'PageKeep',
+  //           meta: {
+  //             title: 'menus.hasKeep',
+  //             isKeep: true,
+  //           },
+  //           component: 'demo/page-keep/PageKeep',
+  //         },
+  //         {
+  //           path: '/demo/page-keep/not-keep',
+  //           name: 'NotPageKeep',
+  //           meta: {
+  //             title: 'menus.notKeep',
+  //           },
+  //           component: 'demo/page-keep/NotPageKeep',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       path: '/demo/mitt',
+  //       name: 'Mitt',
+  //       meta: {
+  //         title: 'menus.mitt',
+  //         icon: 'material-symbols:airline-stops',
+  //       },
+  //       component: 'demo/mitt/index',
+  //     },
+  //     {
+  //       path: '/demo/full-screen',
+  //       name: 'FullScreen',
+  //       meta: {
+  //         title: 'menus.fullScreen',
+  //         icon: 'ep:full-screen',
+  //       },
+  //       component: 'demo/full-screen/index',
+  //     },
+  //   ],
+  // },
 ]
 export default [
   // 登录
