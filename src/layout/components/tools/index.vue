@@ -1,10 +1,14 @@
 <script setup name="Tools">
-import Dark from './Dark.vue'
-import Locale from './Locale.vue'
-import Settings from './Settings.vue'
-import ElSize from './ElSize.vue'
-import FullScreen from './FullScreen.vue'
-import Refresh from './Refresh.vue'
+import { defineAsyncComponent } from 'vue'
+
+const isDev = import.meta.env.MODE === 'development'
+
+const Dark = defineAsyncComponent(() => import('./Dark.vue'))
+const Locale = defineAsyncComponent(() => import('./Locale.vue'))
+const Settings = isDev && defineAsyncComponent(() => import('./Settings.vue'))
+const ElSize = defineAsyncComponent(() => import('./ElSize.vue'))
+const FullScreen = defineAsyncComponent(() => import('./FullScreen.vue'))
+const Refresh = defineAsyncComponent(() => import('./Refresh.vue'))
 </script>
 
 <template>
@@ -14,7 +18,7 @@ import Refresh from './Refresh.vue'
     <FullScreen />
     <ElSize />
     <Locale />
-    <Settings />
+    <Settings v-if="isDev" />
   </div>
 </template>
 
