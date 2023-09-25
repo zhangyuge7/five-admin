@@ -529,7 +529,7 @@ onUnmounted(() => {
         <div class="setting-item">
           <el-text :size="state.size">
             <el-tooltip
-              content="可以使用多语言翻译模板"
+              content="可以使用多语言文本"
               placement="top-start"
             >
               <el-icon><QuestionFilled /></el-icon>
