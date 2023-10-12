@@ -8,7 +8,7 @@ export function loginApi(data) {
 export function userInfoApi() {
   return axios.get('/auth/userInfo')
 }
-// 用户信息
+// 菜单列表
 export function menuListApi() {
   return axios.get('/auth/menuList')
 }
