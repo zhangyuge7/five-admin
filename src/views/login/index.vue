@@ -1,94 +1,180 @@
 <script setup>
-import { onMounted, onUnmounted, reactive, ref } from 'vue'
+import { onMounted, onUnmounted, reactive } from 'vue'
 import { useUserStore } from '@/stores/modules/user'
 
 const title = import.meta.env.VITE_APP_TITLE
 const useUser = useUserStore()
 
-const formRef = ref()
-const rules = {
-  username: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 3, max: 16, message: '3 到 16 个字符长度', trigger: 'blur' },
-  ],
-  password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 3, max: 30, message: '6 到 30 个字符长度', trigger: 'blur' },
-  ],
-}
-const form = reactive({
-  username: 'admin',
-  password: 'admin',
+const state = reactive({
+  loginLoading: false,
+  form: {
+    username: 'admin',
+    password: 'admin',
+  },
+  passwordClass: 'owl',
 })
-const loginLoading = ref(false)
-function resetForm(formEl) {
-  if (!formEl)
-    return
-  formEl.resetFields()
-}
-async function onSubmit(formEl) {
-  if (!formEl)
-    return
-  await formEl.validate((valid) => {
-    if (valid) {
-      loginLoading.value = true
-      doLogin()
-    }
-  })
+const methods = {
+  async onSubmit() {
+    state.loginLoading = true
+    methods.doLogin()
+  },
+  async  doLogin() {
+    await useUser.login({ ...state.form })
+    state.loginLoading = false
+  },
+  enterKey(event) {
+    const code = event.keyCode
+      ? event.keyCode
+      : event.which
+        ? event.which
+        : event.charCode
+    if (code === 13 && !loginLoading.value)
+      methods.onSubmit()
+  },
+  onPasswordFocus() {
+    state.passwordClass = 'owl password'
+  },
+  onPasswordBlur() {
+    state.passwordClass = 'owl'
+  },
 }
 
-async function doLogin() {
-  await useUser.login({ ...form })
-  loginLoading.value = false
-}
-
-function enterKey(event) {
-  const code = event.keyCode
-    ? event.keyCode
-    : event.which
-      ? event.which
-      : event.charCode
-  if (code === 13 && !loginLoading.value)
-    onSubmit(formRef.value)
-}
 onMounted(() => {
-  document.addEventListener('keyup', enterKey)
+  // document.addEventListener('keyup', methods.enterKey)
 })
 onUnmounted(() => {
-  document.removeEventListener('keyup', enterKey)
+  document.removeEventListener('keyup', methods.enterKey)
 })
 </script>
 
 <template>
-  <div class="login-container">
-    <el-card shadow="always" :body-style="{ padding: '20px' }">
-      <template #header>
-        <div>
-          <span>{{ title }}</span>
+  <div class="login-body">
+    <div class="login-box">
+      <div id="owl" :class="state.passwordClass">
+        <div class="hand" />
+        <div class="hand hand-r" />
+        <div class="arms">
+          <div class="arm" />
+          <div class="arm arm-r" />
         </div>
-      </template>
-      <el-form ref="formRef" :model="form" :rules="rules" label-width="80px" :inline="false">
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="form.username" />
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input v-model="form.password" type="password" />
-        </el-form-item>
-        <el-form-item>
-          <el-button :loading="loginLoading" type="primary" @click="onSubmit(formRef)">
-            登录
-          </el-button>
-          <el-button @click="resetForm(formRef)">
-            重置
-          </el-button>
-        </el-form-item>
-      </el-form>
-    </el-card>
+      </div>
+      <div class="input-box">
+        <input v-model="state.form.username" type="text" placeholder="账号">
+        <input
+          id="password" v-model="state.form.password" type="password" placeholder="密码" @focus="methods.onPasswordFocus"
+          @blur="methods.onPasswordBlur"
+        >
+        <button @click="methods.onSubmit">
+          登录
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.login-container {
-    @apply h-full w-full flex justify-center items-center
+.login-body{
+    /* 100%窗口高度 */
+    height: 100%;
+    width: 100%;
+    /* 弹性布局 居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 渐变背景 */
+    background: linear-gradient(200deg,#72afd3,#96fbc4);
+}
+.login-box{
+    /* 相对定位 */
+    position: relative;
+    width: 320px;
+}
+.input-box{
+    /* 弹性布局 垂直排列 */
+    display: flex;
+    flex-direction: column;
+}
+.input-box input{
+    height: 40px;
+    border-radius: 3px;
+    /* 缩进15像素 */
+    text-indent: 15px;
+    outline: none;
+    border: none;
+    margin-bottom: 15px;
+}
+.input-box input:focus{
+    outline: 1px solid lightseagreen;
+}
+.input-box button{
+    border: none;
+    height: 45px;
+    background-color: lightseagreen;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+/* 接下来是猫头鹰的样式 */
+.owl{
+    width: 211px;
+    height: 108px;
+    /* 背景图片 */
+    background: url("/src/assets/images/pages/login-page/owl-login.png") no-repeat;
+    /* 绝对定位 */
+    position: absolute;
+    top: -100px;
+    /* 水平居中 */
+    left: 50%;
+    transform: translateX(-50%);
+}
+.owl .hand{
+    width: 34px;
+    height: 34px;
+    border-radius: 40px;
+    background-color: #472d20;
+    /* 绝对定位 */
+    position: absolute;
+    left: 12px;
+    bottom: -8px;
+    /* 沿Y轴缩放0.6倍（压扁） */
+    transform: scaleY(0.6);
+    /* 动画过渡 */
+    transition: 0.3s ease-out;
+}
+.owl .hand.hand-r{
+    left: 170px;
+}
+.owl.password .hand{
+    transform: translateX(42px) translateY(-15px) scale(0.7);
+}
+.owl.password .hand.hand-r{
+    transform: translateX(-42px) translateY(-15px) scale(0.7);
+}
+.owl .arms{
+    position: absolute;
+    top: 58px;
+    width: 100%;
+    height: 41px;
+    overflow: hidden;
+}
+.owl .arms .arm{
+    width: 40px;
+    height: 65px;
+    position: absolute;
+    left: 20px;
+    top: 40px;
+    background: url("/src/assets/images/pages/login-page/owl-login-arm.png") no-repeat;
+    transform: rotate(-20deg);
+    transition: 0.3s ease-out;
+}
+.owl .arms .arm.arm-r{
+    transform: rotate(20deg) scaleX(-1);
+    left: 158px;
+}
+.owl.password .arms .arm{
+    transform: translateY(-40px) translateX(40px);
+}
+.owl.password .arms .arm.arm-r{
+    transform: translateY(-40px) translateX(-40px) scaleX(-1);
 }
 </style>
