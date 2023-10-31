@@ -30,7 +30,7 @@ onBeforeRouteUpdate(() => {
         <LayoutHeader />
         <Tabs v-if="appStore.appConfig.isTabs" />
       </el-header>
-      <el-main>
+      <el-main class="fv-el-main">
         <el-scrollbar ref="scrollbar" class="fv-main">
           <LayoutMain />
         </el-scrollbar>
@@ -47,11 +47,11 @@ onBeforeRouteUpdate(() => {
   padding-bottom: v-bind(footerHeight);
   background-color: var(--fv-main-bg-color);
 }
-.el-main{
+.fv-el-main{
   padding: 0;
   position: relative;
 }
-:deep(.el-scrollbar__view){
+:deep(.fv-main)>.el-scrollbar__wrap>.el-scrollbar__view{
   height: 100%;
 }
 .fv-tab-header{
