@@ -8,10 +8,10 @@ const userList = [
     password: 'admin',
     token: '1',
     nickName: '超级管理员',
-    roles: ['admin'],
+    roles: ['admin', 'admin1'],
     avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
     homePath: '/home',
-    perms: ['admin:button'],
+    perms: ['admin:button', 'admin1:button'],
   },
   {
     id: 2,

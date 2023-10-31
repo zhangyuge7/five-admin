@@ -1,4 +1,5 @@
 import { useUserStore } from '@/stores/modules/user'
+import { match } from '@/utils/strUtils'
 
 export default function useAuth() {
   const userStore = useUserStore()
@@ -19,14 +20,15 @@ export default function useAuth() {
   function hasRole(val) {
     if (!userStore.userInfo)
       return false
-
     const { roles } = userStore.userInfo
     if (!roles?.length)
       return false
-    if (typeof (val) === 'string')
-      return roles.includes(val)
+    if (typeof (val) === 'string') {
+      const arr = roles.filter(role => match(val, role))
+      return !!arr?.length
+    }
     if (Array.isArray(val)) {
-      const arr = roles.filter(role => val.includes(role))
+      const arr = roles.filter(role => !!val.filter(v1 => match(v1, role)).length)
       return !!arr?.length
     }
     else {
@@ -49,7 +51,7 @@ export default function useAuth() {
 
     const { roles } = userStore.userInfo
     const set = new Set(val) // 去重
-    const containsAll = [...set].every(val => roles.includes(val))
+    const containsAll = [...set].every(v1 => !!roles.filter(role => match(v1, role)).length)
     return containsAll
   }
 
@@ -63,9 +65,9 @@ export default function useAuth() {
     if (!perms?.length)
       return false
     if (typeof (val) === 'string')
-      return perms.includes(val)
+      return !!perms.filter(pre => match(val, pre)).length
     if (Array.isArray(val)) {
-      const arr = perms.filter(role => val.includes(role))
+      const arr = perms.filter(per => !!val.filter(v1 => match(v1, per)).length)
       return !!arr?.length
     }
     else {
@@ -88,7 +90,7 @@ export default function useAuth() {
 
     const { perms } = userStore.userInfo
     const set = new Set(val) // 去重
-    const containsAll = [...set].every(val => perms.includes(val))
+    const containsAll = [...set].every(v1 => !!perms.filter(pre => match(v1, pre)).length)
     return containsAll
   }
   return {
