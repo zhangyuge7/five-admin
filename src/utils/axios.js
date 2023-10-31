@@ -53,7 +53,7 @@ axiosInstance.interceptors.response.use((res) => {
   // 获取请求时配置的成功消息提示类型与错误消息提示类型
   const { errorMsgType, successMsgType } = config
   const code = data[resultProp.code]
-  // 异常响应时
+  // 业务异常响应时
   if (code !== successCode) {
     errorMessageAlert(data[resultProp.message] || t('http.error'), errorMsgType)
     switch (code) {
@@ -113,6 +113,7 @@ function errorMessageAlert(message, messageType) {
         confirmButtonText: t('messageBox.iKnow'),
         type: 'error',
         showClose: false,
+        lockScroll: false,
       },
     )
   }
@@ -132,6 +133,7 @@ function successMessageAlert(message, messageType) {
         confirmButtonText: t('messageBox.close'),
         type: 'success',
         showClose: false,
+        lockScroll: false,
       },
     )
   }
