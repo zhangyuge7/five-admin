@@ -10,11 +10,11 @@
 
     // -----------------------顶栏-----------------------------
     --fv-header-height:52px; // 顶栏高度
-    --fv-header-bg-color:#433C68; // 顶栏背景颜色
+    --fv-header-bg-color:#214e7a; // 顶栏背景颜色
     --fv-header-text-color:#fff; // 顶栏内容颜色
 
     // -----------------------侧栏-----------------------------
-    --fv-side-bg-color:#312845; // 侧栏背景颜色
+    --fv-side-bg-color:#012230; // 侧栏背景颜色
     --fv-main-menu-width:75px; // 侧栏主菜单宽度
     --fv-menu-width:200px; // 侧栏菜单宽度
 
@@ -22,18 +22,18 @@
     --fv-menu-text-color:#ffffff; // 菜单内容颜色
     // --fv-menu-active-bg-color: #b8d8f6; // 激活项的菜单背景颜色
     --fv-menu-active-color: var(--el-color-primary); // 激活项的菜单文本颜色
-    --fv-menu-hover-bg-color: #18122C; // 鼠标移入菜单背景颜色
-    --fv-menu-inline-bg-color:#211b2e; // 子菜单展开背景颜色
+    --fv-menu-hover-bg-color: #12304e; // 鼠标移入菜单背景颜色
+    --fv-menu-inline-bg-color:rgba(0, 18, 25, 1); // 子菜单展开背景颜色
     --fv-menu-item-height: 60px; // 侧栏菜单项高度（包括双侧栏布局的主菜单项）
     --fv-menu-item-font-size: var(--el-font-size-base); // 菜单字体尺寸
     
     // -----------------------LOGO标题-----------------------------
-    --fv-logo-bg-color:#312845; // LOGO背景
+    --fv-logo-bg-color:#012230; // LOGO背景
     --fv-logo-title-color:#ffffff; //标题颜色
 
     // -----------------------页脚-----------------------------
     --fv-footer-heigth:26px; // 页脚高度
-    --fv-footer-bg-color:#433C68; // 页脚背景颜色
+    --fv-footer-bg-color:#f4f4f4; // 页脚背景颜色
     --fv-footer-text-color:#909399; // 页脚文本颜色
     --fv-footer-font-size:14px; // 页脚字体尺寸
     
