@@ -194,7 +194,7 @@ onMounted(() => {
 }
 
 .box-item>div:hover {
-  @apply scale-110
+  @apply scale-105
 }
 
 .box-item>div {
