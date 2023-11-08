@@ -7,10 +7,10 @@ import { t } from '@/i18n'
 import router from '@/router'
 import useAuth from '@/hooks/useAuth'
 
-const timeout = import.meta.env.VITE_REQUEST_TIMEOUT
+const timeout = import.meta.env.VITE_API_TIMEOUT
 // 创建 axios 实例
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: timeout ? Number.parseInt(timeout) : 0,
 })
 
