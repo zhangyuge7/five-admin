@@ -5,7 +5,6 @@ import LayoutHeader from './LayoutHeader.vue'
 import LayoutMain from '@/layout/main/LayoutMain.vue'
 import Tabs from '@/layout/components/Tabs.vue'
 import { useAppStore } from '@/stores/modules/app'
-import SettingDrawer from '@/layout/components/SettingDrawer.vue'
 import LayoutFooter from '@/layout/main/LayoutFooter.vue'
 
 const appStore = useAppStore()
@@ -31,9 +30,8 @@ onBeforeRouteUpdate(() => {
       </el-scrollbar>
       <LayoutFooter v-if="appStore.appConfig.showFooter" />
     </el-main>
+    <el-backtop v-if="appStore.appConfig.enableBacktop" :right="40" :bottom="40" target=".fv-main>.el-scrollbar__wrap" />
   </el-container>
-  <el-backtop v-if="appStore.appConfig.enableBacktop" :right="40" :bottom="40" target=".fv-main>.el-scrollbar__wrap" />
-  <SettingDrawer />
 </template>
 
 <style scoped>

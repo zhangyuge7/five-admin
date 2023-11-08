@@ -1,5 +1,6 @@
 <script setup name="Layout">
 import { defineAsyncComponent } from 'vue'
+import SettingDrawer from '@/layout/components/SettingDrawer.vue'
 
 import { useAppStore } from '@/stores/modules/app'
 
@@ -22,5 +23,6 @@ const layoutTypes = {
 <template>
   <div>
     <Component :is="layoutTypes[appStore.appConfig.layoutType]" />
+    <SettingDrawer />
   </div>
 </template>
