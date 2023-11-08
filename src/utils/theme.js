@@ -108,5 +108,5 @@ export function setPrimaryColor(colorVal) {
       setCssVal('--el-color-primary', item)
   })
   const darkColors = colorGradual(colorVal, true)
-  setCssVal('--el-color-primary--dark-2', darkColors[2])
+  setCssVal('--el-color-primary-dark-2', darkColors[2])
 }
