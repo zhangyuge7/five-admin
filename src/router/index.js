@@ -5,6 +5,7 @@ import { t } from '@/i18n'
 import { useAppStore } from '@/stores/modules/app'
 import { useUserStore } from '@/stores/modules/user'
 import { useRouteStore } from '@/stores/modules/route'
+import PageLoading from '@/utils/pageLoading'
 
 export const WHITE_LIST = []
 
@@ -15,6 +16,7 @@ const router = createRouter({
 
 // 前置守卫
 router.beforeEach((to, from, next) => {
+  PageLoading.start()
   const { hasToken } = useAuth()
   if (to.path === '/login') {
     if (hasToken)
@@ -46,10 +48,10 @@ router.afterEach((to) => {
   if (appStore.appConfig.dynamicTitle) {
     if (to.meta?.title)
       document.title = `${import.meta.env.VITE_APP_TITLE} - ${t(to.meta?.title)}`
-
     else
       document.title = import.meta.env.VITE_APP_TITLE
   }
+  PageLoading.done()
 })
 function setupRouter(app) {
   app.use(router)
