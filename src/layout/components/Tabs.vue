@@ -1,6 +1,6 @@
 <script  setup>
 import { computed, onBeforeMount, shallowReactive } from 'vue'
-import _ from 'lodash'
+import { cloneDeep } from 'lodash'
 import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import router from '@/router'
@@ -207,9 +207,9 @@ onBeforeRouteUpdate((to) => {
 // 组件加载前
 onBeforeMount(() => {
   // 从 pinia 仓库中获取需要固定在标签页的路由
-  state.tabs = _.cloneDeep(routeStore.fiexTabsRoutes)
+  state.tabs = cloneDeep(routeStore.fiexTabsRoutes)
   // 当前路由添加到标签
-  methods.addTab(_.cloneDeep({
+  methods.addTab(cloneDeep({
     path: route.path,
     name: route.name,
     meta: route.meta,

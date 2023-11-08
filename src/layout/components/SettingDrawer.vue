@@ -6,11 +6,12 @@ import mittBus from '@/utils/mitt'
 import { getCssVal, setCssVal } from '@/utils/domUtils'
 import { setPrimaryColor } from '@/utils/theme'
 import { layoutTypes, tabsTypes, transitionNames } from '@/appConfig'
+import { t } from '@/i18n'
 
 const appStore = useAppStore()
 
 // 提示
-const alert = '以上配置只支持预览，不具备持久化，刷新浏览器后恢复默认状态。配置可以在源码的 src/appConfig.js 文件中做永久修改。样式配置在 src/assets/styles/common/theme.scss 文件中修改'
+const alert = t('appConfig.hintText')
 
 // 响应式数据定义
 const state = reactive({
@@ -121,13 +122,13 @@ const methods = {
       case 'default':
         return '默'
       case 'singleAside':
-        return '单'
+        return t('appConfig.layout1')
       case 'doubleAside':
-        return '双'
+        return t('appConfig.layout2')
       case 'crosswise':
-        return '横'
+        return t('appConfig.layout3')
       case 'mixture':
-        return '混'
+        return t('appConfig.layout4')
     }
   },
 }
@@ -149,14 +150,15 @@ onUnmounted(() => {
   <div>
     <el-drawer
       :model-value="state.showSettingDrawer"
-      title="应用配置"
-      size="300px" class="setting-drawer"
+      :title="t('appConfig.applicationConfig')"
+      size="350px" class="setting-drawer"
+      :lock-scroll="false"
 
       @close="methods.drawerClose"
     >
       <el-scrollbar class=" pr-4">
         <el-divider :size="state.size">
-          布局配置
+          {{ t('appConfig.layoutConfig') }}
         </el-divider>
         <div class="setting-item">
           <!-- <el-text :size="state.size">
@@ -179,7 +181,7 @@ onUnmounted(() => {
         </div>
 
         <el-divider :size="state.size">
-          主题
+          {{ t('appConfig.theme') }}
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
@@ -196,7 +198,7 @@ onUnmounted(() => {
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            显示logo
+            {{ t('appConfig.showLogo') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.showLogo"
@@ -205,7 +207,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            logo背景
+            {{ t('appConfig.logoBackgroundColor') }}
           </el-text>
           <el-color-picker
             v-model="state.logoBgColor"
@@ -216,7 +218,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            标题颜色
+            {{ t('appConfig.titleColor') }}
           </el-text>
           <el-color-picker
             v-model="state.logoTitleColor"
@@ -226,11 +228,11 @@ onUnmounted(() => {
           />
         </div>
         <el-divider :size="state.size">
-          顶栏配置
+          {{ t('appConfig.headerConfig') }}
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            顶栏背景
+            {{ t('appConfig.headerBackgroundColor') }}
           </el-text>
           <el-color-picker
             v-model="state.headerBgColor"
@@ -240,7 +242,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            顶栏文本
+            {{ t('appConfig.headerTextColor') }}
           </el-text>
           <el-color-picker
             v-model="state.headerTextColor"
@@ -250,7 +252,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            顶栏高度
+            {{ t('appConfig.headerHeight') }}
           </el-text>
           <el-input-number
             :model-value="state.headerHeight"
@@ -261,11 +263,11 @@ onUnmounted(() => {
         </div>
 
         <el-divider :size="state.size">
-          侧栏配置
+          {{ t('appConfig.sideConfig') }}
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            是否折叠
+            {{ t('appConfig.collapse') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.menuIsCollapse"
@@ -275,7 +277,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            折叠动画
+            {{ t('appConfig.collapseAnimation') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.enableCollapseTransition"
@@ -285,7 +287,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            主栏标题
+            {{ t('appConfig.primaryTitle') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.isMainMenuShowTitle"
@@ -295,7 +297,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            侧栏背景
+            {{ t('appConfig.sideBackgroundColor') }}
           </el-text>
           <el-color-picker
             v-model="state.sideBgColor"
@@ -305,7 +307,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            侧栏宽度
+            {{ t('appConfig.sideWidth') }}
           </el-text>
           <el-input-number
             :model-value="state.menuWidth"
@@ -317,7 +319,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            主栏宽度
+            {{ t('appConfig.primaryWidth') }}
           </el-text>
           <el-input-number
             :model-value="state.mainMenuWidth"
@@ -329,7 +331,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            内容高度
+            {{ t('appConfig.contentHeight') }}
           </el-text>
           <el-input-number
             :model-value="state.menuItemHeight"
@@ -340,11 +342,11 @@ onUnmounted(() => {
           />
         </div>
         <el-divider :size="state.size">
-          菜单
+          {{ t('appConfig.menuConfig') }}
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            仅开一个
+            {{ t('appConfig.uniqueOpened') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.subMenuUniqueOpened"
@@ -354,7 +356,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            菜单内容
+            {{ t('appConfig.menuTextColor') }}
           </el-text>
           <el-color-picker
             v-model="state.menuTextColor"
@@ -364,7 +366,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            移入背景
+            {{ t('appConfig.hoverBackgroundColor') }}
           </el-text>
           <el-color-picker
             v-model="state.menuHoverBgColor"
@@ -374,7 +376,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            激活内容
+            {{ t('appConfig.activateTextColor') }}
           </el-text>
           <el-color-picker
             v-model="state.menuActiveColor"
@@ -384,7 +386,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            展开背景
+            {{ t('appConfig.expansionBackgroundColor') }}
           </el-text>
           <el-color-picker
             v-model="state.menuInlineColor"
@@ -393,11 +395,11 @@ onUnmounted(() => {
           />
         </div>
         <el-divider :size="state.size">
-          tabs 标签页
+          {{ t('appConfig.tabsConfig') }}
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            开启
+            {{ t('appConfig.openTabs') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.isTabs"
@@ -406,7 +408,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            显示图标
+            {{ t('appConfig.showIcon') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.tabsIcon"
@@ -417,12 +419,12 @@ onUnmounted(() => {
         <div class="setting-item">
           <el-text :size="state.size">
             <el-tooltip
-              content="当所有路由的 meta.fixedTab 不为 true 时，始终保持有一个 tab 不可关闭"
+              :content="t('appConfig.uniqueFixedHint')"
               placement="top-start"
             >
               <el-icon><QuestionFilled /></el-icon>
             </el-tooltip>
-            固定唯一
+            {{ t('appConfig.uniqueFixed') }}
           </el-text>
 
           <el-switch
@@ -433,7 +435,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            tabs风格
+            {{ t('appConfig.tabsStyle') }}
           </el-text>
           <el-select v-model="appStore.appConfig.tabsType" :size="state.size" class="select" :disabled="!appStore.appConfig.isTabs">
             <el-option
@@ -446,7 +448,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            高度
+            {{ t('appConfig.tabsHeight') }}
           </el-text>
           <el-input-number
             :model-value="state.tabsHeight"
@@ -457,11 +459,11 @@ onUnmounted(() => {
           />
         </div>
         <el-divider :size="state.size">
-          过渡动画
+          {{ t('appConfig.transitionAnimationConfig') }}
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            开启动画
+            {{ t('appConfig.openAnimation') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.isTransition"
@@ -470,7 +472,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            动画效果
+            {{ t('appConfig.animationStyle') }}
           </el-text>
           <el-select v-model="appStore.appConfig.transitionName" :size="state.size" class="select" :disabled="!appStore.appConfig.isTransition">
             <el-option
@@ -483,11 +485,11 @@ onUnmounted(() => {
         </div>
 
         <el-divider :size="state.size">
-          页脚设置
+          {{ t('appConfig.pageFooterConfig') }}
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            显示页脚
+            {{ t('appConfig.showFooter') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.showFooter"
@@ -496,7 +498,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            页脚背景
+            {{ t('appConfig.footerBackgroundColor') }}
           </el-text>
           <el-color-picker
             v-model="state.footerBgColor"
@@ -506,7 +508,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            页脚文本
+            {{ t('appConfig.footerTextColor') }}
           </el-text>
           <el-color-picker
             v-model="state.footerTextColor"
@@ -516,7 +518,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            页脚高度
+            {{ t('appConfig.footerHeight') }}
           </el-text>
           <el-input-number
             :model-value="state.footerHeight"
@@ -529,12 +531,12 @@ onUnmounted(() => {
         <div class="setting-item">
           <el-text :size="state.size">
             <el-tooltip
-              content="可以使用多语言文本"
+              :content="t('appConfig.footerTextHint')"
               placement="top-start"
             >
               <el-icon><QuestionFilled /></el-icon>
             </el-tooltip>
-            页脚内容
+            {{ t('appConfig.footerText') }}
           </el-text>
 
           <el-input
@@ -545,11 +547,11 @@ onUnmounted(() => {
         </div>
 
         <el-divider :size="state.size">
-          其它设置
+          {{ t('appConfig.otherConfig') }}
         </el-divider>
         <div class="setting-item">
           <el-text :size="state.size">
-            开启主界面回到顶部
+            {{ t('appConfig.openMainPageBackToTop') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.enableBacktop"
@@ -558,7 +560,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            灰色模式
+            {{ t('appConfig.grayPattern') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.enableGray"
@@ -567,7 +569,7 @@ onUnmounted(() => {
         </div>
         <div class="setting-item">
           <el-text :size="state.size">
-            色弱模式
+            {{ t('appConfig.tritanope') }}
           </el-text>
           <el-switch
             v-model="appStore.appConfig.enableColorWeakness"
@@ -575,7 +577,7 @@ onUnmounted(() => {
           />
         </div>
         <el-divider :size="state.size">
-          提示
+          {{ t('appConfig.hint') }}
         </el-divider>
         <el-alert :title="alert" type="warning" :closable="false" />
       </el-scrollbar>
