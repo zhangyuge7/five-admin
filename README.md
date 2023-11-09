@@ -31,7 +31,8 @@
 +   dev：开发分支（最新代码在这里）
 
 ## 相关链接
-+ 项目预览：https://zhang-yuge668.gitee.io/preview/five-admin/
 + 文档地址：https://zhang-yuge668.gitee.io/preview/five-admin-docs/
++ 项目预览：https://zhang-yuge668.gitee.io/preview/five-admin/
++ 账号/密码：admin/admin;test/test
 
 [![zhangyuge/five-admin](https://gitee.com/zhang-yuge668/five-admin/widgets/widget_card.svg?colors=4183c4,faf5fa,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/zhang-yuge668/five-admin)
