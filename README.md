@@ -1,5 +1,8 @@
+<center>[![Fork me on Gitee](https://gitee.com/zhang-yuge668/five-admin/widgets/widget_3.svg)](https://gitee.com/zhang-yuge668/five-admin)
 # FiveAdmin后台管理系统前端模板
-
+[![star](https://gitee.com/zhang-yuge668/five-admin/badge/star.svg?theme=dark)](https://gitee.com/zhang-yuge668/five-admin/stargazers)
+[![fork](https://gitee.com/zhang-yuge668/five-admin/badge/fork.svg?theme=dark)](https://gitee.com/zhang-yuge668/five-admin/members)
+</center>
 ## 简介
 项目基于 JavaScript、Vue3、Vite4、Pinia、ElementPlus、Tailwindcss 等技术栈开发。为开发后台管理系统提供开箱即用的解决方案，使开发者可以轻松构建功能齐全的管理系统界面。使用 FiveAdmin，开发者可以通过简单的配置，快速搭建后台管理系统，提高开发效率。
 
@@ -13,3 +16,9 @@
 ## 分支介绍
 +   master：主分支（推荐）
 +   dev：开发分支（最新代码在这里）
+
+## 相关链接
++ 项目预览：https://zhang-yuge668.gitee.io/preview/five-admin/
++ 文档地址：https://zhang-yuge668.gitee.io/preview/five-admin-docs/
+
+[![zhangyuge/five-admin](https://gitee.com/zhang-yuge668/five-admin/widgets/widget_card.svg?colors=4183c4,faf5fa,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/zhang-yuge668/five-admin)
