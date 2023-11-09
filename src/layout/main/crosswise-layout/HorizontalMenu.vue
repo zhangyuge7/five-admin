@@ -104,7 +104,8 @@ function showChildren({ children, meta }) {
   --el-menu-bg-color:var(--fv-header-bg-color);
 }
 .el-menu--horizontal{
-  --el-menu-item-height:calc(var(--fv-header-height) - 3px);
+  /* --el-menu-item-height:calc(var(--fv-header-height) - 3px); */
+  height:calc(var(--fv-header-height) - 3px);
   border-bottom: 0;
   width: 0;
 }
