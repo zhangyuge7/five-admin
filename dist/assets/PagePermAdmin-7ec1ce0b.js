@@ -1,0 +1,1 @@
+import{_ as e}from"./_plugin-vue_export-helper-c27b6911.js";import{b as c,c as _}from"./index-b5f8967c.js";const n={},o={class:"demo-permission-admin-page"};function s(t,a){return c(),_("div",o," admin角色可见 ")}const m=e(n,[["render",s],["__scopeId","data-v-c426cc2b"]]);export{m as default};
