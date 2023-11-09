@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-c27b6911.js";import{b as t,c as s}from"./index-b5f8967c.js";const _={},o={class:"demo-permission-test-page"};function c(a,r){return t(),s("div",o," test角色可见 ")}const m=e(_,[["render",c],["__scopeId","data-v-a1e02b71"]]);export{m as default};
