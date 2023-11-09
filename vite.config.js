@@ -7,6 +7,7 @@ import { initProxy } from './vite/proxy'
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd())
   return {
+    base: env.VITE_APP_BASE_PATH,
     plugins: setupVitePlugins(env, command === 'build'),
     resolve: {
       alias,
