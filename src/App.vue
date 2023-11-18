@@ -3,12 +3,13 @@ import { RouterView, useRoute } from 'vue-router'
 import { onMounted, onUnmounted, reactive } from 'vue'
 import { useRouteStore } from '@/stores/modules/route'
 import { useAppStore } from '@/stores/modules/app'
+import useElementI18n from '@/hooks/useElementI18n'
 import mittBus from '@/utils/mitt'
 
 const appStore = useAppStore()
 
 const routeStore = useRouteStore()
-
+const { locale } = useElementI18n()
 const uroute = useRoute()
 const state = reactive({
   // 用来控制刷新页面
@@ -46,15 +47,17 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <RouterView v-slot="{ Component, route }">
-    <Transition v-if="appStore.appConfig.isTransition && route.meta.isOuter" :name="route.meta?.transition || appStore.appConfig.transitionName" mode="out-in">
-      <KeepAlive :include="routeStore.keepAliveViews" :exclude="state.exc">
-        <Component :is="Component" v-if="state.show" :key="route.path" />
+  <ElConfigProvider :locale="locale" :size="appStore.appConfig.elementSize">
+    <RouterView v-slot="{ Component, route }">
+      <Transition v-if="appStore.appConfig.isTransition && route.meta.isOuter" :name="route.meta?.transition || appStore.appConfig.transitionName" mode="out-in">
+        <KeepAlive :include="routeStore.keepAliveViews" :exclude="state.exc">
+          <Component :is="Component" v-if="state.show" :key="route.path" />
+        </KeepAlive>
+      </Transition>
+      <KeepAlive v-else-if="route.meta.isOuter" :include="routeStore.keepAliveViews" :exclude="state.exc">
+        <Component :is="Component" v-if="state.show" />
       </KeepAlive>
-    </Transition>
-    <KeepAlive v-else-if="route.meta.isOuter" :include="routeStore.keepAliveViews" :exclude="state.exc">
-      <Component :is="Component" v-if="state.show" />
-    </KeepAlive>
-    <Component :is="Component" v-else />
-  </RouterView>
+      <Component :is="Component" v-else />
+    </RouterView>
+  </ElConfigProvider>
 </template>
