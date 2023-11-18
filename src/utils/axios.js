@@ -71,6 +71,9 @@ axiosInstance.interceptors.response.use((res) => {
   FiveNProgress.done() // 请求进度条结束
   return data
 }, (err) => {
+  if (!err.response)
+    return Promise.reject(err)
+
   const routeStore = useRouteStore()
   const { setToken } = useAuth()
   const { status, statusText, data } = err.response
