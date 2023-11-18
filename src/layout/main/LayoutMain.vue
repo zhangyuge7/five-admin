@@ -15,19 +15,18 @@ const state = reactive({
   show: true,
   // 用来强制刷新 keep 的页面（手动刷新时 keep 的页面应当刷新）
   exc: '',
-  key: 0,
 })
 
 // 刷新页面
 function refresh() {
-  const inc = routeStore.keepAliveViews.includes(uroute.name)
-  if (inc)
+  const isInc = routeStore.keepAliveViews.includes(uroute.name)
+  if (isInc)
     state.exc = uroute.name
   state.show = false
   setTimeout(() => {
     state.show = true
     state.exc = ''
-  }, 50)
+  }, 0)
 }
 onMounted(() => {
   // 监听页面刷新事件
@@ -36,7 +35,7 @@ onMounted(() => {
   if (import.meta.env.MODE === 'development' && appStore.appConfig.isTransition) {
     import.meta.hot.on('vite:beforeUpdate', ({ type }) => {
       if (type === 'update')
-        state.key++
+        refresh()
     })
   }
 })
@@ -50,7 +49,7 @@ onUnmounted(() => {
   <RouterView v-slot="{ Component, route }">
     <Transition v-if="appStore.appConfig.isTransition" :name="route.meta?.transition || appStore.appConfig.transitionName" mode="out-in">
       <KeepAlive :include="routeStore.keepAliveViews" :exclude="state.exc">
-        <Component :is="Component" v-if="state.show" :key="state.key" />
+        <Component :is="Component" v-if="state.show" :key="route.path" />
       </KeepAlive>
     </Transition>
     <KeepAlive v-else :include="routeStore.keepAliveViews" :exclude="state.exc">

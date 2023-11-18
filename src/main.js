@@ -1,6 +1,7 @@
 import './assets/styles/tailwind/index.css'
 import './assets/styles/index.scss'
 import 'virtual:svg-icons-register'
+import 'default-passive-events'
 
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
