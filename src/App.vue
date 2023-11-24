@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView, useRoute } from 'vue-router'
-import { onMounted, onUnmounted, reactive } from 'vue'
+import { nextTick, onMounted, onUnmounted, reactive } from 'vue'
 import { useRouteStore } from '@/stores/modules/route'
 import { useAppStore } from '@/stores/modules/app'
 import useElementI18n from '@/hooks/useElementI18n'
@@ -24,10 +24,10 @@ function refresh() {
   if (isInc)
     state.exc = uroute.name
   state.show = false
-  setTimeout(() => {
+  nextTick(() => {
     state.show = true
     state.exc = ''
-  }, 0)
+  })
 }
 onMounted(() => {
   // 监听页面刷新事件

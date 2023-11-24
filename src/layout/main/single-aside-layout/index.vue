@@ -15,7 +15,7 @@ const footerHeight = computed(() => appStore.appConfig.showFooter ? 'var(--fv-fo
 // 路由变更时手动更新进度条
 onBeforeRouteUpdate(() => {
   setTimeout(() => {
-    scrollbar.value.update()
+    scrollbar.value && scrollbar.value.update()
   }, 500)
 })
 </script>
