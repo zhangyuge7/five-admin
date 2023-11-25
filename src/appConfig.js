@@ -13,7 +13,7 @@ export const layoutTypes = [
   { label: '双侧栏', value: 'doubleAside' },
   { label: '横向上下布局', value: 'crosswise' },
   { label: '混合导航布局', value: 'mixture' },
-  // { label: '默认', value: 'default' },
+  { label: '默认', value: 'default' },
 ]
 
 export const tabsTypes = [

@@ -8,7 +8,7 @@ const appStore = useAppStore()
 
 const layoutTypes = {
   // 默认
-  default: defineAsyncComponent(() => import('./DefaultLayout.vue')),
+  default: defineAsyncComponent(() => import('./main/default-layout/index.vue')),
   // 单侧栏(经典)
   singleAside: defineAsyncComponent(() => import('./main/single-aside-layout/index.vue')),
   // 双侧栏
