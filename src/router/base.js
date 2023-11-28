@@ -8,7 +8,7 @@ const baseRoutes = [
   {
     path: '/:path(.*)*',
     name: 'NotFound',
-    component: () => import('@/views/error-page/404.vue'),
+    component: () => import('@/views/error-page/NotFound.vue'),
   },
 ]
 

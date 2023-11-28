@@ -26,7 +26,7 @@ const views = import.meta.glob('@/views/**/*.vue')
 const notFound = {
   path: '/:path(.*)*',
   name: 'NotFound',
-  component: () => import('@/views/error-page/404.vue'),
+  component: () => import('@/views/error-page/NotFound.vue'),
 }
 
 // 定义需要在 layout 框架外显示的路由列表
