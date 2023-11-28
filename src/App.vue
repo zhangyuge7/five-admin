@@ -33,12 +33,12 @@ onMounted(() => {
   // 监听页面刷新事件
   mittBus.on('onReloadPage', refresh)
   // 监听开发期间的热更新，保证key唯一，解决 Transition 组件与 Component 组件在热更新时的 bug
-  if (import.meta.env.MODE === 'development' && appStore.appConfig.isTransition) {
-    import.meta.hot.on('vite:beforeUpdate', ({ type }) => {
-      if (type === 'update' && uroute.meta.isOuter)
-        refresh()
-    })
-  }
+  // if (import.meta.env.MODE === 'development' && appStore.appConfig.isTransition) {
+  //   import.meta.hot.on('vite:beforeUpdate', ({ type }) => {
+  //     if (type === 'update' && uroute.meta.isOuter)
+  //       refresh()
+  //   })
+  // }
 })
 onUnmounted(() => {
   // 关闭监听页面刷新事件
