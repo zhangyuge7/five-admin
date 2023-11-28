@@ -58,16 +58,18 @@ onUnmounted(() => {
           <div class="arm arm-r" />
         </div>
       </div>
-      <div class="input-box">
+      <form class="input-box">
         <input v-model="state.form.username" type="text" placeholder="账号">
         <input
-          id="password" v-model="state.form.password" type="password" placeholder="密码" @focus="methods.onPasswordFocus"
+          id="password"
+          v-model="state.form.password" autocomplete="off" type="password" placeholder="密码" @focus="methods.onPasswordFocus"
           @blur="methods.onPasswordBlur"
         >
+
         <button @click="methods.onSubmit">
           登录
         </button>
-      </div>
+      </form>
     </div>
   </div>
 </template>
