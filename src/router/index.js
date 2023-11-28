@@ -4,7 +4,6 @@ import useAuth from '@/hooks/useAuth'
 import { t } from '@/i18n'
 import { useAppStore } from '@/stores/modules/app'
 import { useUserStore } from '@/stores/modules/user'
-import { useRouteStore } from '@/stores/modules/route'
 import PageLoading from '@/utils/pageLoading'
 
 export const WHITE_LIST = []
@@ -30,8 +29,7 @@ router.beforeEach((to, from, next) => {
   else {
     if (hasToken) {
       const userStore = useUserStore()
-      const routeStore = useRouteStore()
-      if (!routeStore.menus || !routeStore.menus.length)
+      if (!userStore.userInfo)
         userStore.loginAfter(to.path)
       else
         next()
