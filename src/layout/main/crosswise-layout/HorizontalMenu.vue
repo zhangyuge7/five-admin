@@ -4,7 +4,7 @@ import MenuItem from '@/layout/components/MenuItem.vue'
 import router from '@/router'
 import { useAppStore } from '@/stores/modules/app'
 import { useRouteStore } from '@/stores/modules/route'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/svg-icon/index.vue'
 
 const routeStore = useRouteStore()
 const appStore = useAppStore()

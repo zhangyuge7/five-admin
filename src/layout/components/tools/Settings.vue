@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import mittBus from '@/utils/mitt'
 import { t } from '@/i18n'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/svg-icon/index.vue'
 
 const title = computed(() => t('tools.setting'))
 function clickSetting() {
@@ -17,7 +17,7 @@ function clickSetting() {
   >
     <div class="tools-item" @click="clickSetting">
       <el-icon size="18">
-        <SvgIcon name="ant-design:setting-outlined" />
+        <SvgIcon name="EpSetting" />
       </el-icon>
     </div>
   </el-tooltip>

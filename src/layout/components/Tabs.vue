@@ -2,7 +2,7 @@
 import { computed, onBeforeMount, shallowReactive } from 'vue'
 import { cloneDeep } from 'lodash'
 import { onBeforeRouteUpdate, useRoute } from 'vue-router'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/svg-icon/index.vue'
 import router from '@/router'
 import { useRouteStore } from '@/stores/modules/route'
 import { useAppStore } from '@/stores/modules/app'
@@ -244,7 +244,7 @@ onBeforeMount(() => {
               <el-dropdown-menu>
                 <el-dropdown-item :disabled="state.currTabPath !== item.path" :command="{ flag: 'refresh', tab: item }">
                   <el-icon>
-                    <SvgIcon name="ep:refresh" />
+                    <SvgIcon name="EpRefresh" />
                   </el-icon>
                   <span>
                     {{ $t('tabs.refresh') }}
@@ -252,7 +252,7 @@ onBeforeMount(() => {
                 </el-dropdown-item>
                 <el-dropdown-item :disabled="item.meta.fixedTab" :command="{ flag: 'close', tab: item }">
                   <el-icon>
-                    <SvgIcon name="mdi:close-box-outline" />
+                    <SvgIcon name="EpClose" />
                   </el-icon>
                   <span>
                     {{ $t('tabs.close') }}
@@ -260,7 +260,7 @@ onBeforeMount(() => {
                 </el-dropdown-item>
                 <el-dropdown-item :command="{ flag: 'close-left', tab: item }">
                   <el-icon>
-                    <SvgIcon name="ant-design:swap-left-outlined" />
+                    <SvgIcon name="HumbleiconsAlignObjectsLeft" />
                   </el-icon>
                   <span>
                     {{ $t('tabs.closeLeft') }}
@@ -268,7 +268,7 @@ onBeforeMount(() => {
                 </el-dropdown-item>
                 <el-dropdown-item :command="{ flag: 'close-right', tab: item }">
                   <el-icon>
-                    <SvgIcon name="ant-design:swap-right-outlined" />
+                    <SvgIcon name="HumbleiconsAlignObjectsRight" />
                   </el-icon>
                   <span>
                     {{ $t('tabs.closeRight') }}
@@ -276,7 +276,7 @@ onBeforeMount(() => {
                 </el-dropdown-item>
                 <el-dropdown-item :command="{ flag: 'close-other', tab: item }">
                   <el-icon>
-                    <SvgIcon name="mdi:close-box-multiple-outline" />
+                    <SvgIcon name="EpCircleClose" />
                   </el-icon>
                   <span>
                     {{ $t('tabs.closeOther') }}
@@ -284,15 +284,12 @@ onBeforeMount(() => {
                 </el-dropdown-item>
                 <el-dropdown-item :command="{ flag: 'close-all', tab: item }">
                   <el-icon>
-                    <SvgIcon name="codicon:close-all" />
+                    <SvgIcon name="EpCircleCloseFilled" />
                   </el-icon>
                   <span>
                     {{ $t('tabs.closeAll') }}
                   </span>
                 </el-dropdown-item>
-                <!-- <el-dropdown-item divided disabled>
-                  待增
-                </el-dropdown-item> -->
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -302,14 +299,14 @@ onBeforeMount(() => {
     <el-dropdown @command="methods.command">
       <div class="el-dropdown-link fv-tabs-operation">
         <el-icon size="24">
-          <SvgIcon name="ep:arrow-down" />
+          <SvgIcon name="EpArrowDown" />
         </el-icon>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item :command="{ flag: 'refresh', tab: { path: state.currTabPath } }">
             <el-icon>
-              <SvgIcon name="ep:refresh" />
+              <SvgIcon name="EpRefresh" />
             </el-icon>
             <span>
               {{ $t('tabs.refresh') }}
@@ -317,7 +314,7 @@ onBeforeMount(() => {
           </el-dropdown-item>
           <el-dropdown-item :command="{ flag: 'close-left', tab: { path: state.currTabPath } }">
             <el-icon>
-              <SvgIcon name="ant-design:swap-left-outlined" />
+              <SvgIcon name="HumbleiconsAlignObjectsLeft" />
             </el-icon>
             <span>
               {{ $t('tabs.closeLeft') }}
@@ -325,7 +322,7 @@ onBeforeMount(() => {
           </el-dropdown-item>
           <el-dropdown-item :command="{ flag: 'close-right', tab: { path: state.currTabPath } }">
             <el-icon>
-              <SvgIcon name="ant-design:swap-right-outlined" />
+              <SvgIcon name="HumbleiconsAlignObjectsRight" />
             </el-icon>
             <span>
               {{ $t('tabs.closeRight') }}
@@ -333,7 +330,7 @@ onBeforeMount(() => {
           </el-dropdown-item>
           <el-dropdown-item :command="{ flag: 'close-other', tab: { path: state.currTabPath } }">
             <el-icon>
-              <SvgIcon name="mdi:close-box-multiple-outline" />
+              <SvgIcon name="EpCircleClose" />
             </el-icon>
             <span>
               {{ $t('tabs.closeOther') }}
@@ -341,7 +338,7 @@ onBeforeMount(() => {
           </el-dropdown-item>
           <el-dropdown-item :command="{ flag: 'close-all', tab: { path: state.currTabPath } }">
             <el-icon>
-              <SvgIcon name="codicon:close-all" />
+              <SvgIcon name="EpCircleCloseFilled" />
             </el-icon>
             <span>
               {{ $t('tabs.closeAll') }}

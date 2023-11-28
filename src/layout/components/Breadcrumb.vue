@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from 'vue-router'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/svg-icon/index.vue'
 
 const route = useRoute()
 </script>

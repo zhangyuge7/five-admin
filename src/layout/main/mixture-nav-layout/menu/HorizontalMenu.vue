@@ -3,7 +3,7 @@ import { onMounted, ref, shallowReactive, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
 import { useRouteStore } from '@/stores/modules/route'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/svg-icon/index.vue'
 import mittBus from '@/utils/mitt'
 
 const routeStore = useRouteStore()

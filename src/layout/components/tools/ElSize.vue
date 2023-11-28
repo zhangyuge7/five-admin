@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/svg-icon/index.vue'
 import { useAppStore } from '@/stores/modules/app'
 import { elementSizes } from '@/appConfig'
 
@@ -17,7 +17,7 @@ const size = computed(() => appStore.appConfig.elementSize)
     <el-dropdown class="h-full" size="default" @command="command">
       <div class="el-dropdown-link">
         <el-icon size="18">
-          <SvgIcon name="iconoir:text-size" />
+          <SvgIcon name="IconoirTextSize" />
         </el-icon>
       </div>
       <template #dropdown>

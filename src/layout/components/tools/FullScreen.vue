@@ -1,7 +1,7 @@
 <script setup>
 import screenfull from 'screenfull'
 import { computed, ref } from 'vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/svg-icon/index.vue'
 import { t } from '@/i18n'
 
 const isFullscreen = ref(screenfull.isFullscreen)
@@ -24,7 +24,7 @@ if (screenfull.isEnabled) {
   >
     <div class="tools-item" @click="clickSetting">
       <el-icon size="18">
-        <SvgIcon :name="isFullscreen ? 'ant-design:fullscreen-exit-outlined' : 'ant-design:fullscreen-outlined'" />
+        <SvgIcon :name="isFullscreen ? 'AntDesignFullscreenExitOutlined' : 'AntDesignFullscreenOutlined'" />
       </el-icon>
     </div>
   </el-tooltip>

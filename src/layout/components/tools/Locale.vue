@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/svg-icon/index.vue'
 import { useAppStore } from '@/stores/modules/app'
 import i18n from '@/i18n'
 import { defaultLanguages } from '@/appConfig'
@@ -19,8 +19,7 @@ const locale = computed(() => appStore.appConfig.defaultLanguage)
     <el-dropdown class="h-full" size="default" @command="command">
       <div class="el-dropdown-link">
         <el-icon size="18">
-          <!-- <SvgIcon name="vscode-icons:file-type-locale" /> -->
-          <SvgIcon name="ant-design:global-outlined" />
+          <SvgIcon name="IconoirLanguage" />
         </el-icon>
       </div>
       <template #dropdown>

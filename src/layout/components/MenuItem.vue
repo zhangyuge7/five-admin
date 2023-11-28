@@ -1,5 +1,5 @@
 <script setup name="MenuItem">
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/svg-icon/index.vue'
 
 const props = defineProps({
   routes: {

@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import router from '@/router'
 import { useRouteStore } from '@/stores/modules/route'
 import { useAppStore } from '@/stores/modules/app'
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/svg-icon/index.vue'
 import mittBus from '@/utils/mitt'
 
 const appStore = useAppStore()
