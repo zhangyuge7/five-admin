@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import TreeOperate from 'tree-operate-j'
+import useCutTree from 'cut-tree'
 import { menuListApi } from '@/api/auth'
 import router from '@/router'
 import useAuth from '@/hooks/useAuth'
@@ -64,6 +64,7 @@ function getHomePath() {
   return userInfo?.homePath || import.meta.env.VITE_APP_HOME_PATH
 }
 
+const { filter, forEach } = useCutTree({ id: 'path', children: 'children' })
 export const useRouteStore = defineStore('route', () => {
   const { hasRole } = useAuth()
   // 菜单列表
@@ -102,17 +103,16 @@ export const useRouteStore = defineStore('route', () => {
   function fromFrontendRoutes() {
     let data = routeModuleList
     routesSort(data)
-    const treeOperate = new TreeOperate({ id: 'path' })
     // 根据角色过滤
-    data = treeOperate.filter((route) => {
+    data = filter(data, (route) => {
       if (route.meta?.roles && !hasRole(route.meta.roles))
         return false
       return true
-    }, data)
+    })
     // 菜单信息赋值
     menus.value = data
     // 遍历路由
-    treeOperate.for((route) => {
+    forEach(data, (route) => {
       const meta = route.meta
       if (meta) {
       // 需要缓存的组件 名称列表
@@ -125,7 +125,7 @@ export const useRouteStore = defineStore('route', () => {
         else if (meta.fixedTab)
           fiexTabsRoutes.value.push(route)
       }
-    }, data)
+    })
     // 获取homePath
     root.redirect = getHomePath()
     // 添加路由到路由器
@@ -135,33 +135,31 @@ export const useRouteStore = defineStore('route', () => {
   async function fromBackendRoutes() {
     // 请求路由
     let { data } = await menuListApi()
-    const treeOperate = new TreeOperate({ id: 'path' })
     // 根据角色过滤
-    data = treeOperate.filter((route) => {
+    data = filter(data, (route) => {
       if (route.meta?.roles && !hasRole(route.meta.roles))
         return false
       return true
-    }, data)
+    })
     // 菜单信息赋值
     menus.value = data
     // 遍历路由
-    treeOperate.for((route) => {
-    // 处理 component
+    forEach(data, (route) => {
+      // 处理 component
       handleComponent(route)
       const meta = route.meta
       if (meta) {
-      // 需要缓存的组件 名称列表
+        // 需要缓存的组件 名称列表
         if (meta.isKeep)
           keepAliveViews.value.push(route.name)
-        // 需要在 layout 框架外显示的路由
+          // 需要在 layout 框架外显示的路由
         if (meta.isOuter)
           outRoutes.push(route)
-        // 需要固定标签的路由
+          // 需要固定标签的路由
         else if (meta.fixedTab)
           fiexTabsRoutes.value.push(route)
       }
-    }, data)
-
+    })
     // 获取homePath
     root.redirect = getHomePath()
 
@@ -174,33 +172,31 @@ export const useRouteStore = defineStore('route', () => {
     let { data } = await menuListApi()
     data = [...routeModuleList, ...data]
     routesSort(data)
-    const treeOperate = new TreeOperate({ id: 'path' })
     // 根据角色过滤
-    data = treeOperate.filter((route) => {
+    data = filter(data, (route) => {
       if (route.meta?.roles && !hasRole(route.meta.roles))
         return false
       return true
-    }, data)
+    })
     // 菜单信息赋值
     menus.value = data
     // 遍历路由
-    treeOperate.for((route) => {
-    // 处理 component
+    forEach(data, (route) => {
+      // 处理 component
       handleComponent(route)
       const meta = route.meta
       if (meta) {
-      // 需要缓存的组件 名称列表
+        // 需要缓存的组件 名称列表
         if (meta.isKeep)
           keepAliveViews.value.push(route.name)
-        // 需要在 layout 框架外显示的路由
+          // 需要在 layout 框架外显示的路由
         if (meta.isOuter)
           outRoutes.push(route)
-        // 需要固定标签的路由
+          // 需要固定标签的路由
         else if (meta.fixedTab)
           fiexTabsRoutes.value.push(route)
       }
-    }, data)
-
+    })
     // 获取homePath
     root.redirect = getHomePath()
     // 添加路由到路由器

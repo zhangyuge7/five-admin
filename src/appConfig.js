@@ -13,7 +13,7 @@ export const layoutTypes = [
   { label: '双侧栏', value: 'doubleAside' },
   { label: '横向上下布局', value: 'crosswise' },
   { label: '混合导航布局', value: 'mixture' },
-  { label: '默认', value: 'default' },
+  // { label: '默认', value: 'default' },
 ]
 
 export const tabsTypes = [
@@ -44,7 +44,7 @@ export default {
   // 布局类型。
   // 'default' 默认 | 'singleAside' 单侧栏(经典) | 'doubleAside' 双侧栏 |
   // 'crosswise' 横向上下布局 | 'mixture' 混合导航布局
-  layoutType: layoutTypes[0].value,
+  layoutType: layoutTypes[1].value,
 
   // ----------------------------------------LOGO--------------------------------------------------
   // 显示 logo
