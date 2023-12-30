@@ -1,4 +1,12 @@
 <p align="center">
+    <h1>
+    此项目已停止维护，请了解
+    <a href="https://zhang-yuge668.gitee.io/preview/five-admin-v2-docs/">
+        FiveAdminV2
+    </a>
+    </h1>
+</p>
+<p align="center">
     <a href="https://gitee.com/zhang-yuge668/five-admin">
         <img src="https://gitee.com/zhang-yuge668/five-admin/widgets/widget_3.svg">
     </a>
