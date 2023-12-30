@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, onUnmounted, reactive } from 'vue'
 import { useUserStore } from '@/stores/modules/user'
+import router from '@/router'
 
 const title = import.meta.env.VITE_APP_TITLE
 const useUser = useUserStore()
@@ -16,10 +17,7 @@ const state = reactive({
 const methods = {
   async onSubmit() {
     state.loginLoading = true
-    methods.doLogin()
-  },
-  async  doLogin() {
-    await useUser.login({ ...state.form })
+    await useUser.login({ ...state.form }, router.currentRoute.value.query.replace || '/')
     state.loginLoading = false
   },
   enterKey(event) {
@@ -28,7 +26,7 @@ const methods = {
       : event.which
         ? event.which
         : event.charCode
-    if (code === 13 && !loginLoading.value)
+    if (code === 13 && !state.loginLoading)
       methods.onSubmit()
   },
   onPasswordFocus() {
@@ -40,7 +38,7 @@ const methods = {
 }
 
 onMounted(() => {
-  // document.addEventListener('keyup', methods.enterKey)
+  document.addEventListener('keyup', methods.enterKey)
 })
 onUnmounted(() => {
   document.removeEventListener('keyup', methods.enterKey)
@@ -59,14 +57,13 @@ onUnmounted(() => {
         </div>
       </div>
       <form class="input-box">
-        <input v-model="state.form.username" type="text" placeholder="账号">
+        <input id="username" v-model="state.form.username" autocomplete="off" type="text" placeholder="账号">
         <input
           id="password"
           v-model="state.form.password" autocomplete="off" type="password" placeholder="密码" @focus="methods.onPasswordFocus"
           @blur="methods.onPasswordBlur"
         >
-
-        <button @click="methods.onSubmit">
+        <button v-loading="state.loginLoading" type="button" @click="methods.onSubmit">
           登录
         </button>
       </form>

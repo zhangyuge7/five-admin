@@ -22,7 +22,7 @@ export const useAppStore = defineStore('app', () => {
 }, {
   persist: {
     key: `${PREFIX}APPCONFIG`,
-    paths: ['appConfig.defaultLanguage', 'appConfig.elementSize'],
+    paths: ['appConfig.defaultLanguage', 'appConfig.elementSize', 'appConfig.layoutType'],
     storage: localStorage,
     debug: true, // 输出持久化错误信息
   },
