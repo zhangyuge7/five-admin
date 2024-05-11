@@ -1,7 +1,9 @@
 <script setup name="Tools">
 import { defineAsyncComponent } from 'vue'
 
-const isDev = import.meta.env.MODE === 'development'
+// const isDev = import.meta.env.MODE === 'development'
+
+const isDev = true
 
 const Dark = defineAsyncComponent(() => import('./Dark.vue'))
 const Locale = defineAsyncComponent(() => import('./Locale.vue'))
