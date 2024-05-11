@@ -44,7 +44,7 @@ export default {
   // 布局类型。
   // 'default' 默认 | 'singleAside' 单侧栏(经典) | 'doubleAside' 双侧栏 |
   // 'crosswise' 横向上下布局 | 'mixture' 混合导航布局
-  layoutType: layoutTypes[1].value,
+  layoutType: layoutTypes[0].value,
 
   // ----------------------------------------LOGO--------------------------------------------------
   // 显示 logo
